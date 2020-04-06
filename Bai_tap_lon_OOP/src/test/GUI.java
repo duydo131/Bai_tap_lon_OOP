@@ -71,10 +71,15 @@ public class GUI extends javax.swing.JFrame {
 			
 			input = new Input(filename);
 			arrayline = input.Filter(arraykeywords);
-			
-			for (String string : arrayline) {
-				jContent.append(string + "\n");
-			}                          
+			jContent.setText("");
+			if(arrayline.size() == 0) {
+				jContent.setText("không tìm thấy thông tin");
+			} else {
+				for (String string : arrayline) {
+					jContent.append(string + "\n");
+				}   
+			}
+			                       
 	    }                                      
 
 	 

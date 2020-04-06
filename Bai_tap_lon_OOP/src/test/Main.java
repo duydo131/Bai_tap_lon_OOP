@@ -1,24 +1,34 @@
 package test;
 
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.stream.Stream;
 
 public class Main {
 	public static void main(String[] args) {
-		String filename = "Cafef.CLASSIFIED.STOCK_CODE.txt";
-		ArrayList<String> arrayline = null;
-		Input input = null;
-		ArrayList<String> arraykeywords = new ArrayList<>();
-		
-		arraykeywords.add("VN-index");
-		arraykeywords.add("giảm");
-		
-		input = new Input(filename);
-		arrayline = input.Filter(arraykeywords);
-		
-		String str = "";
-		for (String string : arrayline) {
-			str += string + "\n";
+		ArrayList<String> arr = new ArrayList<>();
+		ArrayList<String> array = new ArrayList<>();
+		String str = "D:\\ict\\Java\\test.txt";
+		try(Stream<String> stream = Files.lines(Paths.get(str), StandardCharsets.UTF_8)) {
+			stream.forEach(line->{
+				if(!(line == "")) {
+					arr.add(line);
+				}else {
+					
+				}
+				
+			});
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		System.out.println(str);
+		
+		
+		array = KeyWord.findKeyWord(arr);
+		for (String string : array) {
+			System.out.println(string);
+		}
+
 	}
 }

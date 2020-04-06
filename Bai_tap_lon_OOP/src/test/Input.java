@@ -8,7 +8,6 @@ import java.util.stream.Stream;
 
 public class Input {
 	private ArrayList<String> arr = new ArrayList<>();
-	private ArrayList<String> array = new ArrayList<>();
 	private String filename;
 	
 	
