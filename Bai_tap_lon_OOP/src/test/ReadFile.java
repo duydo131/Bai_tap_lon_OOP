@@ -13,7 +13,7 @@ public class ReadFile {
 		ArrayList<String> arr = new ArrayList<>();
 		try (Stream<String> stream = Files.lines(Paths.get(filename),StandardCharsets.UTF_8)) {
 			stream.forEach(line -> {
-				if(Kiemtra.kiemTra(line)) {
+				if(Kiemtra.kiemTratennhom(line)) {
 					
 				}
 			});
