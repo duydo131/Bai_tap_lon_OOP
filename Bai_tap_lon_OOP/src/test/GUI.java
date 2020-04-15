@@ -62,15 +62,15 @@ public class GUI extends javax.swing.JFrame {
 	    private void jSearchActionPerformed(java.awt.event.ActionEvent evt) {                                               
 	    	String keyword = jkeyWord.getText();
 	    	
-			String filename = "Cafef.CLASSIFIED.STOCK_CODE.txt";
+			//String filename = "D:\\ict\\Java\\test.txt";
+			String filename = "file/Cafef.CLASSIFIED.STOCK_CODE.txt";
 			ArrayList<String> arrayline = null;
 			Input input = null;
-			ArrayList<String> arraykeywords = new ArrayList<>();
-			
-			arraykeywords.add(keyword);
+			ArrayList<String> keywords = new ArrayList<>();
+			keywords.add(keyword);
 			
 			input = new Input(filename);
-			arrayline = input.Filter(arraykeywords);
+//			arrayline = input.Filter(keywords,"9/10");
 			jContent.setText("");
 			if(arrayline.size() == 0) {
 				jContent.setText("không tìm thấy thông tin");
