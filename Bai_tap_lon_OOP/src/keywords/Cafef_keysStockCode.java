@@ -40,9 +40,7 @@ public class Cafef_keysStockCode {
 						if(arr.size() != 0) {
 							all++;
 							
-							ArrayList<String> arraykeywords = null;
-							
-							arraykeywords = KeyWord.findKeyWord(arr);
+							ArrayList<String> arraykeywords = KeyWord.findKeyWord(arr);
 
 							try {
 								fileWriter.write(tennhom + " : ");

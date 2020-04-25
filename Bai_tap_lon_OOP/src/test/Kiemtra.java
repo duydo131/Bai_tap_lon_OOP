@@ -9,11 +9,13 @@ public class Kiemtra {
 	private static String regex2x = "\\D*\\d{1,2}[-]\\d{1,2}\\D*";
 	private static String regex2 = "^\\s*";
 	private static String regex3 = ".*\\D{1}[.]*\\d*\\d{3}[,]*\\d*\\D{1}.*";
-
+	//		,01-01-2000 - 00:00 AM,
 	
 	private static Pattern pattern = null;
 	private static Matcher matcher = null;
 	
+	
+
 	
 	//	kiểm tra tên nhóm
 	public static boolean kiemTratennhomXX_XX_XX(String str) {

@@ -1,13 +1,11 @@
 package test;
 
 
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Stream;
 
 public class Input {
 	private Set<String> arr = new HashSet<String>();
@@ -19,12 +17,13 @@ public class Input {
 	}
 	
 	public Set<String> Filter(ArrayList<String> keyword, String str) {
-		try (Stream<String> stream = Files.lines(Paths.get(filename),StandardCharsets.UTF_8)) {
-			stream.forEach(line ->{
-				if (Kiemtra.kiemTra(keyword, line) && Kiemtra.kiemTraNgay(str, line)) {
+		try(BufferedReader bufferedReader = new BufferedReader( new FileReader(filename))) {
+			String line;
+			while((line = bufferedReader.readLine()) != null) {
+				if (Kiemtra.kiemTra(keyword, line)) {
 					arr.add(line.split(": ")[1]);
 				}
-			});
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
