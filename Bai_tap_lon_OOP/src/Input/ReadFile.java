@@ -8,8 +8,8 @@ import java.util.Date;
 
 public class ReadFile {
 	public static void loadData() {
-		File folderVn30 = new File("D:\\20192\\OOP\\BaiTapLon\\dataVn30");
-		File folderHnx30 = new File("D:\\20192\\OOP\\BaiTapLon\\datahnx30");
+		File folderVn30 = new File("./file/dataVn30");
+		File folderHnx30 = new File("./file/datahnx30");
 		
 		File[] filename = null;
 
