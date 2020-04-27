@@ -4,7 +4,7 @@ package Input;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class DataNgay {
+public class DataOneDay {
 	private Date date;
 	private double giaMoCua;
 	private double giaMax;
@@ -13,7 +13,7 @@ public class DataNgay {
 	private long KL;
 	
 	
-	public DataNgay(Date date, double giaMoCua, double giaMax, double giaMin, double giaDongCua, long kL) {
+	public DataOneDay(Date date, double giaMoCua, double giaMax, double giaMin, double giaDongCua, long kL) {
 		this.date = date;
 		this.giaMoCua = giaMoCua;
 		this.giaMax = giaMax;

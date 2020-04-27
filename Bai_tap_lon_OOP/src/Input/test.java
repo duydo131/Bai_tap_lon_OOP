@@ -1,19 +1,14 @@
 package Input;
 
-import java.io.File;
+import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class test {
 	public static void main(String[] args) {
-		String str = "D:\\20192\\OOP\\BaiTapLon\\data";
-		
-		File file = new File(str);
-		
-		File[] arrayfile = file.listFiles();
-		
-		for (File file2 : arrayfile) {
-			System.out.println(file2);
+		int sum = 0;
+		for (int i = 0; i < 8; i++) {
+			sum = (sum +3)*2;
 		}
-		
-
+		System.out.println(sum);
 	}
 }
