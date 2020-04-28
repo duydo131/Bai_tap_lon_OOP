@@ -54,7 +54,7 @@ public class ReadFile {
 
 						KL = Long.parseLong((String) arr[6]);
 
-						Exchanges exchanges = i == 0 ? Exchanges.VN30 : Exchanges.HNX30;
+						EXCHANGES exchanges = i == 0 ? EXCHANGES.VN30 : EXCHANGES.HNX30;
 						
 						Data.add(name, new DataOneDay(date, giaMoCua, giaMax, giaMin, giaDongCua, KL), exchanges);
 						
@@ -65,8 +65,5 @@ public class ReadFile {
 				}
 			}
 		}
-		
-		
 	}
-
 }

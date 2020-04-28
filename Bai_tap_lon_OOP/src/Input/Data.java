@@ -1,11 +1,11 @@
 package Input;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Data {
-	private static Map<String, DataOneStock> dataVN30 = new HashMap<>();
-	private static Map<String, DataOneStock> dataHNX30 = new HashMap<>();
+	private static Map<String, DataOneStock> dataVN30 = new LinkedHashMap<>();
+	private static Map<String, DataOneStock> dataHNX30 = new LinkedHashMap<>();
 	
 	public static Map<String, DataOneStock> getDataVN30() {
 		return dataVN30;
@@ -16,10 +16,10 @@ public class Data {
 	}
 	
 
-	public static void add(String name, DataOneDay dataNgay, Exchanges exchanges) {
+	public static void add(String name, DataOneDay dataNgay, EXCHANGES exchanges) {
 		Map<String,DataOneStock> data = null;	// 	tránh data là null
 		
-		if(exchanges == Exchanges.HNX30) {
+		if(exchanges == EXCHANGES.HNX30) {
 			data = dataHNX30;
 		}else {
 			data = dataVN30;

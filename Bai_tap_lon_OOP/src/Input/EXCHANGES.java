@@ -1,5 +1,5 @@
 package Input;
 
-public enum Exchanges {
+public enum EXCHANGES {
 	HNX30 , VN30 
 }

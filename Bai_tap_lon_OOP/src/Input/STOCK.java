@@ -1,6 +1,6 @@
 package Input;
 
-public enum Stock {
+public enum STOCK {
 	
 	//		VN30
 	
@@ -78,7 +78,7 @@ public enum Stock {
 	private long outstandingShares; 	//  x1000 cổ phiếu
 	
 	
-	Stock(String name, long outstandingShares) {
+	STOCK(String name, long outstandingShares) {
 		this.name = name;
 		this.outstandingShares = outstandingShares;
 	}
