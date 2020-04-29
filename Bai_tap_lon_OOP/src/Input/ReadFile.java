@@ -13,7 +13,7 @@ public class ReadFile {
 		
 		File[] filename = null;
 
-		String name;
+		STOCK stock;
 		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 		Date date;
 		double giaMoCua;
@@ -35,10 +35,15 @@ public class ReadFile {
 				try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
 					String line ;
 					while ((line = reader.readLine()) != null ) {
-						
 						Object arr[] = line.split(",");
 
-						name = (String) arr[0];
+						String name = (String)arr[0];
+						if(name.equals("^VNINDEX")) {
+							name = "VNINDEX";
+						}else if(name.equals("^HASTC")) {
+							name = "HASTC";
+						}
+						stock =STOCK.valueOf(name);
 
 						String ngay = (String) arr[1];
 						String create = ngay.substring(6, 8) + "/" + ngay.substring(4, 6) + "/" + ngay.substring(0, 4);
@@ -56,7 +61,7 @@ public class ReadFile {
 
 						EXCHANGES exchanges = i == 0 ? EXCHANGES.VN30 : EXCHANGES.HNX30;
 						
-						Data.add(name, new DataOneDay(date, giaMoCua, giaMax, giaMin, giaDongCua, KL), exchanges);
+						Data.add(stock, new DataOneDay(date, giaMoCua, giaMax, giaMin, giaDongCua, KL), exchanges);
 						
 					}
 

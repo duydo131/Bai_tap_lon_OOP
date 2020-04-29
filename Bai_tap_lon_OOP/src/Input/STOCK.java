@@ -67,7 +67,6 @@ public enum STOCK {
 	TVC("Công ty Cổ phần Tập đoàn Quản lý Tài sản Trí Việt", 40016),
 	VC3("Công ty Cổ phần xây dựng sô 3", 61015642),
 	VCG("Tổng Công ty Cổ phần Xuất nhập khẩu và xây dựng Việt Nam", 441710),
-	VGS("CÔng ty Cổ phần ống thép Việt Đức", 42111),
 	VCS("Công ty Cổ phần VICOSTONE", 160000),
 	VMC("Công ty Cổ phần VIMECO", 10000),
 	
@@ -83,7 +82,7 @@ public enum STOCK {
 		this.outstandingShares = outstandingShares;
 	}
 	
-	public String getName() {
+	public String getNameCompany() {
 		return name;
 	}
 	public long getOutstandingShares() {

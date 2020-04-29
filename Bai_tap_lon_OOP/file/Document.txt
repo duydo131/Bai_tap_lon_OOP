@@ -2,7 +2,7 @@
 
 - boolean testDay(Date) : kiểm tra có dữ liệu ngày cần tìm không
 
-- ArrayList<DataOneDay> getDataOneWeek(STOCK, Date) : dữ liệu của cổ phiếu của ngày được chọn.
+- ArrayList<DataOneDay> getDataOneWeekOneStock(STOCK, Date) : dữ liệu của cổ phiếu của ngày được chọn.
 
 - DataOneDay priceMaxOneWeek(STOCK, Date) : dữ liệu của ngày có giá đóng cửa cao nhất của cổ phiếu trong tuần của ngày được chọn.
 
@@ -16,7 +16,7 @@
 
 - int getMonth(Date) : trả về tháng của ngày được chọn.
 
-- ArrayList<DataOneDay> getDataOneMonth(STOCK, MONTH) : dữ liệu của cổ phiếu của ngày được chọn.
+- ArrayList<DataOneDay> getDataOneMonthOneStock(STOCK, MONTH) : dữ liệu của cổ phiếu của ngày được chọn.
 
 - DataOneDay priceMaxOneMonth(STOCK, MONTH) : dữ liệu của ngày có giá đóng cửa cao nhất của cổ phiếu trong tháng được chọn.
 
@@ -28,25 +28,60 @@
 
 - long volumeSumOneMonth(STOCK, MONTH) : tổng khối lượng giao dịch trong tháng được chọn.
 
-- Map<String, DataOneDay> getToday(Date) : dữ liệu của tất cả cổ phiếu trong ngày được chọn (Phải xử lý để lọc VNINDEX("^VNINDEX") và HNXINDEX("^HASTC") riêng ).
+- Map<STOCK, DataOneDay> getToday(Date) : dữ liệu của tất cả cổ phiếu trong ngày được chọn (Phải xử lý để lọc VNINDEX và HNXINDEX riêng ).
 
-- Map<String, DataOneDay> getTodayVN30(Date) : dữ liệu của cổ phiếu VN30 trong ngày được chọn (VNINDEX("^VNINDEX") ở cuối ).
+- Map<STOCK, DataOneDay> getTodayVN30(Date) : dữ liệu của cổ phiếu VN30 trong ngày được chọn (VNINDEX ở cuối ).
 
-- Map<String, DataOneDay> getTodayHNX30(Date) : dữ liệu của cổ phiếu HNX30 trong ngày được chọn (HNXINDEX("^HASTC") ở cuối Map).
+- Map<STOCK, DataOneDay> getTodayHNX30(Date) : dữ liệu của cổ phiếu HNX30 trong ngày được chọn (HNXINDEX ở cuối Map).
 
-- Map<String, DataOneStock> getInfo(Date, Date) : dữ liệu tất cả cổ phiếu giữa 2 ngày được chọn (Phải xử lý để lọc VNINDEX("^VNINDEX") và HNXINDEX("^HASTC") riêng ).
+- Map<STOCK, ArrayList<DataOneDay>> getInfo(Date, Date) : dữ liệu tất cả cổ phiếu giữa 2 ngày được chọn (Phải xử lý để lọc VNINDEX và HNXINDEX riêng ).
 
-- Map<String, DataOneStock> getInfoVN30(Date, Date) : dữ liệu cổ phiếu VN30 giữa 2 ngày được chọn (VNINDEX("^VNINDEX") ở cuối).
+- Map<STOCK, ArrayList<DataOneDay>> getInfoVN30(Date, Date) : dữ liệu cổ phiếu VN30 giữa 2 ngày được chọn (VNINDEX ở cuối).
 
-- Map<String, DataOneStock> getInfoHNX30(Date, Date) : dữ liệu cổ phiếu HNX30 giữa 2 ngày được chọn (HNXINDEX("^HASTC") ở cuối Map).
+- Map<STOCK, ArrayList<DataOneDay>> getInfoHNX30(Date, Date) : dữ liệu cổ phiếu HNX30 giữa 2 ngày được chọn (HNXINDEX ở cuối Map).
 
+- double getDifferenceOneDayOneStock(STOCK, Date) : trả về lượng thay đổi cuối phiên so với đầu phiên của 1 cổ phiếu của ngày được chọn.
+
+- Map<STOCK, Double> getDifferenceOneDay(Date) : trả về lượng thay đổi cuối phiên so với đầu phiên của tất cả cổ phiếu của ngày được chọn.
+
+- Map<STOCK, Double> getDifferenceOneDayVN30(Date) : trả về lượng thay đổi cuối phiên so với đầu phiên của cổ phiếu VN30 của ngày được chọn.
+
+- Map<STOCK, Double> getDifferenceOneDayHNX30(Date) : trả về lượng thay đổi cuối phiên so với đầu phiên của cổ phiếu HNX30 của ngày được chọn.
+
+- Map<Date, Double> getDifferenceOneWeekOneStock(STOCK, Date) : trả về lượng thay đổi cuối phiên so với đầu phiên của 1 cổ phiếu trong tuần của ngày được chọn.
+
+- Map<STOCK, Map<Date, Double>> getDifferenceOneWeek(Date) : trả về lượng thay đổi cuối phiên so với đầu phiên của tất cả cổ phiếu trong tuần của ngày được chọn.
+
+- Map<Date, Double> getDifferenceOneMonthOneStock(STOCK, MONTH) : trả về lượng thay đổi cuối phiên so với đầu phiên của 1 cổ phiếu của tháng được chọn.
+
+- Map<STOCK, Map<Date, Double>> getDifferenceOneMonth(MONTH) : trả về lượng thay đổi cuối phiên so với đầu phiên của tất cả cổ phiếu của tháng được chọn.
+
+- Set(STOCK) : stockVN30() : trả về mã cổ phiếu trong VN30 và VNINDEX
+
+- Set(STOCK) : stockHNX30() : trả về mã cổ phiếu trong VN30 và HASTC
+
+- int increseCounterOneStock(STOCK, Date) : trả về số ngày tăng của cổ phiếu trước ngày được chọn.
+
+- Map<STOCK, Integer> increseCounter(Date) : trả về số ngày tăng của tất cả cổ phiếu trước ngày được chọn.
+
+- Map<STOCK, Integer> increseCounterVN30(Date) : trả về số ngày tăng của cổ phiếu VN30 trước ngày được chọn.
+
+- Map<STOCK, Integer> increseCounterHNX30(Date) : trả về số ngày tăng của cổ phiếu HNX30 trước ngày được chọn.
+
+- int decreseCounterOneStock(STOCK, Date) : trả về số ngày giảm của cổ phiếu trước ngày được chọn.
+
+- Map<STOCK, Integer> decreseCounter(Date) : trả về số ngày giảm của tất cả cổ phiếu trước ngày được chọn.
+
+- Map<STOCK, Integer> decreseCounterVN30(Date) : trả về số ngày giảm của cổ phiếu VN30 trước ngày được chọn.
+
+- Map<STOCK, Integer> decreseCounterHNX30(Date) : trả về số ngày giảm của cổ phiếu HNX30 trước ngày được chọn.
 
 2. Class Data : method static
-- Map<String, DataOneStock> getDataVN30() : trả về dữ liệu VN30, VNINDEX.
+- Map<STOCK, DataOneStock> getDataVN30() : trả về dữ liệu VN30, VNINDEX.
 
-- Map<String, DataOneStock> getDataHNX30() : trả về dữ liệu HNX30, HNXINDEX.
+- Map<STOCK, DataOneStock> getDataHNX30() : trả về dữ liệu HNX30, HNXINDEX.
 
-- add(String, DataOneDay, EXCHANGES) : thêm dữ liệu.
+- add(STOCK, DataOneDay, EXCHANGES) : thêm dữ liệu.
 
 - print() : in dữ liệu.
 
@@ -84,7 +119,9 @@
 6. Enum EXCHANGES : nhóm cổ phiếu (VN30, HNX30).
 
 7. Enum STOCK : cổ phiếu (tên công ty, khối lượng cổ phiếu đang lưu hành).
-- String getName() : trả về tên công ty.
+- String getNameCompany() : trả về tên công ty.
+
+- String getName() : trả về mã cổ phiếu.
 
 - long getOutstandingShares() : trả về khối lượng cổ phiếu đang lưu hành.
 
