@@ -3,7 +3,6 @@ package Input;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -439,31 +438,30 @@ public class InputData {
 	// 30/04
 	
 	private static STOCK getStockByNumerical(Date date, int numerical,Map<STOCK, DataOneDay> data) {
-		data.remove(STOCK.VNINDEX);
 		ArrayList<Map.Entry<STOCK, DataOneDay>> list = new ArrayList<>(data.entrySet());
-		
 		Collections.sort(list, new Comparator<Entry<STOCK, DataOneDay>>() {
 			@Override
 			public int compare(Entry<STOCK, DataOneDay> o1, Entry<STOCK, DataOneDay> o2) {
 				return o1.getValue().getGiaDongCua() > o2.getValue().getGiaDongCua() ? -1 : 1;
 			}
 		});
-		ArrayList<STOCK> array = new ArrayList<>();
+		LinkedList<STOCK> sortedListStock = new LinkedList<>();
 		for (Map.Entry<STOCK, DataOneDay> entry : list) {
-			array.add(entry.getKey());
+			sortedListStock.add(entry.getKey());
 		}
-		STOCK[] arr = new STOCK[array.size()];
-		arr = array.toArray(arr);
-		
-		return arr[numerical-1];
+		return sortedListStock.get(numerical-1);
 	}
 	
 	public static STOCK getStockByNumericalVN30(Date date, int numerical) {
-		return getStockByNumerical(date, numerical, getTodayVN30(date));
+		Map<STOCK, DataOneDay> data = getTodayVN30(date);
+		data.remove(STOCK.VNINDEX);
+		return getStockByNumerical(date, numerical, data);
 	}
 	
 	public static STOCK getStockByNumericalHNX30(Date date, int numerical) {
-		return getStockByNumerical(date, numerical, getTodayHNX30(date));
+		Map<STOCK, DataOneDay> data = getTodayHNX30(date);
+		data.remove(STOCK.HASTC);
+		return getStockByNumerical(date, numerical, data);
 	}
 }
 
