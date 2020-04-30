@@ -42,7 +42,7 @@ public class Data {
 			dulieu.getValue().print();
 		}
 		
-		System.out.println("HNX30 : ");
+		System.out.println("\nHNX30 : ");
 		for (Map.Entry<STOCK, DataOneStock> dulieu : dataHNX30.entrySet()) {
 			System.out.println();
 			System.out.println(dulieu.getKey());

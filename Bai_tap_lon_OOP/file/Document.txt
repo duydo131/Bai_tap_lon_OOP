@@ -76,6 +76,13 @@
 
 - Map<STOCK, Integer> decreseCounterHNX30(Date) : trả về số ngày giảm của cổ phiếu HNX30 trước ngày được chọn.
 
+
+// 	30/4
+- STOCK getStockByNumericalVN30(Date, int) : trả về stock có giá đóng cửa đứng theo vị trí trong ngày trong VN30
+
+- STOCK getStockByNumericalHNX30(Date, int) : trả về stock có giá đóng cửa đứng theo vị trí trong ngày trong VN30
+
+
 2. Class Data : method static
 - Map<STOCK, DataOneStock> getDataVN30() : trả về dữ liệu VN30, VNINDEX.
 
