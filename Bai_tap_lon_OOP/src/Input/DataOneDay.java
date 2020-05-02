@@ -23,7 +23,7 @@ public class DataOneDay {
 		this.giaDongCua = giaDongCua;
 		KL = kL;
 		this.thanhKhoan = (long)(this.KL*(this.giaMoCua + this.giaDongCua)/2);
-		this.thayDoi = (this.giaDongCua - this.giaMoCua)/giaDongCua;
+		this.thayDoi = this.giaDongCua - this.giaMoCua;
 		
 	}
 	
@@ -73,6 +73,6 @@ public class DataOneDay {
 							+ " giá đóng cửa : " + this.getGiaDongCua() + " - " 
 							+ " khối lượng : " + this.getKL() + " - " 
 							+ " thanh khoản : " + this.getThanhKhoan()+ " - " 
-							+ " thay đổi : " + this.getThayDoi());
+							+ " thay đổi : " + Format.formatsDouble(this.getThayDoi()));
 	}
 }

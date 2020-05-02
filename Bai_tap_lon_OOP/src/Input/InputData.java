@@ -229,12 +229,9 @@ public class InputData {
 
 	
 	//	28/4
-	private static double formatsDouble(double d) {
-		return (double)Math.round(d*100)/100;
-	}
 	
 	private static double getDifference(DataOneDay dataOneDay) {
-		return formatsDouble(dataOneDay.getGiaDongCua() - dataOneDay.getGiaMoCua());
+		return Format.formatsDouble(dataOneDay.getGiaDongCua() - dataOneDay.getGiaMoCua());
 	}
 	
 	

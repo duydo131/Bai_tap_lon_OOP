@@ -116,6 +116,10 @@
 
 - long getKL() : trả về khối lượng giao dịch trong ngày.
 
+- long getThanhKhoan() : trả về thanh khoản
+
+- double getThayDoi() : trả về Thay đổi trong ngày
+ 
 - void print() : in ra thông tin cổ phiếu trong ngày.
 	
 
@@ -141,6 +145,9 @@
      MONTH monthBefore(MONTH) : trả về tháng trước đó.
 
      MONTH monthAfter(MONTH) : trả về tháng sau đó.
+9. Format : method static
+double formatsDouble(double) : định dạng số thực
+
 
 
 
