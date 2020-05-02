@@ -1,0 +1,92 @@
+Email package com.dev2qa.java.basic; is not a valid email. 
+Email  is not a valid email. 
+Email import java.io.FileNotFoundException; is not a valid email. 
+Email import java.io.PrintStream; is not a valid email. 
+Email import java.util.Scanner; is not a valid email. 
+Email  is not a valid email. 
+Email public class OutputStreamRedirect { is not a valid email. 
+Email  is not a valid email. 
+Email     public static void main(String[] args) { is not a valid email. 
+Email  is not a valid email. 
+Email         try is not a valid email. 
+Email         { is not a valid email. 
+Email             // Save original out stream. is not a valid email. 
+Email             PrintStream originalOut = System.out; is not a valid email. 
+Email             // Save original err stream. is not a valid email. 
+Email             PrintStream originalErr = System.err; is not a valid email. 
+Email  is not a valid email. 
+Email             // Create a new file output stream. is not a valid email. 
+Email             PrintStream fileOut = new PrintStream("./out.txt"); is not a valid email. 
+Email             // Create a new file error stream.  is not a valid email. 
+Email             PrintStream fileErr = new PrintStream("./err.txt"); is not a valid email. 
+Email  is not a valid email. 
+Email             // Redirect standard out to file. is not a valid email. 
+Email             System.setOut(fileOut); is not a valid email. 
+Email             // Redirect standard err to file. is not a valid email. 
+Email             System.setErr(fileErr); is not a valid email. 
+Email  is not a valid email. 
+Email             // Wrapped Scanner to get user input. is not a valid email. 
+Email             Scanner scanner = new Scanner(System.in); is not a valid email. 
+Email  is not a valid email. 
+Email             // Print data in command console. is not a valid email. 
+Email             originalOut.println("Please input your email. "); is not a valid email. 
+Email  is not a valid email. 
+Email             // Read string line. is not a valid email. 
+Email             String line = scanner.nextLine(); is not a valid email. 
+Email  is not a valid email. 
+Email             while(true) is not a valid email. 
+Email             { is not a valid email. 
+Email                 // If user input 'quit' then break the loop. is not a valid email. 
+Email                 if("quit".equalsIgnoreCase(line)) is not a valid email. 
+Email                 { is not a valid email. 
+Email                     break; is not a valid email. 
+Email                 } is not a valid email. 
+Email  is not a valid email. 
+Email                 if(!isValidEmail(line)) is not a valid email. 
+Email                 { is not a valid email. 
+Email                     // If user input is not a valid email then write log data to ./err.txt file and console. is not a valid email. 
+Email                     originalErr.println("Email " + line + " is not a valid email. Please input again."); is not a valid email. 
+Email                     System.err.println("Email " + line + " is not a valid email. "); is not a valid email. 
+Email                 }else is not a valid email. 
+Email                 { is not a valid email. 
+Email                     // If user input a valid email then write the email to ./out.txt and console. is not a valid email. 
+Email                     originalOut.println("Email " + line + " is valid. Please input another one."); is not a valid email. 
+Email                     System.out.println("Email " + line + " is valid. Please input another one."); is not a valid email. 
+Email                 } is not a valid email. 
+Email                 // Get next user input line text. is not a valid email. 
+Email                 line = scanner.nextLine(); is not a valid email. 
+Email             } is not a valid email. 
+Email  is not a valid email. 
+Email             originalOut.println("Program exist. "); is not a valid email. 
+Email             System.out.println("Program exist. "); is not a valid email. 
+Email  is not a valid email. 
+Email             // Do not forget set original output and error stream back again. is not a valid email. 
+Email             System.setOut(originalOut); is not a valid email. 
+Email             System.setErr(originalErr); is not a valid email. 
+Email  is not a valid email. 
+Email         }catch(FileNotFoundException ex) is not a valid email. 
+Email         { is not a valid email. 
+Email             ex.printStackTrace(); is not a valid email. 
+Email         } is not a valid email. 
+Email     } is not a valid email. 
+Email  is not a valid email. 
+Email     /* Check whether the string is an email address or not. */ is not a valid email. 
+Email     private static boolean isValidEmail(String email) is not a valid email. 
+Email     { is not a valid email. 
+Email         boolean ret = true; is not a valid email. 
+Email  is not a valid email. 
+Email         if(email==null || email.trim().length()==0) is not a valid email. 
+Email         { is not a valid email. 
+Email             ret = false; is not a valid email. 
+Email         }else is not a valid email. 
+Email         { is not a valid email. 
+Email             if(index == -1) is not a valid email. 
+Email             { is not a valid email. 
+Email                 ret = false; is not a valid email. 
+Email             } is not a valid email. 
+Email         } is not a valid email. 
+Email  is not a valid email. 
+Email         return ret; is not a valid email. 
+Email     } is not a valid email. 
+Email  is not a valid email. 
+Exception in thread "main" 

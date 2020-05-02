@@ -1,0 +1,2 @@
+Email levietdung19092000@gmail.com is valid. Please input another one.
+Email             int index = email.indexOf("@"); is valid. Please input another one.

@@ -1,0 +1,104 @@
+1. Class InputData (tất cả dữ liệu tính đến ngày được chọn). method static
+
+- boolean testDay(Date) : kiểm tra có dữ liệu ngày cần tìm không
+
+- ArrayList<DataOneDay> getDataOneWeek(STOCK, Date) : dữ liệu của cổ phiếu của ngày được chọn.
+
+- DataOneDay priceMaxOneWeek(STOCK, Date) : dữ liệu của ngày có giá đóng cửa cao nhất của cổ phiếu trong tuần của ngày được chọn.
+
+- DataOneDay priceMinOneWeek(STOCK, Date) : dữ liệu của ngày có giá đóng cửa thấp nhất của cổ phiếu trong tuần của ngày được chọn.
+
+- DataOneday volumeMaxOneWeek(STOCK, Date) : dữ liệu của ngày có khối lượng giao dịch lớn nhất của cổ phiếu trong tuần của ngày được chọn.
+
+- DataOneday volumeMinOneWeek(STOCK, Date) : dữ liệu của ngày có khối lượng giao dịch min nhất của cổ phiếu trong tuần của ngày được chọn.
+
+- long volumeSumOneWeek(STOCK, Date) : tổng khối lượng giao dịch trong tuần của ngày được chọn.
+
+- int getMonth(Date) : trả về tháng của ngày được chọn.
+
+- ArrayList<DataOneDay> getDataOneMonth(STOCK, MONTH) : dữ liệu của cổ phiếu của ngày được chọn.
+
+- DataOneDay priceMaxOneMonth(STOCK, MONTH) : dữ liệu của ngày có giá đóng cửa cao nhất của cổ phiếu trong tháng được chọn.
+
+- DataOneDay priceMinOneMonth(STOCK, MONTH) : dữ liệu của ngày có giá đóng cửa thấp nhất của cổ phiếu trong tháng được chọn.
+
+- DataOneday volumeMaxOneMonth(STOCK, MONTH) : dữ liệu của ngày có khối lượng giao dịch lớn nhất của cổ phiếu trong tháng được chọn.
+
+- DataOneday volumeMinOneMonth(STOCK, MONTH) : dữ liệu của ngày có khối lượng giao dịch min nhất của cổ phiếu trong tháng được chọn.
+
+- long volumeSumOneMonth(STOCK, MONTH) : tổng khối lượng giao dịch trong tháng được chọn.
+
+- Map<String, DataOneDay> getToday(Date) : dữ liệu của tất cả cổ phiếu trong ngày được chọn (Phải xử lý để lọc VNINDEX("^VNINDEX") và HNXINDEX("^HASTC") riêng ).
+
+- Map<String, DataOneDay> getTodayVN30(Date) : dữ liệu của cổ phiếu VN30 trong ngày được chọn (VNINDEX("^VNINDEX") ở cuối ).
+
+- Map<String, DataOneDay> getTodayHNX30(Date) : dữ liệu của cổ phiếu HNX30 trong ngày được chọn (HNXINDEX("^HASTC") ở cuối Map).
+
+- Map<String, DataOneStock> getInfo(Date, Date) : dữ liệu tất cả cổ phiếu giữa 2 ngày được chọn (Phải xử lý để lọc VNINDEX("^VNINDEX") và HNXINDEX("^HASTC") riêng ).
+
+- Map<String, DataOneStock> getInfoVN30(Date, Date) : dữ liệu cổ phiếu VN30 giữa 2 ngày được chọn (VNINDEX("^VNINDEX") ở cuối).
+
+- Map<String, DataOneStock> getInfoHNX30(Date, Date) : dữ liệu cổ phiếu HNX30 giữa 2 ngày được chọn (HNXINDEX("^HASTC") ở cuối Map).
+
+
+2. Class Data : method static
+- Map<String, DataOneStock> getDataVN30() : trả về dữ liệu VN30, VNINDEX.
+
+- Map<String, DataOneStock> getDataHNX30() : trả về dữ liệu HNX30, HNXINDEX.
+
+- add(String, DataOneDay, EXCHANGES) : thêm dữ liệu.
+
+- print() : in dữ liệu.
+
+3. Class DataOneStock : method non-static
+- ArrayList<DataOneDay> getData() : trả về dữ liệu của cổ phiếu.
+
+- void setData() : cài đặt dữ liệu của cổ phiếu.
+
+- void add(DataOneDay) : thêm 1 ngày dữ liệu.
+
+- DataOneDay getDataOneDay(Date date) : lấy dữ liệu cổ phiếu của ngày được chọn.
+
+- void print() : in ra console dữ liệu cổ phiếu.
+
+4. Class DataOneDay : method non-static
+- Date getDate() : trả về ngày.
+
+- double getGiaMoCua() : trả về giá mở cửa.
+
+- double getGiaMax() : trả về giá Max trong ngày.
+
+- double getGiaMin() : trả về giá Min trong ngày.
+	
+- double getGiaDongCua() : trả về giá đóng cửa.
+
+- long getKL() : trả về khối lượng giao dịch trong ngày.
+
+- void print() : in ra thông tin cổ phiếu trong ngày.
+	
+
+5. Class ReadFile : method static
+- LoadData() : đọc dữ liệu từ file (luôn phải thực hiện câu lệnh này để dữ liệu được tải lên).
+
+
+6. Enum EXCHANGES : nhóm cổ phiếu (VN30, HNX30).
+
+7. Enum STOCK : cổ phiếu (tên công ty, khối lượng cổ phiếu đang lưu hành).
+- String getName() : trả về tên công ty.
+
+- long getOutstandingShares() : trả về khối lượng cổ phiếu đang lưu hành.
+
+8. Enum MONTH : Month(int).
+- method non-static :
+     int getMonth() : trả về tháng là só nguyên.
+- method static : 
+     MONTH getName(int) : trả về MONTH tương ứng với số đầu vào.
+
+     MONTH monthBefore(MONTH) : trả về tháng trước đó.
+
+     MONTH monthAfter(MONTH) : trả về tháng sau đó.
+
+
+
+
+
