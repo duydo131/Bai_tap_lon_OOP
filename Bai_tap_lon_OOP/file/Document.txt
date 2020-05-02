@@ -2,7 +2,7 @@
 
 - boolean testDay(Date) : kiểm tra có dữ liệu ngày cần tìm không
 
-- ArrayList<DataOneDay> getDataOneWeekOneStock(STOCK, Date) : dữ liệu của cổ phiếu của ngày được chọn.
+- ArrayList<DataOneDay> getDataOneWeekOneStock(STOCK, Date) : dữ liệu của cổ phiếu trong ngày của tuần được chọn.
 
 - DataOneDay priceMaxOneWeek(STOCK, Date) : dữ liệu của ngày có giá đóng cửa cao nhất của cổ phiếu trong tuần của ngày được chọn.
 

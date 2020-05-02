@@ -11,6 +11,8 @@ public class DataOneDay {
 	private double giaMin;
 	private double giaDongCua;
 	private long KL;
+	private long thanhKhoan;
+	private double thayDoi;
 	
 	
 	public DataOneDay(Date date, double giaMoCua, double giaMax, double giaMin, double giaDongCua, long kL) {
@@ -20,8 +22,18 @@ public class DataOneDay {
 		this.giaMin = giaMin;
 		this.giaDongCua = giaDongCua;
 		KL = kL;
+		this.thanhKhoan = (long)(this.KL*(this.giaMoCua + this.giaDongCua)/2);
+		this.thayDoi = (this.giaDongCua - this.giaMoCua)/giaDongCua;
+		
 	}
-
+	
+	public double getThayDoi() {
+		return thayDoi;
+	}
+	
+	public long getThanhKhoan() {
+		return thanhKhoan;
+	}
 
 	public Date getDate() {
 		return date;
@@ -51,7 +63,6 @@ public class DataOneDay {
 	public long getKL() {
 		return KL;
 	}
-
 	
 	public void print() {
 		SimpleDateFormat formats = new SimpleDateFormat("dd/MM/yyyy");
@@ -60,6 +71,8 @@ public class DataOneDay {
 							+ " giá lớn nhất : " + this.getGiaMax() + " - " 
 							+ " giá nhỏ nhất : " + this.getGiaMin() + " - " 
 							+ " giá đóng cửa : " + this.getGiaDongCua() + " - " 
-							+ " khối lượng : " + this.getKL());
+							+ " khối lượng : " + this.getKL() + " - " 
+							+ " thanh khoản : " + this.getThanhKhoan()+ " - " 
+							+ " thay đổi : " + this.getThayDoi());
 	}
 }

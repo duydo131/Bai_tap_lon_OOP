@@ -56,7 +56,6 @@ public class InputData {
 			long Ngay = formats.parse("30/09/2019").getTime();
 			long today = date.getTime();
 			return (today - Ngay) / aWeek * aWeek + Ngay;
-
 		} catch (ParseException e) {
 			e.printStackTrace();
 			return -1;
@@ -75,55 +74,43 @@ public class InputData {
 
 	public static DataOneDay priceMaxOneWeek(STOCK stock, Date date) {
 		ArrayList<DataOneDay> data = getDataOneWeekOneStock(stock, date);
-
 		if (data.size() == 0) {
 			throw new NullPointerException();
 		}
-
 		return data.stream().max(Comparator.comparingDouble(DataOneDay::getGiaDongCua)).get();
 	}
 
 	public static DataOneDay priceMinOneWeek(STOCK stock, Date date) {
 		ArrayList<DataOneDay> data = getDataOneWeekOneStock(stock, date);
-
 		if (data.size() == 0) {
 			throw new NullPointerException();
 		}
-
 		return data.stream().min(Comparator.comparingDouble(DataOneDay::getGiaDongCua)).get();
 	}
 
 	public static DataOneDay volumeMinOneWeek(STOCK stock, Date date) {
 		ArrayList<DataOneDay> data = getDataOneWeekOneStock(stock, date);
-
 		if (data.size() == 0) {
 			throw new NullPointerException();
 		}
-
 		return data.stream().min(Comparator.comparingDouble(DataOneDay::getKL)).get();
 	}
 
 	public static DataOneDay volumeMaxOneWeek(STOCK stock, Date date) {
 		ArrayList<DataOneDay> data = getDataOneWeekOneStock(stock, date);
-
 		if (data.size() == 0) {
 			throw new NullPointerException();
 		}
-
 		return data.stream().max(Comparator.comparingDouble(DataOneDay::getKL)).get();
 	}
 
 	public static long volumeSumOneWeek(STOCK stock, Date date) {
 		ArrayList<DataOneDay> data = getDataOneWeekOneStock(stock, date);
-
 		long sum = 0L;
-
 		Iterator<DataOneDay> iter = data.iterator();
-
 		while (iter.hasNext()) {
 			sum += iter.next().getKL();
 		}
-
 		return sum;
 	}
 
@@ -146,41 +133,33 @@ public class InputData {
 
 	public static DataOneDay priceMaxOneMonth(STOCK stock, MONTH month) {
 		ArrayList<DataOneDay> data = getDataOneMonthOneStock(stock, month);
-
 		if (data.size() == 0) {
 			throw new NullPointerException();
 		}
-
 		return data.stream().max(Comparator.comparingDouble(DataOneDay::getGiaDongCua)).get();
 	}
 
 	public static DataOneDay priceMinOneMonth(STOCK stock, MONTH month) {
 		ArrayList<DataOneDay> data = getDataOneMonthOneStock(stock, month);
-
 		if (data.size() == 0) {
 			throw new NullPointerException();
 		}
-
 		return data.stream().min(Comparator.comparingDouble(DataOneDay::getGiaDongCua)).get();
 	}
 
 	public static DataOneDay volumeMinOneMonth(STOCK stock, MONTH month) {
 		ArrayList<DataOneDay> data = getDataOneMonthOneStock(stock, month);
-
 		if (data.size() == 0) {
 			throw new NullPointerException();
 		}
-
 		return data.stream().min(Comparator.comparingDouble(DataOneDay::getKL)).get();
 	}
 
 	public static DataOneDay volumeMaxOneMonth(STOCK stock, MONTH month) {
 		ArrayList<DataOneDay> data = getDataOneMonthOneStock(stock, month);
-
 		if (data.size() == 0) {
 			throw new NullPointerException();
 		}
-
 		return data.stream().max(Comparator.comparingDouble(DataOneDay::getKL)).get();
 	}
 
