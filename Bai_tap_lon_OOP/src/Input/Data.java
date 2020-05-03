@@ -7,12 +7,22 @@ public class Data {
 	private static Map<STOCK, DataOneStock> dataVN30 = new LinkedHashMap<>();
 	private static Map<STOCK, DataOneStock> dataHNX30 = new LinkedHashMap<>();
 	
+	private static boolean isEmty = true;
+	
 	public static Map<STOCK, DataOneStock> getDataVN30() {
 		return dataVN30;
 	}
 	
 	public static Map<STOCK, DataOneStock> getDataHNX30() {
 		return dataHNX30;
+	}
+	
+	public static void loaded() {
+		isEmty = false;
+	}
+	
+	public static boolean getEmty() {
+		return isEmty;
 	}
 	
 
@@ -49,4 +59,6 @@ public class Data {
 			dulieu.getValue().print();
 		}
 	}
+	
+	
 }

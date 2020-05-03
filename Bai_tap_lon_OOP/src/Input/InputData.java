@@ -413,14 +413,8 @@ public class InputData {
 	
 	// 30/04
 	
-	private static STOCK getStockByNumerical(Date date, int numerical,Map<STOCK, DataOneDay> data) {
-		ArrayList<Map.Entry<STOCK, DataOneDay>> list = new ArrayList<>(data.entrySet());
-		Collections.sort(list, new Comparator<Entry<STOCK, DataOneDay>>() {
-			@Override
-			public int compare(Entry<STOCK, DataOneDay> o1, Entry<STOCK, DataOneDay> o2) {
-				return o1.getValue().getGiaDongCua() > o2.getValue().getGiaDongCua() ? -1 : 1;
-			}
-		});
+	private static STOCK getStockByNumerical(int numerical, Map<STOCK, DataOneDay> data) {
+		ArrayList<Map.Entry<STOCK, DataOneDay>> list = new ArrayList<>(Caculate.sort(data).entrySet());
 		LinkedList<STOCK> sortedListStock = new LinkedList<>();
 		for (Map.Entry<STOCK, DataOneDay> entry : list) {
 			sortedListStock.add(entry.getKey());
@@ -431,13 +425,13 @@ public class InputData {
 	public static STOCK getStockByNumericalVN30(Date date, int numerical) {
 		Map<STOCK, DataOneDay> data = getTodayVN30(date);
 		data.remove(STOCK.VNINDEX);
-		return getStockByNumerical(date, numerical, data);
+		return getStockByNumerical(numerical, data);
 	}
 	
 	public static STOCK getStockByNumericalHNX30(Date date, int numerical) {
 		Map<STOCK, DataOneDay> data = getTodayHNX30(date);
 		data.remove(STOCK.HASTC);
-		return getStockByNumerical(date, numerical, data);
+		return getStockByNumerical(numerical, data);
 	}
 }
 

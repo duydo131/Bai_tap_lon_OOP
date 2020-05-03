@@ -29,6 +29,6 @@ public class Main {
 //		
 //		InputData.priceMaxOneMonth(STOCK.BID, MONTH.JANUARY).print();
 		
-		
+		System.out.println(InputData.getStockByNumericalVN30(date, 1)); 
 	}
 }

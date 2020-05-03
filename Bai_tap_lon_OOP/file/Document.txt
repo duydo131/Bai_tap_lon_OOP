@@ -1,3 +1,11 @@
+0. class bổ sung
+class Caculate : - long sum(List<Long>) : tỉnh toonge các phần tử trong list
+		 - <T extends DataOneDay> Map<STOCK, T> sort(Map<STOCK, T>) : sắp xếp map theo khối lượng
+		 
+class Format :  - String formatLong(Long) : format số nguyên lớn
+		- double formatsDouble(double) : format số thực
+		- Date getDate(Date, int) : trả về ngày được thêm
+
 1. Class InputData (tất cả dữ liệu tính đến ngày được chọn). method static
 
 - boolean testDay(Date) : kiểm tra có dữ liệu ngày cần tìm không
