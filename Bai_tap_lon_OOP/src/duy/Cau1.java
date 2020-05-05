@@ -3,7 +3,8 @@ package duy;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.Map;
-import java.util.Map.Entry;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import Input.Caculate;
 import Input.DataOneDay;
@@ -13,7 +14,7 @@ import Input.STOCK;
 public abstract class Cau1 extends San{
 
 	protected final int SIZE = 2;
-	protected LinkedList<Stock> list = new LinkedList<>();
+	protected LinkedList<StockVolume> list = new LinkedList<>();
 	
 	@Override
 	public String get() {
@@ -33,15 +34,15 @@ public abstract class Cau1 extends San{
 	protected void setList(Map<STOCK, DataOneDay> data){
 		Map<STOCK, DataOneDay> sort = Caculate.sort(data);
 		
-		int i = 0; 
-		for (Entry<STOCK, DataOneDay> entry : sort.entrySet()) {
-			if(i <= SIZE) {
-				i++;
-				list.add(new Stock(entry.getKey(), entry.getValue().getKL()));
-			}else {
-				break;
+		Function<Map.Entry<STOCK, DataOneDay>, StockVolume> mapper = new Function<Map.Entry<STOCK,DataOneDay>, StockVolume>() {
+			
+			@Override
+			public StockVolume apply(Map.Entry<STOCK, DataOneDay> t) {
+				return new StockVolume(t.getKey(), t.getValue().getKL());
 			}
-		}
+		};
+		
+		list = sort.entrySet().stream().map(mapper).limit(SIZE+1).collect(Collectors.toCollection(LinkedList::new));
 	}
 }
 

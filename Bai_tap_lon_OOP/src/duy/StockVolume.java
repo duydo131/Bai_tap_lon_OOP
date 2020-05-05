@@ -2,11 +2,11 @@ package duy;
 
 import Input.STOCK;
 
-public class Stock{
+public class StockVolume{
 	private STOCK stock;
 	private long volume;
 	
-	public Stock(STOCK stock, long volume) {
+	public StockVolume(STOCK stock, long volume) {
 		this.stock = stock;
 		this.volume = volume;
 	}

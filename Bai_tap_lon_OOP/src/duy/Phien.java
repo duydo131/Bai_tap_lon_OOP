@@ -7,7 +7,8 @@ import Input.InputData;
 import Input.STOCK;
 
 public  class Phien extends NhanXet {
-	{
+	
+	public Phien() {
 		this.name = "phiên";
 	}
 	

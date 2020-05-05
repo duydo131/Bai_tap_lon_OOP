@@ -12,7 +12,7 @@ import Input.Caculate;
 
 public class Week extends NhanXet {
 	
-	{
+	public Week() {
 		this.name = "tuần";
 	}
 	

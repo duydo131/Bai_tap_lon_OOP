@@ -10,8 +10,7 @@ public class test {
 		ReadFile.loadData();
 		
 		SimpleDateFormat formats = new SimpleDateFormat("dd/MM/yyyy");
-		Date date = formats.parse("18/02/2020");
-		Date date1 = formats.parse("28/02/2020");
+		
 		Date date2 = formats.parse("28/03/2020");
 		
 		
@@ -37,8 +36,15 @@ public class test {
 //				System.out.println(dataOneDay.getGiaDongCua());
 //			}
 //		}
-		
-		
+		Date date = formats.parse("18/12/2019");
+		Date date1 = formats.parse("20/12/2019");
+		int i = 0;
+		for (DataOneDay item : InputData.getInfoVN30(date, date1).get(STOCK.BVH)) {
+			if(item.getGiaDongCua() - item.getGiaMoCua() > 0) {
+				i++;
+			}
+		}
+		System.out.println(i); ;
 		
 	}
 }
