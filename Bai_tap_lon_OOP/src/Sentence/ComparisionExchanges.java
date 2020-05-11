@@ -1,4 +1,4 @@
-package Sentences;
+package Sentence;
 
 import Input.STOCK;
 import Input.DataOneDay;

@@ -3,7 +3,6 @@ package Input;
 public enum STOCK {
 	
 	//		VN30
-	
 	VNINDEX("Chỉ số VN-index",-1),
 	
 	BID("Ngân hàng cổ phần đầu tư và phát triển Viêt Nam", 4022018),
@@ -62,15 +61,12 @@ public enum STOCK {
 	PVS("Tổng Công ty Cổ phần Dịch vụ Kỹ thuật Đầu khí Việt Nam", 477966),
 	SHB("Ngân hàng Thương mại Cổ phần Sài Gòn - Hà Nội", 1755351),
 	SHS("Công ty Cổ phần Chứng khoán Sài Gòn Hà Nội", 207268),
-	SLS("Công ty Cổ phần Mía Đường Sơn la", 9791),
 	TNG("Công ty Cổ phần Đầu tư và Thương mai TNG", 65211),
 	TVC("Công ty Cổ phần Tập đoàn Quản lý Tài sản Trí Việt", 40016),
 	VC3("Công ty Cổ phần xây dựng sô 3", 61015642),
 	VCG("Tổng Công ty Cổ phần Xuất nhập khẩu và xây dựng Việt Nam", 441710),
 	VCS("Công ty Cổ phần VICOSTONE", 160000),
 	VMC("Công ty Cổ phần VIMECO", 10000),
-	
-	
 	;
 	
 	private String name;

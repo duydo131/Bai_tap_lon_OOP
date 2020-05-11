@@ -12,7 +12,6 @@ import Input.Format;
 import Input.STOCK;
 
 public abstract class Cau1 extends San{
-
 	protected final int SIZE = 2;
 	protected LinkedList<StockVolume> list = new LinkedList<>();
 	
@@ -31,9 +30,9 @@ public abstract class Cau1 extends San{
 	@Override
 	public abstract void setInfo(Date date);
 	
+	@Override
 	protected void setList(Map<STOCK, DataOneDay> data){
 		Map<STOCK, DataOneDay> sort = Caculate.sort(data);
-		
 		Function<Map.Entry<STOCK, DataOneDay>, StockVolume> mapper = new Function<Map.Entry<STOCK,DataOneDay>, StockVolume>() {
 			
 			@Override
@@ -41,8 +40,7 @@ public abstract class Cau1 extends San{
 				return new StockVolume(t.getKey(), t.getValue().getKL());
 			}
 		};
-		
-		list = sort.entrySet().stream().map(mapper).limit(SIZE+1).collect(Collectors.toCollection(LinkedList::new));
+		this.list = sort.entrySet().stream().map(mapper).limit(SIZE+1).collect(Collectors.toCollection(LinkedList::new));
 	}
 }
 

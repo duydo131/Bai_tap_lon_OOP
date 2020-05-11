@@ -2,6 +2,7 @@ package Input;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
 
@@ -11,7 +12,13 @@ public class test {
 		
 		SimpleDateFormat formats = new SimpleDateFormat("dd/MM/yyyy");
 		
-		Date date2 = formats.parse("28/03/2020");
+		Date date2 = formats.parse("01/04/2019");
+		int j = 0;
+		for (Map.Entry<STOCK, DataOneStock> item : InputData.getDatashare().entrySet()) {
+			ArrayList<DataOneDay> data = item.getValue().getData();
+			System.out.print(++j + " : " + item.getKey() + " : " + (data.get(data.size()-1).getDate().getTime() == date2.getTime()) + "\n");
+		}
+		
 		
 		
 
@@ -36,15 +43,15 @@ public class test {
 //				System.out.println(dataOneDay.getGiaDongCua());
 //			}
 //		}
-		Date date = formats.parse("18/12/2019");
-		Date date1 = formats.parse("20/12/2019");
-		int i = 0;
-		for (DataOneDay item : InputData.getInfoVN30(date, date1).get(STOCK.BVH)) {
-			if(item.getGiaDongCua() - item.getGiaMoCua() > 0) {
-				i++;
-			}
-		}
-		System.out.println(i); ;
+//		Date date = formats.parse("18/12/2019");
+//		Date date1 = formats.parse("20/12/2019");
+//		int i = 0;
+//		for (DataOneDay item : InputData.getInfoVN30(date, date1).get(STOCK.BVH)) {
+//			if(item.getGiaDongCua() - item.getGiaMoCua() > 0) {
+//				i++;
+//			}
+//		}
+//		System.out.println(i); ;
 		
 	}
 }

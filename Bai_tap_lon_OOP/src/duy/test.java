@@ -4,8 +4,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import GUI.DataLoad;
+import Input.DataOneDay;
 import Input.Format;
+import Input.InputData;
+import Input.MONTH;
 import Input.ReadFile;
 import Input.STOCK;
 
@@ -14,40 +16,27 @@ public class test {
 		ReadFile.loadData();
 		SimpleDateFormat formats = new SimpleDateFormat("dd/MM/yyyy");
 		Date date = formats.parse("24/01/2020");
-		Date date1 = Format.getDate(date, -20);
+		Date date1 = Format.getDate(date, -3);
+		STOCK stock = STOCK.BID;
 		
+//		for (DataOneDay item : InputData.getDataOneMonthOneStock(STOCK.VNINDEX, MONTH.JANUARY)) {
+//			item.print();
+//		}
 		
+//		InputData.priceMaxOneWeek(stock, date1).print();
+//		OneStock1 oneStock = new OneStock1(stock, date1);
+//		System.out.println(oneStock.get());
+//		OneStockRoot oneStock = new OneStock2(stock, date1);
+//		System.out.println(oneStock.get());
 		
-//		System.out.println((new Phien()).setInfo(date1, STOCK.VNINDEX).get());
-//		System.out.println((new Phien()).setInfo(date1, STOCK.HASTC).get());
-//		System.out.println();
-//		// ngày phải là cuối tuần
-//		System.out.println((new Week()).setInfo(date, STOCK.VNINDEX).get());
-//		System.out.println((new Week()).setInfo(date, STOCK.HASTC).get());
-//		
-//		System.out.println();
-//		
-//		
-//		System.out.println((new VolumeVN30(date1)).get());
-//		System.out.println();
-//		System.out.println((new VolumeHNX30(date1)).get());
-//		
-//		System.out.println();
-//		System.out.println((new Cau3TangVN30(date1)).get());
-//		System.out.println((new Cau3TangHNX30(date1)).get());
-//		System.out.println((new Cau3GiamVN30(date1)).get());
-//		System.out.println((new Cau3GiamHNX30(date1)).get());
-//		
-//		System.out.println();
-//		System.out.println((new Cau4VN30(date1)).get());
-//		System.out.println((new Cau4HNX30(date1)).get());
-		
-
-		
-		DataLoad dataLoad = new DataLoad(date1);
-		System.out.println(dataLoad.get());
-		
-	
-		
+//		OneStockRoot oneStockRoot;
+//		oneStockRoot = new OneStock2Week(stock, date1);
+//		System.out.println(oneStockRoot.get());
+//		oneStockRoot = new OneStock2Month(stock, date1);
+//		System.out.println(oneStockRoot.get());
+		int i = 0;
+		for (STOCK stoc : InputData.stockShare()) {
+			System.out.println(++i + " : " + stoc);
+		}
 	}
 }

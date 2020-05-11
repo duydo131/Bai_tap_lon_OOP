@@ -5,11 +5,14 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class InputData {
@@ -18,30 +21,105 @@ public class InputData {
 	private static Map<STOCK, DataOneStock> datashare = new LinkedHashMap<>();
 
 	static {
-		for (Map.Entry<STOCK, DataOneStock> item : Data.getDataVN30().entrySet()) {
+		for (Map.Entry<STOCK, DataOneStock> item : getDataVN30().entrySet()) {
 			datashare.put(item.getKey(), item.getValue());
 		}
-		for (Map.Entry<STOCK, DataOneStock> item : Data.getDataHNX30().entrySet()) {
+		for (Map.Entry<STOCK, DataOneStock> item : getDataHNX30().entrySet()) {
 			datashare.put(item.getKey(), item.getValue());
 		}
+	}
+	
+	public static Set<STOCK> stockShare(){
+		Set<STOCK> stock = new HashSet<>();
+		Set<STOCK> dataVN30 = getDataVN30().keySet();
+		for (STOCK item : dataVN30) {
+			if(!(item.equals(STOCK.VNINDEX))){
+				stock.add(item);
+			}
+			
+		}
+		Set<STOCK> dataHNX30 = getDataHNX30().keySet();
+		for (STOCK item : dataHNX30) {
+			if(!(item.equals(STOCK.HASTC))){
+				stock.add(item);
+			}
+		}
+		return stock;
 	}
 	
 	public static Set<STOCK> stockVN30(){
-		return Data.getDataVN30().keySet();
+		Set<STOCK> stock = new HashSet<>();
+		Set<STOCK> data = getDataVN30().keySet();
+		for (STOCK item : data) {
+			stock.add(item);
+		}
+		return stock;
 	}
 	
 	public static Set<STOCK> stockHNX30(){
-		return Data.getDataHNX30().keySet();
+		Set<STOCK> stock = new HashSet<>();
+		Set<STOCK> data = getDataHNX30().keySet();
+		for (STOCK item : data) {
+			stock.add(item);
+		}
+		return stock;
 	}
 
 	public static boolean testDay(Date date) {
-		ArrayList<DataOneDay> dataVNindex = Data.getDataVN30().get(STOCK.VNINDEX).getData();
+		ArrayList<DataOneDay> dataVNindex = getDataVN30().get(STOCK.VNINDEX).getData();
 		for (DataOneDay dataOneDay : dataVNindex) {
 			if (date.getTime() == dataOneDay.getDate().getTime()) {
 				return true;
 			}
 		}
 		return false;
+	}
+	
+	/**
+	 * phương thức bổ trợ
+	 * 
+	 */
+	private static DataOneDay priceMax(STOCK stock, ArrayList<DataOneDay> data) {
+		if (data.size() == 0) {
+			throw new NullPointerException();
+		}
+		return data.stream().max(Comparator.comparingDouble(DataOneDay::getGiaDongCua)).get();
+	}
+
+	private static DataOneDay priceMin(STOCK stock, ArrayList<DataOneDay> data) {
+		if (data.size() == 0) {
+			throw new NullPointerException();
+		}
+		return data.stream().min(Comparator.comparingDouble(DataOneDay::getGiaDongCua)).get();
+	}
+
+	private static DataOneDay volumeMin(STOCK stock, ArrayList<DataOneDay> data) {
+		if (data.size() == 0) {
+			throw new NullPointerException();
+		}
+		return data.stream().min(Comparator.comparingDouble(DataOneDay::getKL)).get();
+	}
+
+	private static DataOneDay volumeMax(STOCK stock, ArrayList<DataOneDay> data) {
+		if (data.size() == 0) {
+			throw new NullPointerException();
+		}
+		return data.stream().max(Comparator.comparingDouble(DataOneDay::getKL)).get();
+	}
+
+	private static long volumeSum(STOCK stock, ArrayList<DataOneDay> data) {
+		Function<DataOneDay, Long> mapper = new Function<DataOneDay, Long>() {
+			
+			@Override
+			public Long apply(DataOneDay dataOneDay) {
+				return dataOneDay.getKL();
+			}
+		};
+		ArrayList<Long> dataVolume = data.stream()
+									.map(mapper)
+									.collect(Collectors.toCollection(ArrayList::new));
+		
+		return Caculate.sum(dataVolume);
 	}
 
 	/**
@@ -60,115 +138,76 @@ public class InputData {
 		}
 	}
 
-	private static boolean chooseWeek(DataOneDay dataOneDay, Date date) {
-		return dataOneDay.getDate().getTime() >= Week(date) && dataOneDay.getDate().getTime() <= date.getTime();
-	}
-
 	public static ArrayList<DataOneDay> getDataOneWeekOneStock(STOCK stock, Date date) {
+		long addTime = Week(date);
+		Predicate<DataOneDay> predicate = new Predicate<DataOneDay>() {
+			
+			@Override
+			public boolean test(DataOneDay dataOneDay) {
+				long time = dataOneDay.getDate().getTime();
+				return (time >= addTime && time <= date.getTime());
+			}
+		};
 		return datashare.get(stock).getData().stream()
-				.filter(DataOneDay -> chooseWeek(DataOneDay, date)).collect(Collectors.toCollection(ArrayList::new));
+				.filter(predicate)
+				.collect(Collectors.toCollection(ArrayList::new));
 	}
-	
 
 	public static DataOneDay priceMaxOneWeek(STOCK stock, Date date) {
-		ArrayList<DataOneDay> data = getDataOneWeekOneStock(stock, date);
-		if (data.size() == 0) {
-			throw new NullPointerException();
-		}
-		return data.stream().max(Comparator.comparingDouble(DataOneDay::getGiaDongCua)).get();
+		return priceMax(stock, getDataOneWeekOneStock(stock, date));
 	}
 
 	public static DataOneDay priceMinOneWeek(STOCK stock, Date date) {
-		ArrayList<DataOneDay> data = getDataOneWeekOneStock(stock, date);
-		if (data.size() == 0) {
-			throw new NullPointerException();
-		}
-		return data.stream().min(Comparator.comparingDouble(DataOneDay::getGiaDongCua)).get();
+		return priceMin(stock, getDataOneWeekOneStock(stock, date));
 	}
 
 	public static DataOneDay volumeMinOneWeek(STOCK stock, Date date) {
-		ArrayList<DataOneDay> data = getDataOneWeekOneStock(stock, date);
-		if (data.size() == 0) {
-			throw new NullPointerException();
-		}
-		return data.stream().min(Comparator.comparingDouble(DataOneDay::getKL)).get();
+		return volumeMin(stock, getDataOneWeekOneStock(stock, date));
 	}
 
 	public static DataOneDay volumeMaxOneWeek(STOCK stock, Date date) {
-		ArrayList<DataOneDay> data = getDataOneWeekOneStock(stock, date);
-		if (data.size() == 0) {
-			throw new NullPointerException();
-		}
-		return data.stream().max(Comparator.comparingDouble(DataOneDay::getKL)).get();
+		return volumeMax(stock, getDataOneWeekOneStock(stock, date));
 	}
 
 	public static long volumeSumOneWeek(STOCK stock, Date date) {
-		ArrayList<DataOneDay> data = getDataOneWeekOneStock(stock, date);
-		long sum = 0L;
-		Iterator<DataOneDay> iter = data.iterator();
-		while (iter.hasNext()) {
-			sum += iter.next().getKL();
-		}
-		return sum;
+		return volumeSum(stock, getDataOneWeekOneStock(stock, date));
 	}
 
 	/**
 	 * Month
 	 * 
 	 */
-	public static int getMonth(Date date) {
-		return Integer.parseInt(formats.format(date).substring(3, 5));
-	}
-
-	private static boolean chooseMonth(DataOneDay dataOneDay, int month) {
-		return month == (getMonth(dataOneDay.getDate()));
-	}
-
 	public static ArrayList<DataOneDay> getDataOneMonthOneStock(STOCK stock, MONTH month) {
+		Predicate<DataOneDay> predicate = new Predicate<DataOneDay>() {
+			
+			@Override
+			public boolean test(DataOneDay dataOneDay) {
+				return month.getMonth() == Format.getMonth(dataOneDay.getDate());
+			}
+		};
 		return datashare.get(stock).getData().stream()
-				.filter(DataOneDay -> chooseMonth(DataOneDay, month.getMonth())).collect(Collectors.toCollection(ArrayList::new));
+				.filter(predicate)
+				.collect(Collectors.toCollection(ArrayList::new));
 	}
 
 	public static DataOneDay priceMaxOneMonth(STOCK stock, MONTH month) {
-		ArrayList<DataOneDay> data = getDataOneMonthOneStock(stock, month);
-		if (data.size() == 0) {
-			throw new NullPointerException();
-		}
-		return data.stream().max(Comparator.comparingDouble(DataOneDay::getGiaDongCua)).get();
+		return priceMax(stock, getDataOneMonthOneStock(stock, month));
 	}
 
 	public static DataOneDay priceMinOneMonth(STOCK stock, MONTH month) {
-		ArrayList<DataOneDay> data = getDataOneMonthOneStock(stock, month);
-		if (data.size() == 0) {
-			throw new NullPointerException();
-		}
-		return data.stream().min(Comparator.comparingDouble(DataOneDay::getGiaDongCua)).get();
+		return priceMin(stock, getDataOneMonthOneStock(stock, month));
 	}
 
 	public static DataOneDay volumeMinOneMonth(STOCK stock, MONTH month) {
-		ArrayList<DataOneDay> data = getDataOneMonthOneStock(stock, month);
-		if (data.size() == 0) {
-			throw new NullPointerException();
-		}
-		return data.stream().min(Comparator.comparingDouble(DataOneDay::getKL)).get();
+		return volumeMin(stock, getDataOneMonthOneStock(stock, month));
 	}
 
 	public static DataOneDay volumeMaxOneMonth(STOCK stock, MONTH month) {
-		ArrayList<DataOneDay> data = getDataOneMonthOneStock(stock, month);
-		if (data.size() == 0) {
-			throw new NullPointerException();
-		}
-		return data.stream().max(Comparator.comparingDouble(DataOneDay::getKL)).get();
+		return volumeMax(stock, getDataOneMonthOneStock(stock, month));
 	}
 
 	public static long volumeSumOneMonth(STOCK stock, MONTH month) {
-		ArrayList<DataOneDay> data = getDataOneMonthOneStock(stock, month);
-		long sum = 0L;
-		Iterator<DataOneDay> iter = data.iterator();
-		while (iter.hasNext()) {
-			sum += iter.next().getKL();
-		}
-		return sum;
+		return volumeSum(stock, getDataOneMonthOneStock(stock, month));
 	}
 
 	/*
@@ -178,7 +217,8 @@ public class InputData {
 	//	getInfo One Day
 	private static Map<STOCK, DataOneDay> getMapOneDay(Date date, Map<STOCK, DataOneStock> map ) {
 		Map<STOCK, DataOneDay> data = new LinkedHashMap<>();
-		for (Map.Entry<STOCK, DataOneStock> element : map.entrySet()) {
+		Set<Map.Entry<STOCK, DataOneStock>> dataSet = map.entrySet();
+		for (Map.Entry<STOCK, DataOneStock> element : dataSet) {
 			data.put(element.getKey(), element.getValue().getDataOneDay(date));
 		}
 		return data;
@@ -189,11 +229,11 @@ public class InputData {
 	}
 	
 	public static Map<STOCK, DataOneDay>  getTodayVN30(Date date){
-		return getMapOneDay(date, Data.getDataVN30());
+		return getMapOneDay(date, getDataVN30());
 	}
 	
 	public static Map<STOCK, DataOneDay>  getTodayHNX30(Date date){
-		return getMapOneDay(date, Data.getDataHNX30());
+		return getMapOneDay(date, getDataHNX30());
 	}
 	
 	
@@ -202,12 +242,19 @@ public class InputData {
 		long dayBefore = dateBefore.getTime();
 		long dayAfter = dateAfter.getTime();
 		Map<STOCK, ArrayList<DataOneDay>> data = new LinkedHashMap<>();
-		for (Map.Entry<STOCK, DataOneStock> element : map.entrySet()) {
+		Set<Map.Entry<STOCK, DataOneStock>> dataSet = map.entrySet();
+		Predicate<DataOneDay> predicate = new Predicate<DataOneDay>() {
+			
+			@Override
+			public boolean test(DataOneDay dataOneDay) {
+				long date = dataOneDay.getDate().getTime();
+				return (date <= dayAfter && date >= dayBefore);
+			}
+		};
+		for (Map.Entry<STOCK, DataOneStock> element : dataSet) {
 			data.put(element.getKey(), element.getValue().getData().stream()
-												.filter(dataOneDay -> {
-												long date = dataOneDay.getDate().getTime();
-												return (date <= dayAfter && date >= dayBefore);
-												}).collect(Collectors.toCollection(ArrayList::new))
+												.filter(predicate)
+												.collect(Collectors.toCollection(ArrayList::new))
 					);
 		}
 		return data;
@@ -218,11 +265,11 @@ public class InputData {
 	}
 	
 	public static Map<STOCK, ArrayList<DataOneDay>> getInfoVN30(Date dateBefore, Date dateAfter){
-		return getMap(dateBefore, dateAfter, Data.getDataVN30());
+		return getMap(dateBefore, dateAfter, getDataVN30());
 	}
 	
 	public static Map<STOCK, ArrayList<DataOneDay>> getInfoHNX30(Date dateBefore, Date dateAfter){
-		return getMap(dateBefore, dateAfter, Data.getDataHNX30());
+		return getMap(dateBefore, dateAfter, getDataHNX30());
 	}
 
 	
@@ -260,7 +307,8 @@ public class InputData {
 	
 	public static Map<STOCK, Double> getDifferenceOneDayVN30(Date date) {
 		Map<STOCK, Double> difference = new LinkedHashMap<>();
-		for (STOCK stock : STOCK.values()) {
+		Set<STOCK> dataStock = stockVN30();
+		for (STOCK stock : dataStock) {
 			difference.put(stock, getDifferenceOneDayOneStockVN30(stock, date));
 		}
 		return difference;
@@ -268,7 +316,8 @@ public class InputData {
 	
 	public static Map<STOCK, Double> getDifferenceOneDayHNX30(Date date) {
 		Map<STOCK, Double> difference = new LinkedHashMap<>();
-		for (STOCK stock : STOCK.values()) {
+		Set<STOCK> dataStock = stockHNX30();
+		for (STOCK stock : dataStock) {
 			difference.put(stock, getDifferenceOneDayOneStockHNX30(stock, date));
 		}
 		return difference;
@@ -331,9 +380,8 @@ public class InputData {
 					price = dataOneDay.getGiaDongCua();
 					i++;
 					continue;
-				}else {
+				}else 
 					break;
-				}
 			}
 		}else {
 			while(iterator.hasNext()) {
@@ -342,9 +390,8 @@ public class InputData {
 					price = dataOneDay.getGiaDongCua();
 					i++;
 					continue;
-				}else {
+				}else 
 					break;
-				}
 			}
 		}
 		return i;
@@ -366,7 +413,7 @@ public class InputData {
 	public static Map<STOCK, Integer> increseCounterVN30(Date date) {
 		Map<STOCK, Integer> data = new LinkedHashMap<>();
 		for (STOCK stock : stockVN30()) {
-			data.put(stock, Counter(stock, date, true, Data.getDataVN30()));
+			data.put(stock, Counter(stock, date, true, getDataVN30()));
 		}
 		return data;
 	}
@@ -374,7 +421,7 @@ public class InputData {
 	public static Map<STOCK, Integer> increseCounterHNX30(Date date) {
 		Map<STOCK, Integer> data = new LinkedHashMap<>();
 		for (STOCK stock : stockHNX30()) {
-			data.put(stock, Counter(stock, date, true, Data.getDataHNX30()));
+			data.put(stock, Counter(stock, date, true, getDataHNX30()));
 		}
 		return data;
 	}
@@ -395,7 +442,7 @@ public class InputData {
 	public static Map<STOCK, Integer> decreseCounterVN30(Date date) {
 		Map<STOCK, Integer> data = new LinkedHashMap<>();
 		for (STOCK stock : stockVN30()) {
-			data.put(stock, Counter(stock, date, false, Data.getDataVN30()));
+			data.put(stock, Counter(stock, date, false, getDataVN30()));
 		}
 		return data;
 	}
@@ -403,7 +450,7 @@ public class InputData {
 	public static Map<STOCK, Integer> decreseCounterHNX30(Date date) {
 		Map<STOCK, Integer> data = new LinkedHashMap<>();
 		for (STOCK stock : stockHNX30()) {
-			data.put(stock, Counter(stock, date, false, Data.getDataHNX30()));
+			data.put(stock, Counter(stock, date, false, getDataHNX30()));
 		}
 		return data;
 	}
@@ -430,6 +477,17 @@ public class InputData {
 		Map<STOCK, DataOneDay> data = getTodayHNX30(date);
 		data.remove(STOCK.HASTC);
 		return getStockByNumerical(numerical, data);
+	}
+	
+	// 	09/05
+	public static Map<STOCK, DataOneStock> getDatashare() {
+		return datashare;
+	}
+	public static Map<STOCK, DataOneStock> getDataVN30() {
+		return Data.getDataVN30();
+	}
+	public static Map<STOCK, DataOneStock> getDataHNX30() {
+		return Data.getDataHNX30();
 	}
 }
 

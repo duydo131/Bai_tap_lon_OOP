@@ -30,6 +30,7 @@ public abstract class Cau3 extends San{
 		return list.size() == 0 ? str2 : str1;
 	}
 	
+	@Override
 	protected void setList(Map<STOCK, DataOneDay> data) {
 		LinkedList<Map.Entry<STOCK, DataOneDay>> filter = new LinkedList<>(data.entrySet());
 		Function<Map.Entry<STOCK, DataOneDay>, STOCK> function = new Function<Map.Entry<STOCK,DataOneDay>, STOCK>() {

@@ -39,6 +39,7 @@ public abstract class Cau2 extends San {
 		return str;
 	}
 
+	@Override
 	protected void setList(Map<STOCK, DataOneDay> data) {
 		LinkedList<Map.Entry<STOCK, DataOneDay>> filter = new LinkedList<>(data.entrySet());
 		

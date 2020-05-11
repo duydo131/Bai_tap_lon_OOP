@@ -1,4 +1,4 @@
-package Sentences;
+package Sentence;
 
 
 public abstract class Comparision {

@@ -27,7 +27,7 @@ public class FIlter {
 				
 				int i = 0;
 				
-				while((line = bufferedReader.readLine()) != null && i < 103) {
+				while((line = bufferedReader.readLine()) != null && i < 229) {
 					fileWriter.append(line + "\n");
 					i++;
 				}

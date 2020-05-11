@@ -30,6 +30,7 @@ public abstract class Cau4 extends San{
 		return str;
 	}
 	
+	@Override
 	protected void setList(Map<STOCK, DataOneDay> data) {
 		if(data.containsKey(STOCK.VNINDEX)) {
 			data.remove(STOCK.VNINDEX);

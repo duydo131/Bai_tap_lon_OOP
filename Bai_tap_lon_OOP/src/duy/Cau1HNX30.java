@@ -1,5 +1,6 @@
 package duy;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import Input.InputData;
@@ -16,4 +17,5 @@ public class Cau1HNX30 extends Cau1{
 		name = "Hà Nội";
 	}
 
+	
 }

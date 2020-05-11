@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="699.0" prefWidth="1095.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Controller">
+   <children>
+      <TextArea fx:id="textArea" layoutX="566.0" layoutY="117.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="572.0" prefWidth="519.0" wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="569.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="117.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextArea>
+      <HBox alignment="TOP_RIGHT" layoutX="367.0" layoutY="14.0" prefHeight="37.0" prefWidth="348.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="15.0">
+         <children>
+            <TextField fx:id="textField" prefHeight="25.0" prefWidth="235.0">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets right="5.0" />
+               </padding>
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin>
+            </TextField>
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#search" text="Search">
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_RIGHT" layoutX="375.0" layoutY="45.0" prefHeight="31.0" prefWidth="348.0" AnchorPane.rightAnchor="10.0">
+         <children>
+            <Label text="Ngày" />
+            <ComboBox fx:id="day" prefHeight="25.0" prefWidth="67.0">
+               <HBox.margin>
+                  <Insets left="5.0" />
+               </HBox.margin>
+            </ComboBox>
+            <Label text="Tháng">
+               <HBox.margin>
+                  <Insets left="15.0" />
+               </HBox.margin>
+            </Label>
+            <ComboBox fx:id="month" prefHeight="25.0" prefWidth="64.0">
+               <HBox.margin>
+                  <Insets left="5.0" />
+               </HBox.margin>
+            </ComboBox>
+            <Label text="Năm">
+               <HBox.margin>
+                  <Insets left="15.0" />
+               </HBox.margin>
+            </Label>
+            <ComboBox fx:id="year" prefHeight="25.0" prefWidth="77.0">
+               <HBox.margin>
+                  <Insets left="5.0" right="5.0" />
+               </HBox.margin>
+            </ComboBox>
+         </children>
+      </HBox>
+      <Label layoutX="456.0" layoutY="84.0" prefHeight="25.0" prefWidth="227.0" text="(Từ ngày 01/10.2019 đến 28/02/2020)" AnchorPane.rightAnchor="50.0">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <LineChart id="chart" fx:id="lineChart1" layoutX="34.0" layoutY="226.0" prefHeight="290.0" prefWidth="531.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="226.0">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" fx:id="xAxis1" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis fx:id="yAxis1" side="LEFT" />
+        </yAxis>
+      </LineChart>
+      <LineChart id="chart" fx:id="lineChart2" layoutX="46.0" layoutY="466.0" prefHeight="273.0" prefWidth="519.0" AnchorPane.leftAnchor="46.0" AnchorPane.topAnchor="466.0">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" fx:id="xAxis2" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis fx:id="yAxis2" side="LEFT" />
+        </yAxis>
+      </LineChart>
+      <LineChart id="chart" fx:id="lineChart3" layoutX="46.0" layoutY="2.0" prefHeight="282.0" prefWidth="519.0" AnchorPane.leftAnchor="46.0" AnchorPane.topAnchor="0.0">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" fx:id="xAxis3" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis fx:id="yAxis3" side="LEFT" />
+        </yAxis>
+      </LineChart>
+      <Label layoutX="14.0" layoutY="395.0" />
+      <Label layoutX="1.0" layoutY="364.0" prefHeight="31.0" prefWidth="67.0" text="VN-index" AnchorPane.leftAnchor="1.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="5.0" layoutY="537.0" prefHeight="31.0" prefWidth="83.0" text="HNX-index" AnchorPane.leftAnchor="1.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="codeStock" alignment="CENTER" layoutX="17.0" layoutY="84.0" prefHeight="25.0" prefWidth="34.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="tag" layoutX="635.0" layoutY="64.0" prefHeight="25.0" prefWidth="103.0" AnchorPane.rightAnchor="357.0" />
+      <ComboBox fx:id="stock" layoutX="651.0" layoutY="14.0" prefHeight="25.0" prefWidth="103.0" AnchorPane.rightAnchor="354.0" />
+      <Label layoutX="565.0" layoutY="14.0" prefHeight="25.0" prefWidth="91.0" text="Mã cổ phiếu" AnchorPane.rightAnchor="439.0" />
+   </children>
+</AnchorPane>

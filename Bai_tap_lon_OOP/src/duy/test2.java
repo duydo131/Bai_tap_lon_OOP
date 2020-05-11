@@ -10,12 +10,13 @@ import Input.Format;
 import Input.InputData;
 import Input.ReadFile;
 import Input.STOCK;
+import gui.TestDay;
 
 public class test2 {
 	public static void main(String[] args) throws ParseException {
 		ReadFile.loadData();
 		SimpleDateFormat formats = new SimpleDateFormat("dd/MM/yyyy");
-		Date date = formats.parse("28/12/2020");
+		Date date = formats.parse("28/12/2019");
 //		
 //		int i = 0;
 //		for (Map.Entry<STOCK, DataOneDay> item : Caculate.sort(InputData.getTodayVN30(date)).entrySet()) {
@@ -23,8 +24,7 @@ public class test2 {
 //		}
 //		//Caculate.sort(InputData.getTodayVN30(date));
 		
-		System.out.println(formats.format(Format.getDate(date, 7)));
-		InputData.getDataOneWeekOneStock(STOCK.VNINDEX, date);
+		System.out.println(TestDay.testDay(date));
 		
 
 

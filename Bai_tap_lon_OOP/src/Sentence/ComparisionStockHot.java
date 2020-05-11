@@ -1,4 +1,4 @@
-package Sentences;
+package Sentence;
 
 import Input.InputData;
 import Input.STOCK;

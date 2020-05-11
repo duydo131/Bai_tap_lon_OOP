@@ -1,12 +1,21 @@
 0. class bổ sung
-class Caculate : - long sum(List<Long>) : tỉnh toonge các phần tử trong list
-		 - <T extends DataOneDay> Map<STOCK, T> sort(Map<STOCK, T>) : sắp xếp map theo khối lượng
+class Caculate : - Long sum(List<Long>) : tỉnh tổng các phần tử trong list
+		 - Map<STOCK, DataOneDay> sort(Map<STOCK, DataOneDay>) : sắp xếp map theo khối lượng
 		 
 class Format :  - String formatLong(Long) : format số nguyên lớn
 		- double formatsDouble(double) : format số thực
 		- Date getDate(Date, int) : trả về ngày được thêm
 
 1. Class InputData (tất cả dữ liệu tính đến ngày được chọn). method static
+
+* (update 09/05)
+- Map<STOCK, DataOneStock> getDatashare() : lấy dữ liệu 2 sàn
+
+- Map<STOCK, DataOneStock> getDataVN30() : lấy dữ liệu VN30
+
+- Map<STOCK, DataOneStock> getDataHNX30() : lấy dữ liệu HNX30
+
+*
 
 - boolean testDay(Date) : kiểm tra có dữ liệu ngày cần tìm không
 
@@ -21,8 +30,6 @@ class Format :  - String formatLong(Long) : format số nguyên lớn
 - DataOneday volumeMinOneWeek(STOCK, Date) : dữ liệu của ngày có khối lượng giao dịch min nhất của cổ phiếu trong tuần của ngày được chọn.
 
 - long volumeSumOneWeek(STOCK, Date) : tổng khối lượng giao dịch trong tuần của ngày được chọn.
-
-- int getMonth(Date) : trả về tháng của ngày được chọn.
 
 - ArrayList<DataOneDay> getDataOneMonthOneStock(STOCK, MONTH) : dữ liệu của cổ phiếu của ngày được chọn.
 
