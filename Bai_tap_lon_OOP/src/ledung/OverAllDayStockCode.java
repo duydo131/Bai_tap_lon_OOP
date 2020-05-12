@@ -1,4 +1,4 @@
-package Sentence;
+package ledung;
 
 import java.util.Date;
 
@@ -60,6 +60,7 @@ public class OverAllDayStockCode extends OverAllDay{
 		
 		String clause = null;
 		double diff = InputData.getToday(date).get(stock).getGiaDongCua() - InputData.getToday(InputData.getYesterday(date)).get(stock).getGiaDongCua();
+		
 		double min = InputData.getToday(date).get(stock).getGiaMin()*1000;
 		double max = InputData.getToday(date).get(stock).getGiaMax()*1000;
 		

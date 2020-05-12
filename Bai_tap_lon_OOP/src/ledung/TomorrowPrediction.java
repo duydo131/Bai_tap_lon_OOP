@@ -1,4 +1,4 @@
-package Sentence;
+package ledung;
 
 public class TomorrowPrediction extends Sentence {
 	

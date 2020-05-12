@@ -3,6 +3,7 @@ package Input;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashSet;
@@ -391,20 +392,20 @@ public class InputData {
 		return i;
 	}
 	
-	//	increase
-	public static int increseCounterOneStock(STOCK stock, Date date) {
+	//	increase  increaseCounterOneStock
+	public static int increaseCounterOneStock(STOCK stock, Date date) {
 		return Counter(stock, date, true, datashare);
 	}
 	
 	public static Map<STOCK, Integer> increseCounter(Date date) {
 		Map<STOCK, Integer> data = new LinkedHashMap<>();
 		for (STOCK stock : STOCK.values()) {
-			data.put(stock, increseCounterOneStock(stock, date));
+			data.put(stock, increaseCounterOneStock(stock, date));
 		}
 		return data;
 	}
 	
-	public static Map<STOCK, Integer> increseCounterVN30(Date date) {
+	public static Map<STOCK, Integer> increaseCounterVN30(Date date) {
 		Map<STOCK, Integer> data = new LinkedHashMap<>();
 		for (STOCK stock : stockVN30()) {
 			data.put(stock, Counter(stock, date, true, getDataVN30()));
@@ -412,7 +413,7 @@ public class InputData {
 		return data;
 	}
 	
-	public static Map<STOCK, Integer> increseCounterHNX30(Date date) {
+	public static Map<STOCK, Integer> increaseCounterHNX30(Date date) {
 		Map<STOCK, Integer> data = new LinkedHashMap<>();
 		for (STOCK stock : stockHNX30()) {
 			data.put(stock, Counter(stock, date, true, getDataHNX30()));
@@ -421,19 +422,19 @@ public class InputData {
 	}
 	
 	//	decrease
-	public static int decreseCounterOneStock(STOCK stock, Date date) {
+	public static int decreaseCounterOneStock(STOCK stock, Date date) {
 		return Counter(stock, date, false, datashare);
 	}
 	
 	public static Map<STOCK, Integer> decreseCounter(Date date) {
 		Map<STOCK, Integer> data = new LinkedHashMap<>();
 		for (STOCK stock : STOCK.values()) {
-			data.put(stock, decreseCounterOneStock(stock, date));
+			data.put(stock, decreaseCounterOneStock(stock, date));
 		}
 		return data;
 	}
 	
-	public static Map<STOCK, Integer> decreseCounterVN30(Date date) {
+	public static Map<STOCK, Integer> decreaseCounterVN30(Date date) {
 		Map<STOCK, Integer> data = new LinkedHashMap<>();
 		for (STOCK stock : stockVN30()) {
 			data.put(stock, Counter(stock, date, false, getDataVN30()));
@@ -441,7 +442,7 @@ public class InputData {
 		return data;
 	}
 	
-	public static Map<STOCK, Integer> decreseCounterHNX30(Date date) {
+	public static Map<STOCK, Integer> decreaseCounterHNX30(Date date) {
 		Map<STOCK, Integer> data = new LinkedHashMap<>();
 		for (STOCK stock : stockHNX30()) {
 			data.put(stock, Counter(stock, date, false, getDataHNX30()));
@@ -482,6 +483,57 @@ public class InputData {
 	}
 	public static Map<STOCK, DataOneStock> getDataHNX30() {
 		return Data.getDataHNX30();
+	}
+	
+	//12/5
+	public static Date getYesterday(Date date) { // lấy ra ngày hôm trước của ngày đưa vào tham số
+		Calendar temp = Calendar.getInstance();
+		temp.setTime(date);
+		int Year = temp.get(Calendar.YEAR);
+		int Month = temp.get(Calendar.MONTH);
+		int Date = temp.get(Calendar.DATE)-1;
+		temp.set(Year,Month,Date);
+		Date day = temp.getTime();
+		return day;
+	}
+	
+	public static Date getTomorrow(Date date) { // lấy ra ngày hôm sau của ngày đưa vào tham số
+		Calendar temp = Calendar.getInstance();
+		temp.setTime(date);
+		int Year = temp.get(Calendar.YEAR);
+		int Month = temp.get(Calendar.MONTH);
+		int Date = temp.get(Calendar.DATE)+1;
+		temp.set(Year,Month,Date);
+		Date day = temp.getTime();
+		return day;
+	}
+	
+	public static String getRandom(String[] array) { // lấy random 1 phần tử của mảng
+		int range = (array.length - 1 - 0) + 1; 	//so lon + so be + 1 = so ca so
+		int rand = (int) (Math.random()*range);
+		return array[rand];
+	}
+	
+	public static boolean isWeekend(Date date) { // kiểm tra xem ngày đưa vào tham số có là cuối tuần không 
+		Calendar temp = Calendar.getInstance();
+		temp.setTime(date);
+		if (temp.get(Calendar.DAY_OF_WEEK) == 1 || temp.get(Calendar.DAY_OF_WEEK) == 7) {
+			return true;
+		}
+		return false;
+	}
+	
+	public static String roundNumber(double num) {
+		return String.format("%.2f", num);
+	}
+	
+	public static int getDays(Date date1, Date date2) {
+		Calendar temp = Calendar.getInstance();
+		temp.setTime(date2);
+		int a = temp.get(Calendar.DAY_OF_MONTH);
+		temp.setTime(date1);
+		int b = temp.get(Calendar.DAY_OF_MONTH);
+		return a-b-2;
 	}
 }
 

@@ -17,5 +17,11 @@ public class Cau1HNX30 extends Cau1{
 		name = "Hà Nội";
 	}
 
+	@Override
+	public ArrayList<String> getTag() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 }

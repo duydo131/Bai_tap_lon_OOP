@@ -1,4 +1,4 @@
-package Sentence;
+package ledung;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -13,8 +13,8 @@ public class test {
 //		HotStocksDays p2 = new HotStocksDays(3, "VN30", formats.parse("17/12/2019"), formats.parse("22/12/2019"));
 //		p2.createSentence();
 //		System.out.println();
-//		OverAllDayStockCode p3 = new OverAllDayStockCode(formats.parse("12/12/2019"),STOCK.ACB);
-//		p3.createSentence();
+		OverAllDayStockCode p3 = new OverAllDayStockCode(formats.parse("12/12/2019"),STOCK.ACB);
+		p3.createSentence();
 //		System.out.println();
 //		OverAllDayStockClass p4 = new OverAllDayStockClass(formats.parse("13/12/2019"), "VN30");
 //		p4.createSentence();

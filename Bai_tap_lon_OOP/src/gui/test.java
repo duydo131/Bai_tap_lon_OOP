@@ -6,6 +6,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -24,6 +26,7 @@ import Input.InputData;
 import Input.MONTH;
 import Input.ReadFile;
 import Input.STOCK;
+import duy.Cau1;
 import duy.Cau1VN30;
 
 public class test {
@@ -73,7 +76,7 @@ public class test {
 		return test;
 	}
 	
-	public static void main(String[] args) throws ParseException {
+	public static void main(String[] args) throws ParseException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		ReadFile.loadData();
 		SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
 		Date date = f.parse("24/02/2020");
@@ -96,7 +99,13 @@ public class test {
 		Tag cau1 = new Cau1VN30(date);
 		list.add(cau1);
 		list.get(0).getTag();
+		
 		System.out.println(cau1.getClass());
+
+
+		Constructor<?> constructor = Cau1VN30.class.getConstructor(Date.class);
+		Cau1 c = (Cau1) constructor.newInstance(date);
+		System.out.println(c.get());
 		
 		
 	}

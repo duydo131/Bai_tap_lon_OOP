@@ -1,4 +1,4 @@
-package Sentence;
+package ledung;
 
 public class AdverbTime {
 	private static String[] progressiveTimeAdverb = {" Cùng với diễn biến đó, "};

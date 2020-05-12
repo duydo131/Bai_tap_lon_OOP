@@ -17,9 +17,12 @@ public class test {
 	public static void main(String[] args) throws ParseException {
 		ReadFile.loadData();
 		SimpleDateFormat formats = new SimpleDateFormat("dd/MM/yyyy");
-		Date date = formats.parse("24/02/2020");
+		Date date = formats.parse("01/01/2020");
 		Date date1 = Format.getDate(date, -3);
 		STOCK stock = STOCK.BID;
+		
+		System.out.println(formats.format(Format.getDate(date, -4)));
+		
 		
 //		for (Map.Entry<STOCK, Double> item : InputData.getDifferenceOneDayVN30(date1).entrySet()) {
 //			System.out.println(item.getKey() + " : " + item.getValue());
@@ -40,8 +43,10 @@ public class test {
 //		for (STOCK stoc : InputData.stockShare()) {
 //			System.out.println(++i + " : " + stoc);
 //		}
-		Calendar calendar = Calendar.getInstance();
-		System.out.println(calendar.get(Calendar.MONTH));
+//		Calendar calendar = Calendar.getInstance();
+//		System.out.println(calendar.get(Calendar.MONTH));
+		
+		
 		
 		
 		//System.out.println(InputData.getDifferenceOneDayOneStock(STOCK.BID, date1));
