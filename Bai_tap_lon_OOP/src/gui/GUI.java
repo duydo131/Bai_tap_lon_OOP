@@ -141,7 +141,7 @@ public class GUI extends javax.swing.JFrame {
         String text = jTextField1.getText();
         
         Date date = formats.parse(ngay);
-        if(TestDay.testDay(date)) {
+        if(testDay(date)) {
         	jTextArea1.setText("");
             DataLoad dataLoad = new DataLoad(date, text);
             jTextArea1.append(dataLoad.get());
@@ -149,6 +149,18 @@ public class GUI extends javax.swing.JFrame {
         	jTextArea1.setText("Không có dữ liệu ngày " + formats.format(date));
         }
     }  
+    private boolean testDay(Date date) {
+		SimpleDateFormat formats = new SimpleDateFormat("dd/MM/yyyy");
+		Date dateBefore = new Date();
+		Date dateAfter = new Date();
+		try {
+			dateBefore = formats.parse("01/10/2019");
+			dateAfter = formats.parse("28/02/2020");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return dateBefore.getTime() <= date.getTime() && dateAfter.getTime() >= date.getTime();
+	}
 
     
     public static void main(String args[]) {

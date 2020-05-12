@@ -138,10 +138,11 @@ public class Controller implements Initializable{
         textArea.clear();
 		try {
 			date = formats.parse(stringDate);
-			if(TestDay.testDay(date)) {
+			if(testDay(date)) {
 	             dataLoad = new DataLoad(date, text);
 	             textArea.appendText(dataLoad.get());
 	             if(dataLoad.getChart()) {
+	            	 dataLoad.setChart(false);
 	            	 STOCK stock = STOCK.valueOf(text);
 	            	 lineChart3.getData()
 						.add(CreateLineChart.create(xAxis3, yAxis3, 
@@ -173,5 +174,18 @@ public class Controller implements Initializable{
 		Matcher macher = pattern.matcher(str);
 		String s = macher.replaceAll(" ");
 		return s.trim();
+	}
+	
+	private boolean testDay(Date date) {
+		SimpleDateFormat formats = new SimpleDateFormat("dd/MM/yyyy");
+		Date dateBefore = new Date();
+		Date dateAfter = new Date();
+		try {
+			dateBefore = formats.parse("01/10/2019");
+			dateAfter = formats.parse("28/02/2020");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return dateBefore.getTime() <= date.getTime() && dateAfter.getTime() >= date.getTime();
 	}
 }

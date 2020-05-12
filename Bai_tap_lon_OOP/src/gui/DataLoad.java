@@ -13,6 +13,7 @@ import duy.Cau3TangVN30;
 import duy.Cau4HNX30;
 import duy.Cau4VN30;
 import duy.OneStock1;
+import duy.OneStock2Week;
 import duy.Phien;
 import duy.VolumeHNX30;
 import duy.VolumeVN30;
@@ -62,12 +63,16 @@ public class DataLoad {
 	}
 	
 	public String get() {
+		int i = getDay();
 		StringBuffer string = new StringBuffer();
 		if(testName(text)) {
-			string.append((new OneStock1(STOCK.valueOf(text), date)).get());
+			if(i == 1 || i == 7) {
+				string.append((new OneStock2Week(STOCK.valueOf(text), date)).get());
+			}else {
+				string.append((new OneStock1(STOCK.valueOf(text), date)).get());
+			}
 			setChart(true);
 		}else {
-			int i = getDay();
 			if(i == 1 || i == 7) {
 				// ngày phải là cuối tuần
 				string.append((new Week()).setInfo(date, STOCK.VNINDEX).get());

@@ -10,8 +10,9 @@ import Input.Caculate;
 import Input.DataOneDay;
 import Input.Format;
 import Input.STOCK;
+import gui.Tag;
 
-public abstract class Cau1 extends San{
+public abstract class Cau1 extends San implements Tag{
 	protected final int SIZE = 2;
 	protected LinkedList<StockVolume> list = new LinkedList<>();
 	

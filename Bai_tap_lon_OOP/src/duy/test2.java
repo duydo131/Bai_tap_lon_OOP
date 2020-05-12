@@ -10,7 +10,6 @@ import Input.Format;
 import Input.InputData;
 import Input.ReadFile;
 import Input.STOCK;
-import gui.TestDay;
 
 public class test2 {
 	public static void main(String[] args) throws ParseException {
@@ -23,8 +22,6 @@ public class test2 {
 //			System.out.println(++i + " : " + item.getKey() + " : " + item.getValue().getKL());
 //		}
 //		//Caculate.sort(InputData.getTodayVN30(date));
-		
-		System.out.println(TestDay.testDay(date));
 		
 
 

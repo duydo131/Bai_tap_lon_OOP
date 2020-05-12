@@ -274,27 +274,21 @@ public class InputData {
 
 	
 	//	28/4
-	
-	private static double getDifference(DataOneDay dataOneDay) {
-		return Format.formatsDouble(dataOneDay.getGiaDongCua() - dataOneDay.getGiaMoCua());
-	}
-	
-	
 	// 	Difference One Day
 	public static double getDifferenceOneDayOneStock(STOCK stock, Date date) {
 		DataOneDay dataOneDay = getToday(date).get(stock);
-		return getDifference(dataOneDay);
+		return Format.formatsDouble(dataOneDay.getThayDoi());
 	}
 	
 
 	private static double getDifferenceOneDayOneStockVN30(STOCK stock, Date date) {
 		DataOneDay dataOneDay = getTodayVN30(date).get(stock);
-		return getDifference(dataOneDay);
+		return Format.formatsDouble(dataOneDay.getThayDoi());
 	}
 	
 	private static double getDifferenceOneDayOneStockHNX30(STOCK stock, Date date) {
 		DataOneDay dataOneDay = getTodayHNX30(date).get(stock);
-		return getDifference(dataOneDay);
+		return Format.formatsDouble(dataOneDay.getThayDoi());
 	}
 	
 	public static Map<STOCK, Double> getDifferenceOneDay(Date date) {
@@ -329,7 +323,7 @@ public class InputData {
 		Map<Date, Double> difference = new LinkedHashMap<>();
 		ArrayList<DataOneDay> data = getDataOneWeekOneStock(stock, date);
 		for (DataOneDay dataOneDay : data) {
-			difference.put(dataOneDay.getDate(), getDifference(dataOneDay));
+			difference.put(dataOneDay.getDate(), Format.formatsDouble(dataOneDay.getThayDoi()));
 		}
 		return difference;
 	}
@@ -348,7 +342,7 @@ public class InputData {
 		Map<Date, Double> difference = new LinkedHashMap<>();
 		ArrayList<DataOneDay> data = getDataOneMonthOneStock(stock, month);
 		for (DataOneDay dataOneDay : data) {
-			difference.put(dataOneDay.getDate(), getDifference(dataOneDay));
+			difference.put(dataOneDay.getDate(), Format.formatsDouble(dataOneDay.getThayDoi()));
 		}
 		return difference;
 	}
