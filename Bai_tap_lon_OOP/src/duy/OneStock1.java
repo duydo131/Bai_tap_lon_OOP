@@ -1,19 +1,32 @@
 package duy;
 
+import java.util.ArrayList;
 import java.util.Date;
 
-import Input.Format;
+import Input.Tool;
 import Input.InputData;
 import Input.STOCK;
 
 public class OneStock1 extends OneStockRoot{
-	
 	private String status;
 	
 	public OneStock1(STOCK stock, Date date) {
 		this.stock = stock;
 		this.dataOneDay.add(InputData.getToday(date).get(stock));
 		status = setStatus();
+		super.setTag();
+		this.setTag();
+	}
+	
+	@Override
+	public void setTag() {
+		this.listTag.add("phiên");
+		this.listTag.add("ngày");
+	}
+	
+	@Override
+	public ArrayList<String> getTag() {
+		return this.listTag;
 	}
 	
 	@Override
@@ -21,10 +34,10 @@ public class OneStock1 extends OneStockRoot{
 		String str =  "Trong phiên giao dịch cổ phiếu " + stock.name()
 					+ status
 					+ Math.abs(Math.round(dataOneDay.get(0).getThayDoi()*10000)/10) 
-					+ " đồng thành " + Format.formatMoney(dataOneDay.get(0).getGiaDongCua())
+					+ " đồng thành " + Tool.formatMoney(dataOneDay.get(0).getGiaDongCua())
 					+ " đồng" 
 					+ " (" + (double)(Math.round((dataOneDay.get(0).getThayDoi()/dataOneDay.get(0).getGiaMoCua()*10000)))/100 + "%)"
-					+ " với tổng khối lượng giao dịch đạt gần " + Format.formatLong(dataOneDay.get(0).getKL())
+					+ " với tổng khối lượng giao dịch đạt gần " + Tool.formatLong(dataOneDay.get(0).getKL())
 					+ " cổ phiếu và thanh khoản đạt " + (long)(dataOneDay.get(0).getThanhKhoan()/10000)*1.0/100
 					+ " tỷ đồng.";
 		return str;

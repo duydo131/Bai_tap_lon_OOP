@@ -143,7 +143,7 @@ public class GUI extends javax.swing.JFrame {
         Date date = formats.parse(ngay);
         if(testDay(date)) {
         	jTextArea1.setText("");
-            DataLoad dataLoad = new DataLoad(date, text);
+            DataLoad dataLoad = new DataLoad(date, text, text);
             jTextArea1.append(dataLoad.get());
         }else {
         	jTextArea1.setText("Không có dữ liệu ngày " + formats.format(date));

@@ -2,14 +2,12 @@ package duy;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.Map;
+import java.util.stream.Collectors;
 
-import Input.DataOneDay;
-import Input.Format;
-import Input.InputData;
-import Input.MONTH;
+import gui.Demo;
+import gui.Tag;
 import Input.ReadFile;
 import Input.STOCK;
 
@@ -17,38 +15,53 @@ public class test {
 	public static void main(String[] args) throws ParseException {
 		ReadFile.loadData();
 		SimpleDateFormat formats = new SimpleDateFormat("dd/MM/yyyy");
-		Date date = formats.parse("01/01/2020");
-		Date date1 = Format.getDate(date, -3);
+		Date date = formats.parse("20/02/2020");
 		STOCK stock = STOCK.BID;
 		
-		System.out.println(formats.format(Format.getDate(date, -4)));
+		String tag = "HASTC";
+		
+		ArrayList<Tag> list = new ArrayList<>();
+		
+		list.add(new Cau1HNX30(date));
+		list.add(new Cau1VN30(date));
+		list.add(new Cau2HNX30(date));
+		list.add(new Cau2VN30(date));
+		list.add(new Cau3GiamHNX30(date));
+		list.add(new Cau3TangHNX30(date));
+		list.add(new Cau3GiamVN30(date));
+		list.add(new Cau3TangVN30(date));
+		list.add(new Cau4VN30(date));
+		list.add(new Cau4HNX30(date));
+		list.add(new DayVN30(date));
+		list.add(new DayHNX30(date));
+		list.add(new WeekVN30(date));
+		list.add(new WeekHNX30(date));
+		list.add(new OneStock1(stock, date));
+		list.add(new OneStock2Month(stock, date));
+		list.add(new OneStock2Week(stock, date));
 		
 		
-//		for (Map.Entry<STOCK, Double> item : InputData.getDifferenceOneDayVN30(date1).entrySet()) {
-//			System.out.println(item.getKey() + " : " + item.getValue());
+//		for (Tag tag123 : list) {
+//			System.out.println(tag123.getClass().getSimpleName() + " : " + tag123.getTag());
 //		}
 		
-//		InputData.priceMaxOneWeek(stock, date1).print();
-//		OneStock1 oneStock = new OneStock1(stock, date1);
-//		System.out.println(oneStock.get());
-//		OneStockRoot oneStock = new OneStock2(stock, date1);
-//		System.out.println(oneStock.get());
+//		System.out.println("\nafter\n");
 		
-//		OneStockRoot oneStockRoot;
-//		oneStockRoot = new OneStock2Week(stock, date1);
-//		System.out.println(oneStockRoot.get());
-//		oneStockRoot = new OneStock2Month(stock, date1);
-//		System.out.println(oneStockRoot.get());
-//		int i = 0;
-//		for (STOCK stoc : InputData.stockShare()) {
-//			System.out.println(++i + " : " + stoc);
-//		}
-//		Calendar calendar = Calendar.getInstance();
-//		System.out.println(calendar.get(Calendar.MONTH));
+		ArrayList<Tag> li = list.stream()
+								.filter(t->t.getTag().contains(tag))
+								.map(t -> Demo.getInstance(t, date, stock))
+								.collect(Collectors.toCollection(ArrayList::new));
 		
 		
+		for (Tag tag123 : li) {
+			System.out.println(tag123.getClass().getSimpleName() + " : " + tag123.getTag());
+		}
 		
+		System.out.println();
 		
-		//System.out.println(InputData.getDifferenceOneDayOneStock(STOCK.BID, date1));
+		for (Tag tag2 : li) {
+			System.out.println(tag2.get());
+		}
+
 	}
 }

@@ -9,11 +9,12 @@ import java.util.stream.Collectors;
 
 import Input.DataOneDay;
 import Input.STOCK;
+import gui.Tag;
 
-public abstract class Cau3 extends San{
+public abstract class Cau3 extends San implements Tag{
 	protected LinkedList<STOCK> list = new LinkedList<>();
 	protected String status; 
-
+	
 	@Override
 	public abstract void setInfo(Date date);
 
@@ -28,6 +29,11 @@ public abstract class Cau3 extends San{
 					+ status
 					+ " trần.";
 		return list.size() == 0 ? str2 : str1;
+	}
+	
+	@Override
+	public void setTag() {
+		this.listTag.add("giao dịch trần");
 	}
 	
 	@Override

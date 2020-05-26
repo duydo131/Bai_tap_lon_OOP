@@ -3,26 +3,20 @@ package duy;
 import java.util.ArrayList;
 import java.util.Date;
 
-import Input.InputData;
+import Input.STOCK;
 
-public class Cau4VN30 extends Cau4{
-	
-	public Cau4VN30(Date date) {
-		setInfo(date);
-	}
-
-	@Override
-	public void setInfo(Date date) {
+public class DayVN30 extends Day{
+	public DayVN30(Date date) {
 		this.date = date;
-		setList(InputData.getTodayVN30(date));
+		this.stock = STOCK.VNINDEX;
+		setInfo();
 		super.setTag();
 		this.setTag();
-		name = "VN30";
 	}
 
 	@Override
 	public ArrayList<String> getTag() {
-		return listTag;
+		return this.listTag;
 	}
 	
 	@Override

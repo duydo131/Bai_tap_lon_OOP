@@ -11,10 +11,11 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import Input.DataOneDay;
-import Input.Format;
+import Input.Tool;
+import gui.Tag;
 import Input.STOCK;
 
-public abstract class Cau2 extends San {
+public abstract class Cau2 extends San implements Tag{
 	protected LinkedList<StockVolume> list = new LinkedList<>();
 
 	@Override
@@ -31,12 +32,17 @@ public abstract class Cau2 extends San {
 					+ " mã giao dịch được trên 1 triệu chứng khoán, trong đó "
 					+ list.get(1).getStock().name()
 					+ " nổi bật nhất với "
-					+ Format.formatsDouble(list.get(1).getVolume()*1.0/1000000)
+					+ Tool.formatsDouble(list.get(1).getVolume()*1.0/1000000)
 					+ " triệu cổ phiếu được giao dịch.\n" 
 					+ "Cụ thể, những cổ phiếu giao dịch trên 1 triệu cổ phiếu trong phiên hôm nay : "
 					+ create();
 		}
 		return str;
+	}
+	
+	@Override
+	public void setTag() {
+		this.listTag.add("giao dịch trên 1 triệu cổ phiếu");
 	}
 
 	@Override

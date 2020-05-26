@@ -73,6 +73,6 @@ public class DataOneDay {
 							+ " giá đóng cửa : " + this.getGiaDongCua() + " - " 
 							+ " khối lượng : " + this.getKL() + " - " 
 							+ " thanh khoản : " + this.getThanhKhoan()+ " - " 
-							+ " thay đổi : " + Format.formatsDouble(this.getThayDoi()));
+							+ " thay đổi : " + Tool.formatsDouble(this.getThayDoi()));
 	}
 }

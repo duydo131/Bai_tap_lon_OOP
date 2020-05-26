@@ -6,7 +6,7 @@ import Input.InputData;
 import Input.ReadFile;
 import Input.STOCK;
 import Input.EXCHANGES;
-import Input.Format;
+import Input.Tool;
 import Input.Data;
 
 public class DayChangingSentence {

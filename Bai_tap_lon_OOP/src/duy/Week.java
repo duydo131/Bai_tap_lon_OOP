@@ -1,33 +1,33 @@
 package duy;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.stream.Collectors;
 
 import Input.DataOneDay;
-import Input.Format;
+import Input.Tool;
 import Input.InputData;
-import Input.STOCK;
-import Input.Caculate;
 
-public class Week extends NhanXet {
+public abstract class Week extends NhanXet {
 	
 	public Week() {
 		this.name = "tuần";
 	}
 	
 	private long sum(Date date) {
-		return Caculate.sum(InputData.getDataOneWeekOneStock(stock, date)
+		return InputData.getDataOneWeekOneStock(stock, date)
 				.stream().map(DataOneDay::getKL)
-				.collect(Collectors.toCollection(ArrayList::new)));
+				.reduce(0L, (a,b)->a+b);
 	}
 
 	@Override
-	public NhanXet setInfo(Date date, STOCK stock) {
-		this.stock = stock;
+	public void setInfo() {
+		super.setTag();
 		allVolume = sum(date);
-		change = allVolume - sum(Format.getDate(date, -7));
-		return this;
+		change = allVolume - sum(Tool.getDate(date, -7));
+	}
+	
+	@Override
+	public void setTag() {
+		this.listTag.add("tuần");
 	}
 	
 }

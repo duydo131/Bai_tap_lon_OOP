@@ -1,5 +1,6 @@
 package duy;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Cau3TangHNX30 extends Cau3HNX30 {
@@ -7,6 +8,7 @@ public class Cau3TangHNX30 extends Cau3HNX30 {
 	public Cau3TangHNX30(Date date) {
 		super(date);
 		status = "tăng";
+		this.setTag();
 	}
 
 	@Override
@@ -14,4 +16,14 @@ public class Cau3TangHNX30 extends Cau3HNX30 {
 		return giaMoCua*(1 + BIEN_DO_DAO_DONG) <= giaDongCua;
 	}
 
+	@Override
+	public ArrayList<String> getTag() {
+		return listTag;
+	}
+	
+	@Override
+	public void setTag() {
+		super.setTag();
+		this.listTag.add("tăng trần");
+	}
 }

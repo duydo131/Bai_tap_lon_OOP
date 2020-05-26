@@ -14,10 +14,18 @@ public abstract class Cau3VN30 extends Cau3 {
 	@Override
 	public void setInfo(Date date) {
 		setList(InputData.getTodayVN30(date));
+		super.setTag();
 		name = "VN30";
 	}
 
 	@Override
 	protected abstract boolean testPrice(double giaMoCua, double giaDongCua);
+	
+	@Override
+	public void setTag() {
+		this.listTag.add("HOSE");
+		this.listTag.add("VN-INDEX");
+		this.listTag.add("Hồ Chí Minh");
+	}
 
 }

@@ -12,7 +12,6 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Set;
-import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -109,18 +108,9 @@ public class InputData {
 	}
 
 	private static long volumeSum(STOCK stock, ArrayList<DataOneDay> data) {
-		Function<DataOneDay, Long> mapper = new Function<DataOneDay, Long>() {
-			
-			@Override
-			public Long apply(DataOneDay dataOneDay) {
-				return dataOneDay.getKL();
-			}
-		};
-		ArrayList<Long> dataVolume = data.stream()
-									.map(mapper)
-									.collect(Collectors.toCollection(ArrayList::new));
-		
-		return Caculate.sum(dataVolume);
+		 return  data.stream()
+						.map(DataOneDay::getKL)
+						.reduce(0L,(a,b)->a+b);
 	}
 
 	/**
@@ -183,7 +173,7 @@ public class InputData {
 			
 			@Override
 			public boolean test(DataOneDay dataOneDay) {
-				return month.getMonth() == Format.getMonth(dataOneDay.getDate());
+				return month.getMonth() == Tool.getMonth(dataOneDay.getDate());
 			}
 		};
 		return datashare.get(stock).getData().stream()
@@ -278,18 +268,18 @@ public class InputData {
 	// 	Difference One Day
 	public static double getDifferenceOneDayOneStock(STOCK stock, Date date) {
 		DataOneDay dataOneDay = getToday(date).get(stock);
-		return Format.formatsDouble(dataOneDay.getThayDoi());
+		return Tool.formatsDouble(dataOneDay.getThayDoi());
 	}
 	
 
 	private static double getDifferenceOneDayOneStockVN30(STOCK stock, Date date) {
 		DataOneDay dataOneDay = getTodayVN30(date).get(stock);
-		return Format.formatsDouble(dataOneDay.getThayDoi());
+		return Tool.formatsDouble(dataOneDay.getThayDoi());
 	}
 	
 	private static double getDifferenceOneDayOneStockHNX30(STOCK stock, Date date) {
 		DataOneDay dataOneDay = getTodayHNX30(date).get(stock);
-		return Format.formatsDouble(dataOneDay.getThayDoi());
+		return Tool.formatsDouble(dataOneDay.getThayDoi());
 	}
 	
 	public static Map<STOCK, Double> getDifferenceOneDay(Date date) {
@@ -324,7 +314,7 @@ public class InputData {
 		Map<Date, Double> difference = new LinkedHashMap<>();
 		ArrayList<DataOneDay> data = getDataOneWeekOneStock(stock, date);
 		for (DataOneDay dataOneDay : data) {
-			difference.put(dataOneDay.getDate(), Format.formatsDouble(dataOneDay.getThayDoi()));
+			difference.put(dataOneDay.getDate(), Tool.formatsDouble(dataOneDay.getThayDoi()));
 		}
 		return difference;
 	}
@@ -343,7 +333,7 @@ public class InputData {
 		Map<Date, Double> difference = new LinkedHashMap<>();
 		ArrayList<DataOneDay> data = getDataOneMonthOneStock(stock, month);
 		for (DataOneDay dataOneDay : data) {
-			difference.put(dataOneDay.getDate(), Format.formatsDouble(dataOneDay.getThayDoi()));
+			difference.put(dataOneDay.getDate(), Tool.formatsDouble(dataOneDay.getThayDoi()));
 		}
 		return difference;
 	}
@@ -454,7 +444,7 @@ public class InputData {
 	// 30/04
 	
 	private static STOCK getStockByNumerical(int numerical, Map<STOCK, DataOneDay> data) {
-		ArrayList<Map.Entry<STOCK, DataOneDay>> list = new ArrayList<>(Caculate.sort(data).entrySet());
+		ArrayList<Map.Entry<STOCK, DataOneDay>> list = new ArrayList<>(Tool.sort(data).entrySet());
 		LinkedList<STOCK> sortedListStock = new LinkedList<>();
 		for (Map.Entry<STOCK, DataOneDay> entry : list) {
 			sortedListStock.add(entry.getKey());
@@ -507,7 +497,6 @@ public class InputData {
 		Date day = temp.getTime();
 		return day;
 	}
-	
 	public static String getRandom(String[] array) { // lấy random 1 phần tử của mảng
 		int range = (array.length - 1 - 0) + 1; 	//so lon + so be + 1 = so ca so
 		int rand = (int) (Math.random()*range);

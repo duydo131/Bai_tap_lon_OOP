@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import Input.InputData;
 import Input.STOCK;
@@ -26,7 +27,7 @@ public class Controller implements Initializable{
 	private SimpleDateFormat formats = new SimpleDateFormat("dd/MM/yyyy");
 	
 	@FXML
-	private ComboBox<STOCK> stock;
+	private ComboBox<String> stock;
 	
 	@FXML
 	private ComboBox<String> tag;
@@ -107,17 +108,26 @@ public class Controller implements Initializable{
 		year.getItems().addAll("2019", "2020");
 		year.getSelectionModel().select("2020");
 		
-		Set<STOCK> listStock = new HashSet<>();
-		stock.getItems().add(STOCK.VNINDEX);
-		stock.getItems().add(STOCK.HASTC);
-		Set<STOCK> listStockVN30 = InputData.stockVN30();
-		listStockVN30.remove(STOCK.VNINDEX);
+		Set<String> listStock = new HashSet<>();
+		stock.getItems().add("");
+		stock.getItems().add(STOCK.VNINDEX.name());
+		stock.getItems().add(STOCK.HASTC.name());
+		Set<String> listStockVN30 = InputData.stockVN30()
+												.stream()
+												.map(stock -> stock.name())
+												.collect(Collectors.toCollection(HashSet::new));
+		
+		listStockVN30.remove(STOCK.VNINDEX.name());
 		listStock.addAll(listStockVN30);
-		Set<STOCK> listStockHNX30 = InputData.stockHNX30();
-		listStockVN30.remove(STOCK.HASTC);
+		Set<String> listStockHNX30 = InputData.stockHNX30()
+												.stream()
+												.map(stock -> stock.name())
+												.collect(Collectors.toCollection(HashSet::new));
+		
+		listStockVN30.remove(STOCK.HASTC.name());
 		listStock.addAll(listStockHNX30);
 		stock.getItems().addAll(listStock);
-		stock.getSelectionModel().select(STOCK.VNINDEX);
+		stock.getSelectionModel().select("");
 	}
 	
 	public void search() {
@@ -127,11 +137,13 @@ public class Controller implements Initializable{
 		lineChart2.getData().clear();
 		codeStock.setText("");
 		
-		String text = createText(textField.getText().toUpperCase());
+		String stockCode = stock.getValue();
+		String search = createText(textField.getText().toUpperCase());
 		String ngay = day.getValue();
 		String thang = month.getValue();
 		String nam = year.getValue();
 		String stringDate = ngay + "/" + thang + "/" + nam;
+		
         
 		DataLoad dataLoad;
         Date date;
@@ -139,11 +151,13 @@ public class Controller implements Initializable{
 		try {
 			date = formats.parse(stringDate);
 			if(testDay(date)) {
-	             dataLoad = new DataLoad(date, text);
+				
+	             dataLoad = new DataLoad(date, search, stockCode);
 	             textArea.appendText(dataLoad.get());
+	             
 	             if(dataLoad.getChart()) {
 	            	 dataLoad.setChart(false);
-	            	 STOCK stock = STOCK.valueOf(text);
+	            	 STOCK stock = dataLoad.getStock();
 	            	 lineChart3.getData()
 						.add(CreateLineChart.create(xAxis3, yAxis3, 
 								InputData.getDatashare().get(stock).getData(), stock , date));
@@ -189,3 +203,18 @@ public class Controller implements Initializable{
 		return dateBefore.getTime() <= date.getTime() && dateAfter.getTime() >= date.getTime();
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

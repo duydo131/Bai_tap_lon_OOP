@@ -15,10 +15,17 @@ public abstract class Cau3HNX30 extends Cau3 {
 	@Override
 	public void setInfo(Date date) {
 		setList(InputData.getTodayHNX30(date));
+		super.setTag();
 		name = "HNX30";
 	}
 
 	@Override
 	protected abstract boolean testPrice(double giaMoCua, double giaDongCua);
 	
+	@Override
+	public void setTag() {
+		this.listTag.add("HASTC");
+		this.listTag.add("HNX-INDEX");
+		this.listTag.add("Hà Nội");
+	}
 }

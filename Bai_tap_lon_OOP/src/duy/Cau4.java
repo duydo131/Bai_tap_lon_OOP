@@ -8,10 +8,11 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import Input.DataOneDay;
-import Input.Format;
+import Input.Tool;
+import gui.Tag;
 import Input.STOCK;
 
-public abstract class Cau4 extends San{
+public abstract class Cau4 extends San implements Tag{
 	protected static final int SIZE = 3;
 	protected Map<Boolean, LinkedList<Map.Entry<STOCK, DataOneDay>>> list = new LinkedHashMap<>();
 	protected Date date;
@@ -28,6 +29,16 @@ public abstract class Cau4 extends San{
 					+ "- nhóm giảm : \n"
 					+ create(list.get(false), false);
 		return str;
+	}
+	
+	@Override
+	public void setTag() {
+		this.listTag.add("cổ phiếu đáng chú ý");
+		this.listTag.add("tăng");
+		this.listTag.add("giảm");
+		this.listTag.add("khối lượng giao dịch");
+		this.listTag.add("thanh khoản");
+		this.listTag.add("giá trị");
 	}
 	
 	@Override
@@ -91,7 +102,7 @@ public abstract class Cau4 extends San{
 	private String create(LinkedList<Map.Entry<STOCK, DataOneDay>> data, Boolean bool) {
 		String s = "  + Cổ phiếu có khối lượng giao dịch " + (bool ? "cao " : "thấp ")
 					+ "nhất :" + " Cổ phiếu " + data.get(0).getKey() + " với " 
-							+ Format.formatLong(data.get(0).getValue().getKL()) + " cổ phiếu.\n"
+							+ Tool.formatLong(data.get(0).getValue().getKL()) + " cổ phiếu.\n"
 							
 					+ "  + Cổ phiếu có thanh khoản " + (bool ? "cao " : "thấp ")
 					+ " nhất :" + " Cổ phiếu " + data.get(1).getKey() + " với " 

@@ -4,6 +4,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Set;
 
+
+import Input.Tool;
 import Input.InputData;
 import Input.STOCK;
 import duy.Cau3GiamHNX30;
@@ -13,84 +15,88 @@ import duy.Cau3TangVN30;
 import duy.Cau4HNX30;
 import duy.Cau4VN30;
 import duy.OneStock1;
+import duy.OneStock2Month;
 import duy.OneStock2Week;
-import duy.Phien;
+import duy.DayHNX30;
+import duy.DayVN30;
 import duy.VolumeHNX30;
 import duy.VolumeVN30;
-import duy.Week;
+import duy.WeekHNX30;
+import duy.WeekVN30;
 
 public class DataLoad {
-	
+
 	private Date date;
-	private String text;
+	private STOCK stock;
+	private String tag;
+	private String stockCode;
 	private boolean Chart;
-	
-	public DataLoad(Date date, String text) {
+
+	public DataLoad(Date date, String text, String stockCode) {
 		this.date = date;
-		this.text = text;
+		this.tag = text;
+		this.stockCode = stockCode;
+		setStock(text, stockCode);
 	}
-	
+
 	public void setChart(boolean chart) {
 		Chart = chart;
 	}
+
 	public boolean getChart() {
 		return Chart;
 	}
 	
-	
-	private int getDay() {
-		Calendar calendar = Calendar.getInstance();
-		calendar.setTime(date);
-		return calendar.get(Calendar.DAY_OF_WEEK);
+	private void setStock(String str, String st) {
+		STOCK s;
+		if(testName(str)) {
+			s = STOCK.valueOf(str);
+		}else if (!(st.equals(""))){
+			s = STOCK.valueOf(st);
+		}else {
+			s = null;
+		}
+		this.stock = s;
 	}
 	
-	private boolean testName(String str) {
-		Set<STOCK> dataVN30 =  InputData.stockVN30();
-		dataVN30.remove(STOCK.VNINDEX);
-		for (STOCK stock : dataVN30) {
-			if(str.equals(stock.name())) {
-				return true;
-			}
-		}
-		Set<STOCK> dataHNX30 =  InputData.stockHNX30();
-		dataVN30.remove(STOCK.HASTC);
-		for (STOCK stock : dataHNX30) {
-			if(str.equals(stock.name())) {
-				return true;
-			}
-		}
-		return false;
+	public STOCK getStock() {
+		return this.stock;
 	}
-	
+
 	public String get() {
 		int i = getDay();
 		StringBuffer string = new StringBuffer();
-		if(testName(text)) {
-			if(i == 1 || i == 7) {
-				string.append((new OneStock2Week(STOCK.valueOf(text), date)).get());
-			}else {
-				string.append((new OneStock1(STOCK.valueOf(text), date)).get());
+		if (this.stock != null) {
+			if (i == 1 || i == 7) {
+				string.append((new OneStock2Week(stock, date)).get());
+				string.append("\n");
+			} else {
+				string.append((new OneStock1(stock, date)).get());
+				string.append("\n");
+			}
+			if (Tool.testMonth(date)) {
+				string.append((new OneStock2Month(stock, date)).get());
+				string.append("\n");
 			}
 			setChart(true);
-		}else {
-			if(i == 1 || i == 7) {
+		} else {
+			if (i == 1 || i == 7) {
 				// ngày phải là cuối tuần
-				string.append((new Week()).setInfo(date, STOCK.VNINDEX).get());
+				string.append((new WeekVN30(date)).get());
 				string.append("\n");
-				string.append((new Week()).setInfo(date, STOCK.HASTC).get());
+				string.append((new WeekHNX30(date)).get());
 				string.append("\n");
-			}
-			else {
-				if(InputData.testDay(date)) {
-					string.append((new Phien()).setInfo(date, STOCK.VNINDEX).get());
+			} else {
+				if (InputData.testDay(date)) {
+					string.append((new DayVN30(date)).get());
 					string.append("\n");
-					string.append((new Phien()).setInfo(date, STOCK.HASTC).get());
+					string.append((new DayHNX30(date)).get());
 					string.append("\n");
-					
+
 					string.append((new VolumeVN30(date)).get());
 					string.append("\n");
 					string.append((new VolumeHNX30(date)).get());
-					
+
 					string.append("\n");
 					string.append((new Cau3TangVN30(date)).get());
 					string.append("\n");
@@ -100,16 +106,40 @@ public class DataLoad {
 					string.append("\n");
 					string.append((new Cau3GiamHNX30(date)).get());
 					string.append("\n");
-					
+
 					string.append("\n");
 					string.append((new Cau4VN30(date)).get());
 					string.append("\n");
 					string.append((new Cau4HNX30(date)).get());
-				}else {
+				} else {
 					string.append("Hôm nay nghỉ lễ không giao dịch.");
 				}
 			}
 		}
 		return string.toString();
+	}
+
+	private int getDay() {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		return calendar.get(Calendar.DAY_OF_WEEK);
+	}
+
+	private boolean testName(String str) {
+		Set<STOCK> dataVN30 = InputData.stockVN30();
+		dataVN30.remove(STOCK.VNINDEX);
+		for (STOCK stock : dataVN30) {
+			if (str.equals(stock.name())) {
+				return true;
+			}
+		}
+		Set<STOCK> dataHNX30 = InputData.stockHNX30();
+		dataVN30.remove(STOCK.HASTC);
+		for (STOCK stock : dataHNX30) {
+			if (str.equals(stock.name())) {
+				return true;
+			}
+		}
+		return false;
 	}
 }
