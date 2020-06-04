@@ -195,25 +195,6 @@ public class Status {
 		return status;
 		
 	}
-
-
-
-	
-	public String comment1() {
-		if(this.stockPriceChangingPercentage()>2&&this.stockVolumeChangingPercentage()>2) {
-			return "sự lạc quan của các nhà đầu tư đã đẩy giá cổ phiếu "+stock+" lên cao.";
-		}
-		else if(this.stockPriceChangingPercentage()<-2&&this.stockVolumeChangingPercentage()>2) {
-			return "do lo ngại cổ phiếu "+stock+"sẽ giảm mạnh nên các nhà đầu tư liên tục bán tháo.";
-		}
-		else if((this.stockPriceChangingPercentage()<2&&this.stockPriceChangingPercentage()>0)&&((this.stockVolumeChangingPercentage()>0)&&(stockVolumeChangingPercentage()<2))) { 
-			return "các nhà đầu tư đã không còn mặn mà với cổ phiếu"+stock+".";
-		}
-		else if((this.stockPriceChangingPercentage()<2&&this.stockPriceChangingPercentage()>0)&&((this.stockVolumeChangingPercentage()>0.5)&&(this.stockVolumeChangingPercentage()<2))) {
-			return "giá cổ phiếu "+stock+"vẫn đang ở mức ổn định mặc dù khối lượng giao dịch tăng. Báo hiệu giá cổ phiếu "+stock+" sẽ có biến động lớn trong thời gian tới";
-		}
-		else return "Chưa có mẫu câu nhận định cho sự biến động trong thời gian này";
-	}
 	
 }
 
