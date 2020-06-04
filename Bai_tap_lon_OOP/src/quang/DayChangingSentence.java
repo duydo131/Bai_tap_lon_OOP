@@ -90,9 +90,4 @@ public class DayChangingSentence {
 		System.out.println("Trong những ngày tới, " + status.stock + " sẽ" + status.forecast());
 	}
 	
-
-	
-	public void createComment() {
-		System.out.println(status.comment1());
-	}
 }
