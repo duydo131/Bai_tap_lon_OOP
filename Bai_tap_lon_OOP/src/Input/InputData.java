@@ -139,7 +139,8 @@ public class InputData {
 				return (time >= addTime && time <= date.getTime());
 			}
 		};
-		return datashare.get(stock).getData().stream()
+		return datashare.get(stock).getData()
+				.stream()
 				.filter(predicate)
 				.collect(Collectors.toCollection(ArrayList::new));
 	}

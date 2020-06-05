@@ -10,7 +10,6 @@ public class DayVN30 extends Day{
 		this.date = date;
 		this.stock = STOCK.VNINDEX;
 		setInfo();
-		super.setTag();
 		this.setTag();
 	}
 
@@ -21,6 +20,7 @@ public class DayVN30 extends Day{
 	
 	@Override
 	public void setTag() {
+		super.setTag();
 		this.listTag.add("HOSE");
 		this.listTag.add("VN-INDEX");
 		this.listTag.add("Hồ Chí Minh");

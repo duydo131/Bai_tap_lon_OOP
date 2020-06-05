@@ -1,5 +1,7 @@
 package gui;
 
+import java.io.IOException;
+
 import Input.ReadFile;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -10,14 +12,16 @@ import javafx.stage.Stage;
 public class Main extends Application{
 
 	@Override
-	public void start(Stage primaryStage) throws Exception {
-		Parent root = FXMLLoader.load(this.getClass().getResource("/gui/Gui.fxml"));
-		primaryStage.setTitle("Bản Tin Chứng Khoán");
-		Scene scene = new Scene(root);
+	public void start(Stage primaryStage) {
+		Parent root = null;
+		Scene scene = null;
 		try {
+			root = FXMLLoader.load(this.getClass().getResource("/gui/Gui.fxml"));
+			primaryStage.setTitle("Bản Tin Chứng Khoán");
+			scene = new Scene(root);
 			scene.getStylesheets().add(this.getClass().getResource("chart.css").toExternalForm());
-		} catch (Exception e) {
-			System.err.println("don't connect stylesheets : " + e.toString());
+		} catch (IOException e1) {
+			e1.printStackTrace();
 		}
 		primaryStage.setScene(scene);
 		primaryStage.show();

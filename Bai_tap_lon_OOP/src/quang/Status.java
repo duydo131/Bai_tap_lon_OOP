@@ -1,9 +1,9 @@
-package changeSentence;
+package quang;
 
 import java.util.Date;
-import InputData.formats;
 import Input.InputData;
 import Input.STOCK;
+import Input.Tool;
 
 public class Status {
 	public Date date1;
@@ -20,7 +20,7 @@ public class Status {
 	public Status(Date date1, STOCK stock, int time) {
 		this.timePeriod=time;
 		this.date1=date1;
-		this.date2=Format.getDate(date1,0-timePeriod);
+		this.date2=Tool.getDate(date1,0-timePeriod);
 		this.stock=stock;
 		this.giaDongCua=InputData.getToday(date1).get(stock).getGiaDongCua();
 		this.giaDongCuaNgayTruoc=InputData.getToday(date2).get(stock).getGiaDongCua();

@@ -1,4 +1,4 @@
-package changeSentence;
+package quang;
 
 import java.util.Date;
 

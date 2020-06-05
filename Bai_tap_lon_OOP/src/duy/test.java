@@ -41,27 +41,31 @@ public class test {
 		list.add(new OneStock2Week(stock, date));
 		
 		
-//		for (Tag tag123 : list) {
-//			System.out.println(tag123.getClass().getSimpleName() + " : " + tag123.getTag());
-//		}
+		for (Tag tag123 : list) {
+			System.out.println(tag123.getClass().getSimpleName() + " : " + tag123.getTag());
+		}
 		
-//		System.out.println("\nafter\n");
+		System.out.println("\nafter\n");
+		
+		Demo demo = new Demo(date,stock);
 		
 		ArrayList<Tag> li = list.stream()
 								.filter(t->t.getTag().contains(tag))
-								.map(t -> Demo.getInstance(t, date, stock))
+								.map(t -> demo.getInstance(t))
 								.collect(Collectors.toCollection(ArrayList::new));
 		
+		
+		System.out.println("\nafter1\n");
 		
 		for (Tag tag123 : li) {
 			System.out.println(tag123.getClass().getSimpleName() + " : " + tag123.getTag());
 		}
 		
-		System.out.println();
-		
-		for (Tag tag2 : li) {
-			System.out.println(tag2.get());
-		}
+//		System.out.println();
+//		
+//		for (Tag tag2 : li) {
+//			System.out.println(tag2.get());
+//		}
 
 	}
 }

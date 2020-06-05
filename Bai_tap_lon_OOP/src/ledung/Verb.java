@@ -1,4 +1,4 @@
-package Sentence;
+package ledung;
 
 import Input.InputData;
 

@@ -2,13 +2,14 @@ package test;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 import Input.ReadFile;
 import Input.STOCK;
 import Input.Tool;
-import duy.OneStock1;
-import duy.OneStock2Week;
+import gui.Demo;
 
 public class Main {
 	
@@ -22,13 +23,14 @@ public class Main {
 		Date date1 = Tool.getDate(date, 2);
 		STOCK stock = STOCK.BID;
 		
-		OneStock1 one1 = new OneStock1(stock, date);
-		System.out.println(one1.get());
-
-		OneStock2Week one = new OneStock2Week(stock, date);
-		System.out.println(one.get());
+		Demo demo = new Demo(date, stock);
+		
+		ArrayList<String> listTag = new ArrayList<>();
+		
+		listTag.add("HASTC");
+		
+		System.out.println(demo.getSentence(listTag));
 		
 	}
 }
-
 

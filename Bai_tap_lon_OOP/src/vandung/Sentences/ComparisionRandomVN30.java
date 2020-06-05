@@ -1,4 +1,4 @@
-package Sentences;
+package vandung.Sentences;
 
 import java.util.ArrayList;
 import java.util.Date;

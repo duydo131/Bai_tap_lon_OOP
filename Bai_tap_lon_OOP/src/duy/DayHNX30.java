@@ -11,7 +11,6 @@ public class DayHNX30 extends Day {
 		this.date = date;
 		this.stock = STOCK.HASTC;
 		setInfo();
-		super.setTag();
 		this.setTag();
 	}
 	
@@ -22,6 +21,7 @@ public class DayHNX30 extends Day {
 	
 	@Override
 	public void setTag() {
+		super.setTag();
 		this.listTag.add("HASTC");
 		this.listTag.add("HNX-INDEX");
 		this.listTag.add("Hà Nội");

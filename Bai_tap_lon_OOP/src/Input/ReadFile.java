@@ -36,7 +36,7 @@ public class ReadFile {
 					try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
 						String line ;
 						while ((line = reader.readLine()) != null ) {
-							Object arr[] = line.split(",");
+							String arr[] = line.split(",");
 
 							String name = (String)arr[0];
 							if(name.equals("^VNINDEX")) {

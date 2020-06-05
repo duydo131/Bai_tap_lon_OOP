@@ -1,4 +1,4 @@
-package changeSentence;
+package quang;
 
 public class comment {
 	public Status status;

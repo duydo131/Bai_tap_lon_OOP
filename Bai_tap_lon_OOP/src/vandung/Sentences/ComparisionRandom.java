@@ -1,4 +1,4 @@
-package Sentences;
+package vandung.Sentences;
 
 import Input.DataOneDay;
 import Input.InputData;
