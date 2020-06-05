@@ -1,4 +1,4 @@
-package vandung.Sentences;
+package Sentences;
 
 import Input.STOCK;
 import gui.Tag;
@@ -8,7 +8,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
 
+<<<<<<< HEAD
 public abstract class ComparisionEXCHANGES extends Comparision implements Tag{
+=======
+public abstract class ComparisionEXCHANGES extends Comparision implements Tag {
+>>>>>>> 586f98c58434d2a835765c773c4d04b6fd59ecf0
 
 	public ComparisionEXCHANGES() {
 	}
@@ -18,7 +22,7 @@ public abstract class ComparisionEXCHANGES extends Comparision implements Tag{
 	}
 
 	protected abstract STOCK DataStock(int numberrical);
-	
+
 	@Override
 	public String get() {
 		if (GiaMaxStock(getStock1()) < GiaMaxStock(getStock2()))
@@ -32,13 +36,13 @@ public abstract class ComparisionEXCHANGES extends Comparision implements Tag{
 					+ (long) ((GiaMaxStock(getStock1()) - GiaMaxStock(getStock2())) * 1000) + " VNĐ. ";
 		return status;
 	}
-	
+
 	@Override
 	public void setTag() {
 		this.listTag.add("Comparision");
 		this.listTag.add("StockHot");
 	}
-	
+
 	private String Connect() {
 		String a;
 		if (GiaMaxStock(getStock1()) - GiaMaxStock(stock2) > 50)
@@ -49,15 +53,12 @@ public abstract class ComparisionEXCHANGES extends Comparision implements Tag{
 	}
 
 	private String list() {
-		String[] list = { 
-				" vẫn đứng đầu trên bảng", 
-				" áp đảo đảo trên bảng xanh",
+		String[] list = { " vẫn đứng đầu trên bảng", " áp đảo đảo trên bảng xanh",
 				" dường như không có đối thủ cạnh tranh" };
 		Random a = new Random();
 		int random = a.nextInt(3);
 		return list[random];
 	}
-	
 
 	private STOCK getStock1() {
 		stock1 = DataStock(1);
@@ -77,9 +78,5 @@ public abstract class ComparisionEXCHANGES extends Comparision implements Tag{
 	private double GiaMaxStock(STOCK stock) {
 		return DataDay(stock).getGiaMax();
 	}
-
-
-
-	
 
 }
