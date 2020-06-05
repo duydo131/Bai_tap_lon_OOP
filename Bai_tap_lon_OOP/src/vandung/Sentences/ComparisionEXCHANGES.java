@@ -1,4 +1,4 @@
-package vandung.Sentences;
+package Sentences;
 
 import Input.STOCK;
 import Input.DataOneDay;
@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
 
-public abstract class ComparisionEXCHANGES extends Comparision  implements Tag{
+public abstract class ComparisionEXCHANGES extends Comparision implements Tag {
 
 	public ComparisionEXCHANGES() {
 	}
@@ -17,7 +17,7 @@ public abstract class ComparisionEXCHANGES extends Comparision  implements Tag{
 	}
 
 	protected abstract STOCK DataStock(int numberrical);
-	
+
 	@Override
 	public String getStatus() {
 		if (GiaMaxStock(getStock1()) < GiaMaxStock(getStock2()))
@@ -31,13 +31,13 @@ public abstract class ComparisionEXCHANGES extends Comparision  implements Tag{
 					+ (long) ((GiaMaxStock(getStock1()) - GiaMaxStock(getStock2())) * 1000) + " VNĐ. ";
 		return status;
 	}
-	
+
 	@Override
 	public void setTag() {
 		this.listTag.add("Comparision");
 		this.listTag.add("StockHot");
 	}
-	
+
 	private String Connect() {
 		String a;
 		if (GiaMaxStock(getStock1()) - GiaMaxStock(stock2) > 50)
@@ -48,15 +48,12 @@ public abstract class ComparisionEXCHANGES extends Comparision  implements Tag{
 	}
 
 	private String list() {
-		String[] list = { 
-				" vẫn đứng đầu trên bảng", 
-				" áp đảo đảo trên bảng xanh",
+		String[] list = { " vẫn đứng đầu trên bảng", " áp đảo đảo trên bảng xanh",
 				" dường như không có đối thủ cạnh tranh" };
 		Random a = new Random();
 		int random = a.nextInt(3);
 		return list[random];
 	}
-	
 
 	private STOCK getStock1() {
 		stock1 = DataStock(1);
@@ -76,9 +73,5 @@ public abstract class ComparisionEXCHANGES extends Comparision  implements Tag{
 	private double GiaMaxStock(STOCK stock) {
 		return DataDay(stock).getGiaMax();
 	}
-
-
-
-	
 
 }

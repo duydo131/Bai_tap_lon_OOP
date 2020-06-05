@@ -1,4 +1,4 @@
-package vandung.Sentences;
+package Sentences;
 
 import Input.DataOneDay;
 import Input.InputData;
@@ -7,31 +7,36 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
 
-public abstract class ComparisionRandom extends Comparision implements Tag{
-	public ComparisionRandom() {		
+public abstract class ComparisionRandom extends Comparision implements Tag {
+	public ComparisionRandom() {
 	}
+
 	public ComparisionRandom(Date date) {
 		this.date = date;
 	}
-	
+
 	@Override
 	public String getStatus() {
-		status = getStock1() + " và " + getStock2()
-				+ list() + " khối lượng bán ra lần lượt là " + data(getStock1()).getKL() + ", "
-				+ data(getStock2()).getKL();
-		;
+		status = getStock1() + " và " + getStock2() + list() + " khối lượng bán ra lần lượt là "
+				+ data(getStock1()).getKL() + ", " + data(getStock2()).getKL();
 		return status;
 	}
+
 	@Override
 	public void setTag() {
 		this.listTag.add("Comparision");
 	}
-	
+	@Override
+	public ArrayList<String> getTag() {
+		return this.listTag;
+	}
+
 	private String list() {
 		String[] list = { 
-				" bám sát nhau trên bảng điện tử với", 
+				" bám sát nhau trên bảng điện tử với",
 				" cạnh tranh khốc liệt trên bảng với",
-				" rượt đuổi nhau trên bảng điện tử" };
+				" rượt đuổi nhau trên bảng điện tử"
+        };
 		Random a = new Random();
 		int random = a.nextInt(3);
 		return list[random];
@@ -39,12 +44,11 @@ public abstract class ComparisionRandom extends Comparision implements Tag{
 
 	private int number() {
 		Random number = new Random();
-		int numberRandom = number.nextInt(27) + 2;
+		int numberRandom = number.nextInt(25) + 2;
 		return numberRandom;
 	}
 
-	protected abstract STOCK dataStock(int number) ;
-	
+	protected abstract STOCK dataStock(int number);
 
 	private STOCK getStock1() {
 		stock1 = dataStock(number());
@@ -60,7 +64,5 @@ public abstract class ComparisionRandom extends Comparision implements Tag{
 		ArrayList<DataOneDay> data = InputData.getDataOneWeekOneStock(stock, date);
 		return data.get(0);
 	}
-
-	
 
 }

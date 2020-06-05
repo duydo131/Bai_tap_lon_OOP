@@ -1,4 +1,4 @@
-package vandung.Sentences;
+package Sentences;
 
 import Input.InputData;
 import Input.STOCK;
@@ -19,18 +19,16 @@ public class ComparisionStockHot extends Comparision implements Tag {
 	public String getStatus() {
 		if (getGiaDongCuaStockHNX30() > getGiaDongCuaStockVN30())
 
-			status = list1() + getStockHNX30() + " và " + getStockVN30()
-					+ list2() + " HNX30 và VN30, nhưng " + getStockHNX30() + Connect()
-					+ getStockVN30() + " với giá bán ra "
+			status = list1() + getStockHNX30() + " và " + getStockVN30() + list2() + " HNX30 và VN30, nhưng "
+					+ getStockHNX30() + Connect() + getStockVN30() + " với giá bán ra "
 					+ (int) ((getGiaDongCuaStockHNX30() - getGiaDongCuaStockVN30()) * 1000) + " VNĐ. ";
 		else
-			status = list1() + getStockHNX30() + " và " + getStockVN30()
-					+ list2() + " HNX30 và VN30. Nhưng " + getStockVN30() + Connect()
-					+ getStockHNX30() + " với giá bán ra "
+			status = list1() + getStockHNX30() + " và " + getStockVN30() + list2() + " HNX30 và VN30. Nhưng "
+					+ getStockVN30() + Connect() + getStockHNX30() + " với giá bán ra "
 					+ (int) ((getGiaDongCuaStockVN30() - getGiaDongCuaStockHNX30()) * 1000) + " VNĐ. ";
 		return status;
 	}
-	
+
 	@Override
 	public void setTag() {
 		this.listTag.add("Comparision");
@@ -38,8 +36,10 @@ public class ComparisionStockHot extends Comparision implements Tag {
 		this.listTag.add("HNX30");
 		this.listTag.add("VN30");
 	}
+
 	@Override
 	public ArrayList<String> getTag() {
+		setTag();
 		return this.listTag;
 	}
 
@@ -60,8 +60,7 @@ public class ComparisionStockHot extends Comparision implements Tag {
 	}
 
 	private String list2() {
-		String[] list = { " vẫn đang lần lượt đứng đầu trong hai họ", " áp đảo trên bảng xanh của hai họ",
-				 };
+		String[] list = { " vẫn đang lần lượt đứng đầu trong hai họ", " áp đảo trên bảng xanh của hai họ", };
 		Random a = new Random();
 		int random = a.nextInt(2);
 		return list[random];
@@ -103,6 +102,5 @@ public class ComparisionStockHot extends Comparision implements Tag {
 		giaDongCuaStockHNX30 = DataDay(getStockHNX30()).getGiaDongCua();
 		return giaDongCuaStockHNX30;
 	}
-
 
 }
