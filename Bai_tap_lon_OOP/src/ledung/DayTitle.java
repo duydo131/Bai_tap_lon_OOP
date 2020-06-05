@@ -2,87 +2,178 @@ package Sentence;
 
 import java.util.Date;
 
-import Input.InputData;
-import Input.ReadFile;
+import Input.*;
 
-public class DayTitle extends Title{
-	
-	private Date date;
-	private String[] subject = {"VN30", "HNX30 "};
-	private String[] verb = {"", ""};
+public class OverAllDayStockCode extends OverAllDay{
+		
+	private STOCK stock;
 	private String adverb;
-	private String linkWord;
 	
-	public DayTitle(Date date) {
-		super();
-		this.date = date;
-		this.adverb = "Thị trường chứng khoán ngày " + formats.format(date) + ": ";
-	}
-	
-	public void setVerb() {
-		
-		OverAllDayStockClass VN30data= new OverAllDayStockClass(date, "VN30");
-		OverAllDayStockClass HNX30data= new OverAllDayStockClass(date, "HNX30");
-		int VN30counter = VN30data.increaseCounter("VN30");
-		int HNX30counter = HNX30data.increaseCounter("HNX30");
+	Date yesterday = Format.getDate(date, -1);
 
-		if (VN30counter >= 22) {
-			this.verb[0] = InputData.getRandom(Verb.getManyIncrease());
-		}
-		else if(VN30counter < 8) {
-			this.verb[0] = InputData.getRandom(Verb.getManyDecrease());
-		}
-		else if(VN30counter >= 18 && VN30counter < 22) {
-			this.verb[0] = InputData.getRandom(Verb.getFewIncrease());
-		}
-		else if(VN30counter < 12 && VN30counter >= 8) {
-			this.verb[0] = InputData.getRandom(Verb.getFewDecrease());
-		} 
-		else {
-			this.verb[0] = InputData.getRandom(Verb.getLessChanging());
-		}
-		
-		if (HNX30counter >= 22) {
-			this.verb[1] = InputData.getRandom(Verb.getManyIncrease());
-		}
-		else if(HNX30counter < 8) {
-			this.verb[1] = InputData.getRandom(Verb.getManyDecrease());
-		}
-		else if(HNX30counter >= 18 && HNX30counter < 22) {
-			this.verb[1] = InputData.getRandom(Verb.getFewIncrease());
-		}
-		else if(HNX30counter < 12 && HNX30counter >= 8) {
-			this.verb[1] = InputData.getRandom(Verb.getFewDecrease());
-		} 
-		else {
-			this.verb[1] = InputData.getRandom(Verb.getLessChanging());
-		}
+	public OverAllDayStockCode(Date date, STOCK stock) {
+		super(date);
+		this.subject = stock.name();
+		this.stock = stock;
 	}
 	
-	public void setLinkWord() {
+	// Đếm xem cổ phiếu tăng trần/giảm trần trong vòng bao nhiêu 
+	public int minmaxDaysCounter() {
 		
-		OverAllDayStockClass dataVN30 = new OverAllDayStockClass(date, "VN30");
-		OverAllDayStockClass dataHNX30 = new OverAllDayStockClass(date, "VN30");
-		int counterVN30 = dataVN30.increaseCounter(dataVN30.getStockClass());
-		int counterHNX30 = dataHNX30.increaseCounter(dataHNX30.getStockClass());
-		
-		if( counterVN30 >= 18 && counterHNX30 >= 18 ||
-			counterVN30 <= 12 && counterHNX30 <= 12 ||
-			counterVN30 >= 8 && counterVN30 < 12 && counterHNX30 >= 8 && counterHNX30 < 12 ) {
-			this.linkWord = InputData.getRandom(LinkWord.getProgressiveLinkWord());
+		ReadFile.loadData();
+
+		double todayPrice = InputData.getToday(date).get(stock).getGiaDongCua();
+		double yesterdayPrice = InputData.getToday(yesterday).get(stock).getGiaDongCua();
+		double diff =  todayPrice - yesterdayPrice ;
+		int stop = 0;
+		int counter = 0;
+		Date dt = yesterday;
+
+		if (diff > 0) {
+			while (stop != 1) {
+				dt = Format.getDate(dt, -1);
+				double max = InputData.getTodayVN30(dt).get(stock).getGiaMax();
+				if (todayPrice > max) {
+					counter++;
+				}
+			}
 		}
-		if( counterVN30 >= 18 && counterHNX30 < 12 ||
-			counterVN30 < 12 && counterHNX30 >= 18 ||
-			(counterVN30 < 18 || counterVN30 >= 12) && (counterHNX30 >= 18 || counterHNX30 < 12) ||
-			(counterHNX30 < 18 || counterHNX30 >= 12) && (counterVN30 >= 18 || counterVN30 < 12)) {
-			this.linkWord = InputData.getRandom(LinkWord.getOpposingLinkWord());
+		else if (diff < 0) {
+			while (stop != 1) {
+				dt = Format.getDate(dt, -1);
+				double min = InputData.getTodayVN30(dt).get(stock).getGiaMin();
+				if (todayPrice < min) {
+					counter++;
+				}
+			}
 		}
+		return counter;
 	}
 	
-	@Override
+	// tạo mệnh đề tăng trần/giảm trần
+	public String createMinMaxClause() {
+		
+		ReadFile.loadData();
+		
+		String clause = null;
+		double diff = InputData.getToday(date).get(stock).getGiaDongCua() - InputData.getToday(yesterday).get(stock).getGiaDongCua();
+		int cnt = this.minmaxDaysCounter();
+
+		if (diff > 0) {
+			double max = InputData.getToday(date).get(stock).getGiaMax()*1000;
+			if (cnt > 0) {
+				clause = " đã có thời điểm tăng giá trần trong " + cnt + " ngày trở lại đây, đạt mức " + max + " đồng/cp,";
+			}
+			else if (cnt == 0) {
+				clause = " đã có thời điểm tăng giá trần ở mức " + max + " đồng/cp,";
+			}
+		}
+		else if (diff < 0) {
+			double min = InputData.getToday(date).get(stock).getGiaMin()*1000;
+			if (cnt > 0) {
+				clause = " đã có thời điểm chạm giá trần trong " + cnt + " ngày trở lại đây, xuống mức " + min + " đồng/cp,";
+			}
+			else if (cnt == 0) {
+				clause = " đã có thời điểm chạm giá trần ở mức " + min + " đồng/cp,";
+			}
+		}
+		return clause;
+	}
+	
+	public String createSentence() {
+
+		ReadFile.loadData();
+			
+		if (InputData.isWeekend(date)) {
+			return "Cuối tuần không có giao dịch";
+		}
+			
+		String minmaxClause = this.createMinMaxClause();
+		double key = InputData.getToday(Format.getDate(date, -1)).get(stock).getGiaDongCua()*0.03*1000;
+		double closedValue = InputData.getToday(date).get(stock).getGiaDongCua()*1000;
+		double openValue = InputData.getToday(date).get(stock).getGiaMoCua()*1000;
+		double diff = closedValue - openValue;
+		long volume = InputData.getToday(date).get(stock).getKL();
+		int incCounter = InputData.increaseCounterOneStock(stock, date);
+		int decCounter = InputData.decreaseCounterOneStock(stock, date);
+		
+		if (incCounter > 0) {
+			if (diff > 0) {
+				this.setAdverb(InputData.getRandom(AdverbStatus.getIncThenInc()));
+				if (diff > key) {
+					this.setVerb(InputData.getRandom(Verb.getFastIncrease()));
+				}
+				else if (diff < key) {
+					this.setVerb(InputData.getRandom(Verb.getSlowIncrease()));
+				}
+			}
+			else if (diff < 0) {
+				this.setAdverb(InputData.getRandom(AdverbStatus.getIncThenDec()));
+				if (diff < -key) {
+					this.setVerb(InputData.getRandom(Verb.getFastDecrease()));
+				}
+				else if (diff > -key) {
+					this.setVerb(InputData.getRandom(Verb.getSlowDecrease()));
+				}
+			}
+			else {
+				this.setVerb(" đứng giá ");
+				this.setComplement("tại mốc " + closedValue + " đồng/cổ phiếu," + minmaxClause + " khối lượng giao dịch đạt ở mức " + volume + " đơn vị.");
+			}
+			if (incCounter == 1) {
+				this.setComplement(" lên mức " + closedValue + " đồng/cổ phiếu," + minmaxClause + " khối lượng giao dịch đạt ở mức " + volume + " đơn vị.");
+				this.setAdverb(this.getAdverb() + " so với phiên giao dịch ngày hôm qua, ");
+			}
+			else {
+				this.setComplement(" lên mức " + closedValue + " đồng/cổ phiếu," + minmaxClause + " khối lượng giao dịch đạt ở mức " + volume + " đơn vị.");
+				this.setAdverb(this.getAdverb() + " sau " + incCounter + " phiên tăng giá, ");
+			}
+		} 
+		else if (decCounter > 0) {
+			if (diff > 0) {
+				this.setAdverb(InputData.getRandom(AdverbStatus.getDecThenInc())); 
+				if (diff > key) {
+					this.setVerb(InputData.getRandom(Verb.getFastDecrease()));
+				}
+				else if (diff < key) {
+					this.setVerb(InputData.getRandom(Verb.getSlowDecrease()));
+				}
+			}
+			else if (diff < 0) {
+				this.setAdverb(InputData.getRandom(AdverbStatus.getDecThenDec())); 
+				if (diff < -key) {
+					this.setVerb(InputData.getRandom(Verb.getFastDecrease()));
+				}
+				else if (diff > -key) {
+					this.setVerb(InputData.getRandom(Verb.getSlowDecrease()));
+				}
+				else {
+					this.setVerb(" đứng giá tại mốc ");
+					this.setComplement(closedValue + " đồng/cổ phiếu," + minmaxClause + " khối lượng giao dịch đạt ở mức " + volume + " đơn vị.");
+				}
+			}
+			if (decCounter == 1) {
+				this.setComplement(" xuống mức " + closedValue + " đồng/cổ phiếu," + minmaxClause + " khối lượng giao dịch đạt ở mức " + volume + " đơn vị.");
+				this.setAdverb(this.getAdverb() + " so với phiên giao dịch ngày hôm qua, ");
+			}
+			else {
+				this.setComplement(" xuống mức " + closedValue + " đồng/cổ phiếu," + minmaxClause + " khối lượng giao dịch đạt ở mức " + volume + " đơn vị.");
+				this.setAdverb(this.getAdverb() + " sau " + decCounter + " phiên giảm giá, ");
+			}
+		}
+		return null;
+	}
+	
 	public void printSentence() {
-		this.setLinkWord();
-		this.setVerb();
-		System.out.println(adverb + subject[0] + verb[0] + ", " + subject[1] + linkWord + verb[1]);
+		this.createSentence();
+		System.out.println(adverb + subject + verb + complement);
+	}
+	
+	public void setAdverb(String adverb) {
+		this.adverb = adverb;
+	}
+	
+	public String getAdverb() {
+		return this.adverb;
 	}
 }
