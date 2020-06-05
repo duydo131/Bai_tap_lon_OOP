@@ -9,10 +9,9 @@ import java.util.Map.Entry;
 
 import Input.DataOneDay;
 import Input.Tool;
-import gui.Tag;
 import Input.STOCK;
 
-public abstract class Cau4 extends San implements Tag{
+public abstract class Cau4 extends San{
 	protected static final int SIZE = 3;
 	protected Map<Boolean, LinkedList<Map.Entry<STOCK, DataOneDay>>> list = new LinkedHashMap<>();
 	protected Date date;

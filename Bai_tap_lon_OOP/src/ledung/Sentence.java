@@ -1,10 +1,15 @@
 package ledung;
 
-public class Sentence {
+import java.util.ArrayList;
+
+import gui.Tag;
+
+public abstract class Sentence implements Tag {
 	
 	protected String subject;
 	protected String complement;
 	protected String verb;
+	protected ArrayList<String> listTag = new ArrayList<>();
 	
 	public void setSubject(String subject) {
 		this.subject = subject;

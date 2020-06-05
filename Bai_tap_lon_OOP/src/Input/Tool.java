@@ -64,7 +64,7 @@ public class Tool {
 		return temp;
 	}
 	
-	public  static Map<STOCK, DataOneDay> sort(Map<STOCK, DataOneDay> data){
+	public static Map<STOCK, DataOneDay> sort(Map<STOCK, DataOneDay> data){
 		ArrayList<Map.Entry<STOCK, DataOneDay>> list = new ArrayList<>(data.entrySet());
 		Collections.sort(list, new Comparator<Entry<STOCK, DataOneDay>>() {
 			@Override

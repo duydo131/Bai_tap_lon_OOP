@@ -7,20 +7,11 @@ import Input.Tool;
 import Input.InputData;
 
 public abstract class Week extends NhanXet {
-	
-	public Week() {
-		this.name = "tuần";
-	}
-	
-	private long sum(Date date) {
-		return InputData.getDataOneWeekOneStock(stock, date)
-				.stream().map(DataOneDay::getKL)
-				.reduce(0L, (a,b)->a+b);
-	}
 
 	@Override
 	public void setInfo() {
 		super.setTag();
+		this.name = "tuần";
 		allVolume = sum(date);
 		change = allVolume - sum(Tool.getDate(date, -7));
 	}
@@ -28,6 +19,12 @@ public abstract class Week extends NhanXet {
 	@Override
 	public void setTag() {
 		this.listTag.add("tuần");
+	}
+	
+	private long sum(Date date) {
+		return InputData.getDataOneWeekOneStock(stock, date)
+				.stream().map(DataOneDay::getKL)
+				.reduce(0L, (a,b)->a+b);
 	}
 	
 }

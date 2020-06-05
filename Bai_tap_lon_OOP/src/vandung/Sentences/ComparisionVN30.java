@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import Input.STOCK;
 
-public class ComparisionVN30 extends ComparisionEXCHANGES implements Tag{
+public class ComparisionVN30 extends ComparisionEXCHANGES{
 	public ComparisionVN30(Date date) {
 		this.date = date;
+		setTag();
 	}
 	
 	@Override

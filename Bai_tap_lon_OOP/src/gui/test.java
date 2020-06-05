@@ -1,5 +1,5 @@
 package gui;
-
+import Sentence.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -24,46 +24,21 @@ import duy.OneStock2Month;
 import duy.OneStock2Week;
 import duy.WeekHNX30;
 import duy.WeekVN30;
+import ledung.DayTitle;
 
 public class test {
 	
 	public static void main(String[] args) throws ParseException {
 		ReadFile.loadData();
 		SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
-		Date date = f.parse("20/02/2020");
+		Date date = f.parse("11/12/2019");
 		
 		STOCK stock = STOCK.BID;
 		
-		ArrayList<Tag> list = new ArrayList<>();
+		DayTitleOneStockClass p = new DayTitleOneStockClass(STOCK.ACB.name(), date);
+		System.out.println(p.createStockClassClause());
 		
-		list.add(new Cau1HNX30(date));
-		list.add(new Cau1VN30(date));
-		list.add(new Cau2HNX30(date));
-		list.add(new Cau2VN30(date));
-		list.add(new Cau3GiamHNX30(date));
-		list.add(new Cau3TangHNX30(date));
-		list.add(new Cau3GiamVN30(date));
-		list.add(new Cau3TangVN30(date));
-		list.add(new Cau4VN30(date));
-		list.add(new Cau4HNX30(date));
-		list.add(new DayVN30(date));
-		list.add(new DayHNX30(date));
-		list.add(new WeekVN30(date));
-		list.add(new WeekHNX30(date));
-		list.add(new OneStock1(stock, date));
-		list.add(new OneStock2Month(stock, date));
-		list.add(new OneStock2Week(stock, date));
-		
-		ArrayList<String> listTag = new ArrayList<>();
-		for (Tag tag : list) {
-			ArrayList<String> li = tag.getTag();
-			for (String string : li) {
-				if(listTag.contains(string)) continue;
-				listTag.add(string);
-			}
-		}
-		for (String string : listTag) {
-			System.out.println(string);
-		}
+		DayTitle dayTitle = new DayTitle(date);
+		dayTitle.printSentence();
 	}
 }

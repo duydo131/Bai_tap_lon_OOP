@@ -7,16 +7,17 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
 
-public class ComparisionStockHot extends Comparision implements Tag {
+public class ComparisionStockHot extends Comparision {
 	private double giaDongCuaStockVN30;
 	private double giaDongCuaStockHNX30;
 
 	public ComparisionStockHot(Date date) {
 		this.date = date;
+		setTag();
 	}
 
 	@Override
-	public String getStatus() {
+	public String get() {
 		if (getGiaDongCuaStockHNX30() > getGiaDongCuaStockVN30())
 
 			status = list1() + getStockHNX30() + " và " + getStockVN30()

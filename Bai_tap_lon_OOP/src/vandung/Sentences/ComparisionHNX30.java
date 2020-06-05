@@ -1,13 +1,15 @@
 package vandung.Sentences;
 
 import Input.STOCK;
+import gui.Tag;
 
 import java.util.ArrayList;
 import java.util.Date;
 
-public class ComparisionHNX30 extends ComparisionEXCHANGES implements Tag{
+public class ComparisionHNX30 extends ComparisionEXCHANGES{
 	public ComparisionHNX30(Date date) {
 		this.date = date;
+		setTag();
 	}
 	@Override
 	protected STOCK DataStock(int numberrical) {

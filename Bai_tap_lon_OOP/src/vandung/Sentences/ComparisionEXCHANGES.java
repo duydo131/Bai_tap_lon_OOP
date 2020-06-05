@@ -1,13 +1,14 @@
 package vandung.Sentences;
 
 import Input.STOCK;
+import gui.Tag;
 import Input.DataOneDay;
 import Input.InputData;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
 
-public abstract class ComparisionEXCHANGES extends Comparision  implements Tag{
+public abstract class ComparisionEXCHANGES extends Comparision implements Tag{
 
 	public ComparisionEXCHANGES() {
 	}
@@ -19,7 +20,7 @@ public abstract class ComparisionEXCHANGES extends Comparision  implements Tag{
 	protected abstract STOCK DataStock(int numberrical);
 	
 	@Override
-	public String getStatus() {
+	public String get() {
 		if (GiaMaxStock(getStock1()) < GiaMaxStock(getStock2()))
 			status = getStock2() + " có lúc đã đạt đỉnh sàn với " + GiaMaxStock(getStock2())
 					+ " VNĐ/Điểm Nhưng nhanh chóng hạ nhiệt về mức " + DataDay(getStock2()).getGiaDongCua()

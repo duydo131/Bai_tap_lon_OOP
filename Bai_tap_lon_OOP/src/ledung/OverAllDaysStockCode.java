@@ -47,18 +47,18 @@ public class OverAllDaysStockCode extends OverAllDays {
 		double pivot = 0.03*InputData.getToday(date1).get(stock).getGiaDongCua();
 		if (diff > 0) {
 			if (diff >= pivot) {
-				adj = InputData.getRandom(AdjectiveStatus.getFastIncrease());
+				adj = InputData.getRandom(Verb.getFastIncrease());
 			}
 			else {
-				adj = InputData.getRandom(AdjectiveStatus.getSlowIncrease());
+				adj = InputData.getRandom(Verb.getSlowIncrease());
 			}
 		}
 		else if (diff < 0) {
 			if (Math.abs(diff) > pivot) {
-				adj = InputData.getRandom(AdjectiveStatus.getFastDecrease());
+				adj = InputData.getRandom(Verb.getFastDecrease());
 			}
 			else {
-				adj = InputData.getRandom(AdjectiveStatus.getSlowDecrease());
+				adj = InputData.getRandom(Verb.getSlowDecrease());
 			}
 		}
 		return adj;

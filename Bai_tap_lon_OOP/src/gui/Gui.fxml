@@ -110,7 +110,6 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <ComboBox fx:id="tag" layoutX="635.0" layoutY="64.0" prefHeight="25.0" prefWidth="103.0" AnchorPane.rightAnchor="357.0" />
       <ComboBox fx:id="stock" layoutX="651.0" layoutY="14.0" prefHeight="25.0" prefWidth="103.0" AnchorPane.rightAnchor="354.0" />
       <Label layoutX="565.0" layoutY="14.0" prefHeight="25.0" prefWidth="91.0" text="Mã cổ phiếu" AnchorPane.rightAnchor="439.0" />
    </children>

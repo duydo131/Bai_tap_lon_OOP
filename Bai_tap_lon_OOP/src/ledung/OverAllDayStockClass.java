@@ -45,19 +45,19 @@ public class OverAllDayStockClass extends OverAllDay {
 			cnt = increaseCounter(name);
 			INDEXStatus = setIndexClause(name);
 			if (cnt >= 22) {
-				adjectiveStatus = InputData.getRandom(AdjectiveStatus.getManyIncrease());
+				adjectiveStatus = InputData.getRandom(Verb.getManyIncrease());
 			}
 			else if(cnt < 8) {
-				adjectiveStatus = InputData.getRandom(AdjectiveStatus.getManyDecrease());
+				adjectiveStatus = InputData.getRandom(Verb.getManyDecrease());
 			}
 			else if(cnt > 18 && cnt < 22) {
-				adjectiveStatus = InputData.getRandom(AdjectiveStatus.getFewIncrease());
+				adjectiveStatus = InputData.getRandom(Verb.getFewIncrease());
 			}
 			else if(cnt < 12 && cnt > 8) {
-				adjectiveStatus = InputData.getRandom(AdjectiveStatus.getFewDecrease());
+				adjectiveStatus = InputData.getRandom(Verb.getFewDecrease());
 			} 
 			else {
-				adjectiveStatus = InputData.getRandom(AdjectiveStatus.getLessChanging());
+				adjectiveStatus = InputData.getRandom(Verb.getLessChanging());
 			}
 			return "Nhóm cổ phiếu VN30"+ adjectiveStatus + "với " + cnt + " mã tăng điểm và " + (30 - cnt) + " mã giảm điểm. " + INDEXStatus;
 		}
@@ -65,19 +65,19 @@ public class OverAllDayStockClass extends OverAllDay {
 			cnt = increaseCounter("HNX30");
 			INDEXStatus = setIndexClause(name);
 			if (cnt >= 22) {
-				adjectiveStatus = InputData.getRandom(AdjectiveStatus.getManyIncrease());
+				adjectiveStatus = InputData.getRandom(Verb.getManyIncrease());
 			}
 			else if(cnt < 8) {
-				adjectiveStatus = InputData.getRandom(AdjectiveStatus.getManyDecrease());
+				adjectiveStatus = InputData.getRandom(Verb.getManyDecrease());
 			}
 			else if(cnt > 18 && cnt < 22) {
-				adjectiveStatus = InputData.getRandom(AdjectiveStatus.getFewIncrease());
+				adjectiveStatus = InputData.getRandom(Verb.getFewIncrease());
 			}
 			else if(cnt < 12 && cnt > 8) {
-				adjectiveStatus = InputData.getRandom(AdjectiveStatus.getFewDecrease());
+				adjectiveStatus = InputData.getRandom(Verb.getFewDecrease());
 			} 
 			else {
-				adjectiveStatus = InputData.getRandom(AdjectiveStatus.getLessChanging());
+				adjectiveStatus = InputData.getRandom(Verb.getLessChanging());
 			}
 			return "nhóm cổ phiếu HNX30"+ adjectiveStatus + "với " + cnt + " mã tăng điểm và " + (30 - cnt) + " mã giảm điểm. " + INDEXStatus;
 		}
@@ -133,6 +133,10 @@ public class OverAllDayStockClass extends OverAllDay {
 		
 		return setClause(name);
 	}
+	
+	public String getStockClass() {
+		return stockClass;
+	}	
 	
 	public void createSentence() throws ParseException {
 		System.out.println(this.createClause());

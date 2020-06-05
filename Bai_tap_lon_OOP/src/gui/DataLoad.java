@@ -8,6 +8,10 @@ import java.util.Set;
 import Input.Tool;
 import Input.InputData;
 import Input.STOCK;
+import duy.Cau1HNX30;
+import duy.Cau1VN30;
+import duy.Cau2HNX30;
+import duy.Cau2VN30;
 import duy.Cau3GiamHNX30;
 import duy.Cau3GiamVN30;
 import duy.Cau3TangHNX30;
@@ -19,8 +23,6 @@ import duy.OneStock2Month;
 import duy.OneStock2Week;
 import duy.DayHNX30;
 import duy.DayVN30;
-import duy.VolumeHNX30;
-import duy.VolumeVN30;
 import duy.WeekHNX30;
 import duy.WeekVN30;
 
@@ -93,11 +95,15 @@ public class DataLoad {
 					string.append((new DayHNX30(date)).get());
 					string.append("\n");
 
-					string.append((new VolumeVN30(date)).get());
+					string.append((new Cau1VN30(date)).get());
 					string.append("\n");
-					string.append((new VolumeHNX30(date)).get());
-
+					string.append((new Cau1HNX30(date)).get());
 					string.append("\n");
+					string.append((new Cau2VN30(date)).get());
+					string.append("\n");
+					string.append((new Cau2HNX30(date)).get());
+					string.append("\n");
+					
 					string.append((new Cau3TangVN30(date)).get());
 					string.append("\n");
 					string.append((new Cau3TangHNX30(date)).get());

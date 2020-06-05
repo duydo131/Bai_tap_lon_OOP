@@ -14,7 +14,7 @@ public class DaysTitleOneStockCode extends DaysTitle {
 	public int increaseDayCounter() {
 		int increaseCounter=0;
 		for (DataOneDay data : InputData.getInfo(date1, date2).get(stock)) {
-			if (InputData.getDifference(data)>0) {
+			if (InputData.getDifference(data) > 0) {
 				increaseCounter++;
 			}
 		}

@@ -108,19 +108,19 @@ public class OverAllDayStockCode extends OverAllDay{
 			if (diff > 0) {
 				adverb = InputData.getRandom(AdverbStatus.getIncThenInc());
 				if (diff > pivot) {
-					status = InputData.getRandom(AdjectiveStatus.getFastIncrease());
+					status = InputData.getRandom(Verb.getFastIncrease());
 				}
 				else if (diff < pivot) {
-					status = InputData.getRandom(AdjectiveStatus.getSlowIncrease());
+					status = InputData.getRandom(Verb.getSlowIncrease());
 				}
 			}
 			else if (diff < 0) {
 				adverb = InputData.getRandom(AdverbStatus.getIncThenDec());
 				if (diff < -pivot) {
-					status = InputData.getRandom(AdjectiveStatus.getFastDecrease());
+					status = InputData.getRandom(Verb.getFastDecrease());
 				}
 				else if (diff > -pivot) {
-					status = InputData.getRandom(AdjectiveStatus.getSlowDecrease());
+					status = InputData.getRandom(Verb.getSlowDecrease());
 				}
 			}
 			else {
@@ -139,19 +139,19 @@ public class OverAllDayStockCode extends OverAllDay{
 			if (diff > 0) {
 				adverb = InputData.getRandom(AdverbStatus.getDecThenInc());
 				if (diff > pivot) {
-					status = InputData.getRandom(AdjectiveStatus.getFastDecrease());
+					status = InputData.getRandom(Verb.getFastDecrease());
 				}
 				else if (diff < pivot) {
-					status = InputData.getRandom(AdjectiveStatus.getSlowDecrease());
+					status = InputData.getRandom(Verb.getSlowDecrease());
 				}
 			}
 			else if (diff < 0) {
 				adverb = InputData.getRandom(AdverbStatus.getDecThenDec());
 				if (diff < -pivot) {
-					status = InputData.getRandom(AdjectiveStatus.getFastDecrease());
+					status = InputData.getRandom(Verb.getFastDecrease());
 				}
 				else if (diff > -pivot) {
-					status = InputData.getRandom(AdjectiveStatus.getSlowDecrease());
+					status = InputData.getRandom(Verb.getSlowDecrease());
 				}
 			}
 			else {

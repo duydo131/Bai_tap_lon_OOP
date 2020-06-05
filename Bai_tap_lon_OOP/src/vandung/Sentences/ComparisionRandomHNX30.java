@@ -5,8 +5,9 @@ import java.util.Date;
 
 import Input.STOCK;
 
-public class ComparisionRandomHNX30 extends ComparisionRandom implements Tag {
+public class ComparisionRandomHNX30 extends ComparisionRandom {
 	public ComparisionRandomHNX30(Date date){
+		setTag();
 		this.date = date;
 	}
 	@Override

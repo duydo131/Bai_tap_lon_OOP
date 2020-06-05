@@ -1,5 +1,6 @@
 package ledung;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import Input.*;
@@ -61,5 +62,17 @@ public class HotStocksDays extends HotStocks{
 	
 	public void createSentence() {
 		System.out.println(createClause());
+	}
+
+	@Override
+	public ArrayList<String> getTag() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String get() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

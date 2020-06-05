@@ -1,5 +1,6 @@
 package ledung;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import Input.*;
@@ -12,8 +13,14 @@ public class HotStocksDay extends HotStocks {
 		super(number,name);
 		this.date = date;
 	}
-	
-	public String createClause() {
+
+	@Override
+	public ArrayList<String> getTag() {
+		return listTag;
+	}
+
+	@Override
+	public String get() {
 		ReadFile.loadData();
 		
 		if (InputData.isWeekend(date)) {
@@ -45,9 +52,5 @@ public class HotStocksDay extends HotStocks {
 		else {
 		return "Top " + num + " cổ phiếu HOT ngày " + formats.format(day) + " là: " + clause;
 		}
-	}
-	
-	public void createSentence() {
-		System.out.println(createClause());
 	}
 }

@@ -496,36 +496,36 @@ public class OverAllDaysStockClass extends OverAllDays {
 		int cnt = this.increaseCodeCounter(name);
 		if (name == "VN30") {
 			if (cnt >= 20) {
-				status = InputData.getRandom(AdjectiveStatus.getManyIncrease());
+				status = InputData.getRandom(Verb.getManyIncrease());
 			}
 			else if (cnt < 20 && cnt >= 16) {
-				status = InputData.getRandom(AdjectiveStatus.getFewIncrease());
+				status = InputData.getRandom(Verb.getFewIncrease());
 			}
 			else if (cnt < 16 && cnt >= 14) {
-				status = InputData.getRandom(AdjectiveStatus.getLessChanging());
+				status = InputData.getRandom(Verb.getLessChanging());
 			}
 			else if (cnt < 14 && cnt >= 10) {
-				status = InputData.getRandom(AdjectiveStatus.getFewDecrease());
+				status = InputData.getRandom(Verb.getFewDecrease());
 			}
 			else if (cnt < 10) {
-				status = InputData.getRandom(AdjectiveStatus.getManyDecrease());
+				status = InputData.getRandom(Verb.getManyDecrease());
 			}
 		}
 		if (name == "HNX30") {
 			if (cnt >= 20) {
-				status = InputData.getRandom(AdjectiveStatus.getManyIncrease());
+				status = InputData.getRandom(Verb.getManyIncrease());
 			}
 			else if (cnt < 20 && cnt >= 16) {
-				status = InputData.getRandom(AdjectiveStatus.getFewIncrease());
+				status = InputData.getRandom(Verb.getFewIncrease());
 			}
 			else if (cnt < 16 && cnt >= 14) {
-				status = InputData.getRandom(AdjectiveStatus.getLessChanging());
+				status = InputData.getRandom(Verb.getLessChanging());
 			}
 			else if (cnt < 14 && cnt >= 10) {
-				status = InputData.getRandom(AdjectiveStatus.getFewDecrease());
+				status = InputData.getRandom(Verb.getFewDecrease());
 			}
 			else if (cnt < 10) {
-				status = InputData.getRandom(AdjectiveStatus.getManyDecrease());
+				status = InputData.getRandom(Verb.getManyDecrease());
 			}
 		}
 		return "Nhóm cổ phiếu " + name + status + "với " + cnt + " mã tăng giá và " + (30-cnt) + " mã giảm giá. ";

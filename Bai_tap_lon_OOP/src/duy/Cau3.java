@@ -9,9 +9,8 @@ import java.util.stream.Collectors;
 
 import Input.DataOneDay;
 import Input.STOCK;
-import gui.Tag;
 
-public abstract class Cau3 extends San implements Tag{
+public abstract class Cau3 extends San{
 	protected LinkedList<STOCK> list = new LinkedList<>();
 	protected String status; 
 	

@@ -23,36 +23,36 @@ public class DaysTitle extends Title{
 		
 		if (name == "VN30") {
 			if (cnt >= 22) {
-				clause += InputData.getRandom(AdjectiveStatus.getManyIncrease());
+				clause += InputData.getRandom(Verb.getManyIncrease());
 			}
 			else if(cnt < 8) {
-				clause += InputData.getRandom(AdjectiveStatus.getManyDecrease());
+				clause += InputData.getRandom(Verb.getManyDecrease());
 			}
 			else if(cnt > 18 && cnt < 22) {
-				clause += InputData.getRandom(AdjectiveStatus.getFewIncrease());
+				clause += InputData.getRandom(Verb.getFewIncrease());
 			}
 			else if(cnt < 12 && cnt > 8) {
-				clause += InputData.getRandom(AdjectiveStatus.getFewDecrease());
+				clause += InputData.getRandom(Verb.getFewDecrease());
 			} 
 			else {
-				clause += InputData.getRandom(AdjectiveStatus.getLessChanging());
+				clause += InputData.getRandom(Verb.getLessChanging());
 			}
 		}
 		else if (name == "HNX30") {
 			if (cnt >= 22) {
-				clause += InputData.getRandom(AdjectiveStatus.getManyIncrease());
+				clause += InputData.getRandom(Verb.getManyIncrease());
 			}
 			else if(cnt < 8) {
-				clause += InputData.getRandom(AdjectiveStatus.getManyDecrease());
+				clause += InputData.getRandom(Verb.getManyDecrease());
 			}
 			else if(cnt > 18 && cnt < 22) {
-				clause += InputData.getRandom(AdjectiveStatus.getFewIncrease());
+				clause += InputData.getRandom(Verb.getFewIncrease());
 			}
 			else if(cnt < 12 && cnt > 8) {
-				clause += InputData.getRandom(AdjectiveStatus.getFewDecrease());
+				clause += InputData.getRandom(Verb.getFewDecrease());
 			} 
 			else {
-				clause += InputData.getRandom(AdjectiveStatus.getLessChanging());
+				clause += InputData.getRandom(Verb.getLessChanging());
 			}
 		}
 		

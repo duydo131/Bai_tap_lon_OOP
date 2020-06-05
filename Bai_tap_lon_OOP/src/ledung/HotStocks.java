@@ -5,7 +5,7 @@ import java.util.Date;
 
 import Input.*;
 
-public class HotStocks extends Sentence {
+public abstract class HotStocks extends Sentence {
 	protected static SimpleDateFormat formats = new SimpleDateFormat("dd/MM/yyyy");
 	
 	int numberStock;
@@ -16,6 +16,12 @@ public class HotStocks extends Sentence {
 		this.numberStock = number;
 		this.stock = new STOCK[number];
 		this.name = name;
+	}
+	
+	@Override
+	public void setTag() {
+		listTag.add("hot stock");
+		
 	}
 	
 	protected static STOCK[] selectionSorting(STOCK[] stock, Date date1, Date date2) {

@@ -1,9 +1,9 @@
-package Sentence;
+package ledung;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import Input.InputData;
-import Input.ReadFile;
 
 public class DayTitle extends Title{
 	
@@ -15,6 +15,7 @@ public class DayTitle extends Title{
 	
 	public DayTitle(Date date) {
 		super();
+		super.setTag();
 		this.date = date;
 		this.adverb = "Thị trường chứng khoán ngày " + formats.format(date) + ": ";
 	}
@@ -79,10 +80,26 @@ public class DayTitle extends Title{
 		}
 	}
 	
+//	public void printSentence() {
+//		this.setLinkWord();
+//		this.setVerb();
+//		System.out.println(adverb + subject[0] + verb[0] + ", " + subject[1] + linkWord + verb[1]);
+//	}
+
 	@Override
-	public void printSentence() {
+	public ArrayList<String> getTag() {
+		return listTag;
+	}
+
+	@Override
+	public String get() {
 		this.setLinkWord();
 		this.setVerb();
-		System.out.println(adverb + subject[0] + verb[0] + ", " + subject[1] + linkWord + verb[1]);
+		return adverb + subject[0] + verb[0] + ", " + subject[1] + linkWord + verb[1];
+	}
+
+	@Override
+	public void setTag() {
+		
 	}
 }

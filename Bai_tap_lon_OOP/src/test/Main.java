@@ -9,7 +9,12 @@ import java.util.Date;
 import Input.ReadFile;
 import Input.STOCK;
 import Input.Tool;
+import duy.Cau1VN30;
+import duy.DayHNX30;
+import duy.OneStock1;
+import duy.WeekHNX30;
 import gui.Demo;
+import ledung.DayTitle;
 
 public class Main {
 	
@@ -25,12 +30,27 @@ public class Main {
 		
 		Demo demo = new Demo(date, stock);
 		
-		ArrayList<String> listTag = new ArrayList<>();
+		ArrayList<String> listTag1 = new ArrayList<>();
 		
-		listTag.add("HASTC");
+		listTag1.add("title");
 		
-		System.out.println(demo.getSentence(listTag));
+		ArrayList<String> listTag2 = new ArrayList<>();
 		
+		listTag2.add("HNX30");
+		
+		System.out.println(demo.getSentence(listTag1));
+		
+		System.out.println(demo.getSentence(listTag2));
+//		
+//		DayTitle dayTitle = new DayTitle(date);
+//		System.out.println(dayTitle.get());
+//		System.out.println(dayTitle.getTag());
+		
+//		Cau1VN30 cau = new Cau1VN30(date1);
+//		System.out.println(cau.getTag());
+		
+		OneStock1 oneStock1 = new OneStock1(stock, date1);
+		System.out.println(oneStock1.get());
 	}
 }
 

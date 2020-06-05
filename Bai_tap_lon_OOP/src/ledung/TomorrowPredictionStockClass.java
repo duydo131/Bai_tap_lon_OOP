@@ -1,5 +1,6 @@
 package ledung;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import Input.InputData;
@@ -13,6 +14,7 @@ public class TomorrowPredictionStockClass extends TomorrowPrediction{
 	
 	public TomorrowPredictionStockClass(Date date, String name) {
 		super();
+		setTag();
 		this.subject = " phiên giao dịch ngày mai";
 		this.verb = " sẽ tiếp tục là một ngày giao dịch chứng kiến sự";
 		this.linkWord = "Nếu diễn biến của ngày giao dịch hôm nay còn tiếp diễn thì";
@@ -63,8 +65,24 @@ public class TomorrowPredictionStockClass extends TomorrowPrediction{
 		
 	}
 	
-	public void createSentence() {
+//	public void createSentence() {
+//		this.setComplement();
+//		System.out.println(linkWord + subject + verb + complement);
+//	}
+
+	@Override
+	public ArrayList<String> getTag() {
+		return listTag;
+	}
+
+	@Override
+	public String get() {
 		this.setComplement();
-		System.out.println(linkWord + subject + verb + complement);
+		return linkWord + subject + verb + complement;
+	}
+
+	@Override
+	public void setTag() {
+		super.setTag();
 	}
 }

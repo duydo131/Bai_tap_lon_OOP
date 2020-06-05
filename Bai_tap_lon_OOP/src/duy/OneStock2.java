@@ -14,7 +14,7 @@ public abstract class OneStock2 extends OneStockRoot{
 	protected long averageVolumeBefore;
 	protected String name;
 	
-	public OneStock2(STOCK stock, Date date) {
+	protected OneStock2(STOCK stock, Date date) {
 		this.stock = stock;
 	}
 	

@@ -7,13 +7,10 @@ import Input.InputData;
 
 public abstract class Day extends NhanXet {
 	
-	public Day() {
-		this.name = "phiên";
-	}
-	
 	@Override
 	protected void setInfo() {
 		super.setTag();
+		this.name = "phiên";
 		Date dateBefore = getDateBefore(date);
 		this.allVolume = InputData.getToday(this.date).get(this.stock).getKL();
 		this.change = this.allVolume - InputData.getToday(dateBefore).get(this.stock).getKL();

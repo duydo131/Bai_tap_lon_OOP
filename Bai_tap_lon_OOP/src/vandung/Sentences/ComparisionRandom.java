@@ -1,4 +1,4 @@
-package vandung.Sentences;
+	package vandung.Sentences;
 
 import Input.DataOneDay;
 import Input.InputData;
@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
 
-public abstract class ComparisionRandom extends Comparision implements Tag{
+public abstract class ComparisionRandom extends Comparision {
 	public ComparisionRandom() {		
 	}
 	public ComparisionRandom(Date date) {
@@ -15,7 +15,7 @@ public abstract class ComparisionRandom extends Comparision implements Tag{
 	}
 	
 	@Override
-	public String getStatus() {
+	public String get() {
 		status = getStock1() + " và " + getStock2()
 				+ list() + " khối lượng bán ra lần lượt là " + data(getStock1()).getKL() + ", "
 				+ data(getStock2()).getKL();
@@ -39,7 +39,7 @@ public abstract class ComparisionRandom extends Comparision implements Tag{
 
 	private int number() {
 		Random number = new Random();
-		int numberRandom = number.nextInt(27) + 2;
+		int numberRandom = number.nextInt(24) + 2;
 		return numberRandom;
 	}
 
@@ -60,7 +60,4 @@ public abstract class ComparisionRandom extends Comparision implements Tag{
 		ArrayList<DataOneDay> data = InputData.getDataOneWeekOneStock(stock, date);
 		return data.get(0);
 	}
-
-	
-
 }

@@ -39,6 +39,7 @@ public class test {
 		list.add(new OneStock1(stock, date));
 		list.add(new OneStock2Month(stock, date));
 		list.add(new OneStock2Week(stock, date));
+
 		
 		
 		for (Tag tag123 : list) {
