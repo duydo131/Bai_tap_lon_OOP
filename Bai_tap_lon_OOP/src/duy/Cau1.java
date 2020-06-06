@@ -45,6 +45,7 @@ public abstract class Cau1 extends San{
 	@Override
 	public void setTag() {
 		this.listTag.add("giao dịch nhiều nhất");
+		this.listTag.add("chung");
 	}
 }
 

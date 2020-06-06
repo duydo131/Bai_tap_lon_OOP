@@ -22,6 +22,7 @@ public class OneStock1 extends OneStockRoot{
 	public void setTag() {
 		this.listTag.add("phiên");
 		this.listTag.add("ngày");
+		this.listTag.add("day");
 	}
 	
 	@Override

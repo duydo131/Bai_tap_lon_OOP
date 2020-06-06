@@ -28,5 +28,6 @@ public abstract class Day extends NhanXet {
 	public void setTag() {
 		this.listTag.add("ngày");
 		this.listTag.add("phiên");
+		this.listTag.add("chung");
 	}
 }

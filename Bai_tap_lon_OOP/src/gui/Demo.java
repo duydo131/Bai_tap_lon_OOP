@@ -3,6 +3,7 @@ package gui;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -25,7 +26,6 @@ import duy.OneStock2Month;
 import duy.OneStock2Week;
 import duy.WeekHNX30;
 import duy.WeekVN30;
-import ledung.DayTitle;
 import ledung.HotStocksDay;
 import ledung.TomorrowPredictionStockClass;
 import vandung.Sentences.ComparisionHNX30;
@@ -67,13 +67,13 @@ public class Demo {
 		list.add(new OneStock2Month(staticStock, staticDate));
 		list.add(new OneStock2Week(staticStock, staticDate));
 		
-		list.add(new ComparisionStockHot(staticDate));
-		list.add(new ComparisionVN30(staticDate));
-		list.add(new ComparisionRandomVN30(staticDate));
-		list.add(new ComparisionHNX30(staticDate));
-		list.add(new ComparisionRandomHNX30(staticDate));
+		//list.add(new ComparisionStockHot(staticDate));
+		//list.add(new ComparisionVN30(staticDate));
+		//list.add(new ComparisionRandomVN30(staticDate));
+		//list.add(new ComparisionHNX30(staticDate));
+		//list.add(new ComparisionRandomHNX30(staticDate));
 		
-		list.add(new DayTitle(staticDate));
+		//list.add(new DayTitle(staticDate));
 		//list.add(new TomorrowPredictionStockClass(staticDate));
 		//list.add(new HotStocksDay(staticDate, ""));
 		
@@ -88,11 +88,13 @@ public class Demo {
 		this.stock = stock;
 	}
 	
-	public String getSentence(ArrayList<String> listTag) {
+	public String getSentence(String ...list) {
 		StringBuffer string = new StringBuffer();
+		ArrayList<String> listTag = new ArrayList<>();
+		listTag.addAll(Arrays.asList(list));
 		ArrayList<Tag> listTagFilter = getListTag(listTag);
 		for (Tag tag : listTagFilter) {
-			string.append(tag.get());
+			string.append(getInstance(tag).get());
 			string.append("\n");
 		}
 		
@@ -107,11 +109,13 @@ public class Demo {
 				boolean bool = true;
 				ArrayList<String> listTagOfOneSentence = t.getTag();
 				for (String tag : listTag) {
-					if(listTagOfOneSentence.contains(tag)) {
-						continue;
-					}else {
-						bool = false;
-						break;
+					if(tag != null) {
+						if(listTagOfOneSentence.contains(tag)) {
+							continue;
+						}else {
+							bool = false;
+							break;
+						}
 					}
 				}
 				return bool;
@@ -197,25 +201,25 @@ public class Demo {
 			newInstance = new ComparisionStockHot(date);
 			break;
 			
-		case "ComparisionVN30":
-			newInstance = new ComparisionVN30(date);
-			break;
+//		case "ComparisionVN30":
+//			newInstance = new ComparisionVN30(date);
+//			break;
 			
 		case "ComparisionRandomVN30":
 			newInstance = new ComparisionRandomVN30(date);
 			break;
 			
-		case "ComparisionHNX30":
-			newInstance = new ComparisionHNX30(date);
-			break;
+//		case "ComparisionHNX30":
+//			newInstance = new ComparisionHNX30(date);
+//			break;
 			
 		case "ComparisionRandomHNX30":
 			newInstance = new ComparisionRandomHNX30(date);
 			break;
 		
-		case "DayTitle":
-			newInstance = new DayTitle(date);
-			break;
+//		case "DayTitle":
+//			newInstance = new DayTitle(date);
+//			break;
 			
 			
 		default:

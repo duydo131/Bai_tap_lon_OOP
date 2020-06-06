@@ -34,6 +34,7 @@ public class OneStock2Week extends OneStock2{
 	public void setTag() {
 		super.setTag();
 		this.listTag.add("tuần");
+		this.listTag.add("week");
 	}
 
 }

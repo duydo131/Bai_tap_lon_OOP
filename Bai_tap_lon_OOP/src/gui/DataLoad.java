@@ -1,5 +1,6 @@
 package gui;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Set;
@@ -32,6 +33,7 @@ public class DataLoad {
 	private STOCK stock;
 	private String tag;
 	private String stockCode;
+	private String exchange;
 	private boolean Chart;
 
 	public DataLoad(Date date, String text, String stockCode) {
@@ -50,15 +52,21 @@ public class DataLoad {
 	}
 	
 	private void setStock(String str, String st) {
-		STOCK s;
 		if(testName(str)) {
-			s = STOCK.valueOf(str);
-		}else if (!(st.equals(""))){
-			s = STOCK.valueOf(st);
+			this.stock = STOCK.valueOf(str);
+		}else if (!(st.equals("") || st.equals("VNINDEX") || st.equals("HASTC"))){
+			this.stock = STOCK.valueOf(st);
+		}else if (st.equals("")){
+			this.exchange = null;
+		}else if (st.equals("VNINDEX")){
+			this.exchange = st;
+			System.out.println("vn");
+		}else if (st.equals("HASTC")){
+			this.exchange = st;
+			System.out.println("hn");
 		}else {
-			s = null;
+			this.stock = null;
 		}
-		this.stock = s;
 	}
 	
 	public STOCK getStock() {
@@ -122,6 +130,94 @@ public class DataLoad {
 				}
 			}
 		}
+		return string.toString();
+	}
+	
+	public String get1() {
+		Demo demo = new Demo(date, stock);
+		StringBuffer string = new StringBuffer();
+		int i = getDay();
+		if (this.stock != null) {
+			string.append(demo.getSentence("title","one stock"));
+			string.append("\n");
+			if (i == 1 || i == 7) {
+				string.append(demo.getSentence("one stock", "week"));
+//				string.append((new OneStock2Week(stock, date)).get());
+				string.append("\n");
+			} else {
+				string.append(demo.getSentence("one stock", "day"));
+				//string.append((new OneStock1(stock, date)).get());
+				string.append("\n");
+			}
+			if (Tool.testMonth(date)) {
+				string.append(demo.getSentence("one stock", "month"));
+			//	string.append((new OneStock2Month(stock, date)).get());
+				string.append("\n");
+			}
+			setChart(true);
+		}else {
+			string.append(demo.getSentence("title","chung"));
+			string.append("\n");
+			
+			System.out.println(this.exchange);
+			
+			if (i == 1 || i == 7) {
+				// ngày phải là cuối tuần
+				string.append(demo.getSentence("week","chung", this.exchange));
+				string.append("\n");
+//				string.append((new WeekVN30(date)).get());
+//				string.append("\n");
+//				string.append((new WeekHNX30(date)).get());
+//				string.append("\n");
+			}if (InputData.testDay(date)) {
+				string.append(demo.getSentence("biến động","chung", this.exchange));
+				string.append("\n");
+				
+				string.append(demo.getSentence("hot stock","chung", this.exchange));
+				string.append("\n");
+
+				string.append(demo.getSentence("so sánh","chung", this.exchange));
+				string.append("\n");
+
+				string.append(demo.getSentence("nhận định","chung", this.exchange));
+				string.append("\n");
+
+				string.append(demo.getSentence("nhận định","chung", this.exchange));
+				string.append("\n");
+				
+				
+//				string.append((new DayVN30(date)).get());
+//				string.append("\n");
+//				string.append((new DayHNX30(date)).get());
+//				string.append("\n");
+//
+//				string.append((new Cau1VN30(date)).get());
+//				string.append("\n");
+//				string.append((new Cau1HNX30(date)).get());
+//				string.append("\n");
+//				string.append((new Cau2VN30(date)).get());
+//				string.append("\n");
+//				string.append((new Cau2HNX30(date)).get());
+//				string.append("\n");
+//				
+//				string.append((new Cau3TangVN30(date)).get());
+//				string.append("\n");
+//				string.append((new Cau3TangHNX30(date)).get());
+//				string.append("\n");
+//				string.append((new Cau3GiamVN30(date)).get());
+//				string.append("\n");
+//				string.append((new Cau3GiamHNX30(date)).get());
+//				string.append("\n");
+//
+//				string.append("\n");
+//				string.append((new Cau4VN30(date)).get());
+//				string.append("\n");
+//				string.append((new Cau4HNX30(date)).get());
+			} else {
+				string.append("Hôm nay nghỉ lễ không giao dịch.");
+			}
+		}
+		
 		return string.toString();
 	}
 

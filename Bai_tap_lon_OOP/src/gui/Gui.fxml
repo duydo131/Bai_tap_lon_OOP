@@ -105,7 +105,7 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <Label fx:id="codeStock" alignment="CENTER" layoutX="17.0" layoutY="84.0" prefHeight="25.0" prefWidth="34.0">
+      <Label fx:id="codeStock" alignment="CENTER" layoutX="17.0" layoutY="84.0" prefHeight="25.0" prefWidth="52.0" AnchorPane.leftAnchor="5.0">
          <font>
             <Font size="15.0" />
          </font>

@@ -19,5 +19,6 @@ public abstract class OneStockRoot implements Tag{
 		this.listTag.add("giá trị");
 		this.listTag.add("khối lượng");
 		this.listTag.add("thanh khoản");
+		this.listTag.add("one stock");
 	}
 }

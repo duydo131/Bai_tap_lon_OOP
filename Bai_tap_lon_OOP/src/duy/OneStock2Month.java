@@ -36,6 +36,7 @@ public class OneStock2Month extends OneStock2{
 	public void setTag() {
 		super.setTag();
 		this.listTag.add("tháng");
+		this.listTag.add("month");
 	}
 
 }

@@ -24,7 +24,6 @@ import duy.OneStock2Month;
 import duy.OneStock2Week;
 import duy.WeekHNX30;
 import duy.WeekVN30;
-import ledung.DayTitle;
 
 public class test {
 	
@@ -39,6 +38,5 @@ public class test {
 		System.out.println(p.createStockClassClause());
 		
 		DayTitle dayTitle = new DayTitle(date);
-		dayTitle.printSentence();
 	}
 }
