@@ -1,4 +1,4 @@
-package ledung2;
+package ledung;
 
 public class ledung2 {
 

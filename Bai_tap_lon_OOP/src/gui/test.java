@@ -1,5 +1,4 @@
 package gui;
-import Sentence.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -34,9 +33,6 @@ public class test {
 		
 		STOCK stock = STOCK.BID;
 		
-		DayTitleOneStockClass p = new DayTitleOneStockClass(STOCK.ACB.name(), date);
-		System.out.println(p.createStockClassClause());
 		
-		DayTitle dayTitle = new DayTitle(date);
 	}
 }

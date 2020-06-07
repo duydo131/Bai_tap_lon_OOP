@@ -10,6 +10,7 @@ public class DayTitleVN30 extends DayTitleStockClass{
 	public DayTitleVN30(Date date) {
 		super(date);
 		this.subject = "VN30";
+		setTag();
 	}
 	
 	@Override

@@ -1,4 +1,4 @@
-package vandung2;
+package Sentences;
 
 public class vandung {
 

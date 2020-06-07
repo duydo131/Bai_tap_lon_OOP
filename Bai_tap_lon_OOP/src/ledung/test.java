@@ -1,45 +1,89 @@
 package ledung;
+import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import Input.*;
 public class test {
 	public static void main(String[] args) throws ParseException {
+		ReadFile.loadData();
 		SimpleDateFormat formats = new SimpleDateFormat("dd/MM/yyyy");
-//		HotStocksDay p1 = new HotStocksDay(4, "HNX30", formats.parse("26/12/2019"));
-//		p1.createSentence();
-//		System.out.println();
-//		HotStocksDays p2 = new HotStocksDays(3, "VN30", formats.parse("17/12/2019"), formats.parse("22/12/2019"));
-//		p2.createSentence();
-//		System.out.println();
-//		OverAllDayStockCode p3 = new OverAllDayStockCode(formats.parse("12/12/2019"),STOCK.ACB);
-//		p3.createSentence();
-//		System.out.println();
-//		OverAllDayStockClass p4 = new OverAllDayStockClass(formats.parse("13/12/2019"), "VN30");
-//		p4.createSentence();
-//		System.out.println();
-//		OverAllDayGeneralComment p5 = new OverAllDayGeneralComment(formats.parse("12/12/2019"));
-//		p5.createSentence();
-//		System.out.println();
-//		OverAllDaysStockCode p6 = new OverAllDaysStockCode(STOCK.BVH, formats.parse("18/12/2019"),formats.parse("20/12/2019"));
-//		p6.createSentence();
-//		System.out.println();
-//		OverAllDaysStockClass p7 = new OverAllDaysStockClass("VN30", formats.parse("11/12/2019"),formats.parse("13/12/2019"));
-//		p7.createSentence();
-//		System.out.println();
-//		OverAllDaysGeneralComment p8 = new OverAllDaysGeneralComment(formats.parse("16/12/2019"),formats.parse("18/12/2019"));
-//		p8.createSentence();
-//		System.out.println();
-		TomorrowPredictionStockClass p9 = new TomorrowPredictionStockClass(formats.parse("13/12/2019"), "VN30");
-		p9.createSentence();
+		
+		Date weekend = formats.parse("14/12/2019");
+		Date date = formats.parse("13/12/2019");
+		
+		HotStocksDayHNX30 p1 = new HotStocksDayHNX30(weekend);
+		System.out.println(p1.get());
+		System.out.println(p1.getTag());
+		HotStocksDayHNX30 a1 = new HotStocksDayHNX30(date);
+		System.out.println(a1.get());
+		System.out.println(a1.getTag());
+		HotStocksDayVN30 p2 = new HotStocksDayVN30(weekend);
+		System.out.println(p2.get());
+		System.out.println(p2.getTag());
+		HotStocksDayVN30 a2 = new HotStocksDayVN30(date);
+		System.out.println(a2.get());
+		System.out.println(a2.getTag());
+		OverAllDayVN30 p3 = new OverAllDayVN30(weekend);
+		System.out.println(p3.get());
+		System.out.println(p3.getTag());
+		OverAllDayVN30 p4 = new OverAllDayVN30(date);
+		System.out.println(p4.get());
+		System.out.println(p4.getTag());
+		OverAllDayHNX30 p5 = new OverAllDayHNX30(weekend);
+		System.out.println(p5.get());
+		System.out.println(p5.getTag());
+		OverAllDayHNX30 p6 = new OverAllDayHNX30(date);
+		System.out.println(p6.get());
+		System.out.println(p6.getTag());
+		
+		
 		System.out.println();
-//		DayTitle p10 = new DayTitle(formats.parse("13/12/2019"));
-//		p10.createSentence();
-//		System.out.println();
-//		DaysTitle p11 = new DaysTitle(formats.parse("14/12/2019"), formats.parse("15/12/2019"));
-//		p11.createSentence();
-//		System.out.println(InputData.getToday(formats.parse("12/12/2019")).get(STOCK.ACB).getGiaDongCua()*1000);
-	}
-	
+		OverAllDayGeneralComment p7 = new OverAllDayGeneralComment(weekend);
+		System.out.println(p7.get());
+		System.out.println(p7.getTag());
+		OverAllDayGeneralComment p8 = new OverAllDayGeneralComment(date);
+		System.out.println(p8.get());
+		System.out.println(p8.getTag());
+		DayTitleVN30 p10 = new DayTitleVN30(weekend);
+		System.out.println(p10.get());
+		System.out.println(p10.getTag());
+		DayTitleVN30 p11 = new DayTitleVN30(date);
+		System.out.println(p11.get());
+		System.out.println(p11.getTag());
+		DayTitleHNX30 p12 = new DayTitleHNX30(weekend);
+		System.out.println(p12.get());
+		System.out.println(p12.getTag());
+		DayTitleHNX30 p13 = new DayTitleHNX30(date);
+		System.out.println(p13.get());
+		System.out.println(p13.getTag());
+		TomorrowPredictionVN30 p14 = new TomorrowPredictionVN30(weekend);
+		System.out.println(p14.get());
+		System.out.println(p14.getTag());
+		OverAllDayStockCode p15 = new OverAllDayStockCode(date, STOCK.ACB);
+		System.out.println(p15.get());
+		System.out.println(p15.getTag());
+		System.out.println();
+		
+//		OverAllDayHNX30 pp = new OverAllDayHNX30(date);
+//		System.out.println(pp.get());
+//		System.out.println(pp.getTag());
+	}	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

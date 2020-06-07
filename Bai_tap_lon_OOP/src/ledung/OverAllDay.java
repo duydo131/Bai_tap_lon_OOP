@@ -3,14 +3,12 @@ package ledung;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import Input.*;
-
-public class OverAllDay extends Sentence {
+public abstract class OverAllDay extends Sentence {
 	
-	protected static Date date;
+	protected Date date;
 	protected static SimpleDateFormat formats = new SimpleDateFormat("dd/MM/yyyy");
 
-	public OverAllDay(Date day) {
-		date = day;
+	public OverAllDay(Date date) {
+		this.date = date;
 	}
 }

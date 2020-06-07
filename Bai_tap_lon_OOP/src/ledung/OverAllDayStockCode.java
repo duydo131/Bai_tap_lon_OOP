@@ -1,5 +1,6 @@
 package ledung;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import Input.*;
@@ -7,171 +8,171 @@ import Input.*;
 public class OverAllDayStockCode extends OverAllDay{
 	
 	private STOCK stock;
+	private String adverb;
 	
 	public OverAllDayStockCode(Date date, STOCK stock) {
 		super(date);
+		this.subject = stock.name();
 		this.stock = stock;
 	}
-	
-	public int minmaxDaysCounter(String optimum) {
-		
-		double min = InputData.getToday(date).get(stock).getGiaMin();
-		double max = InputData.getToday(date).get(stock).getGiaMax();
-		int stop = 0;
-		int counter = 0;
-	
-		if (optimum == "min") {
-			while (stop != 1) {
-				Date dayBefore = InputData.getYesterday(date);
-				if (InputData.getToday(dayBefore).get(stock).getGiaMin() > min) {
-					counter++;
-					date = InputData.getYesterday(date);
-					if (InputData.getToday(dayBefore).get(stock).getGiaMin() == 0) {
-						counter--;
-					}
-				}
-				else {
-					stop = 1;
-				}
-			}
-		}
-		else if (optimum == "max") {
-			while (stop != 1) {
-				Date dayBefore = InputData.getYesterday(date);
-				if (InputData.getToday(dayBefore).get(stock).getGiaMax() < max){
-					counter++;
-					date = InputData.getYesterday(date);
-					if (InputData.getToday(dayBefore).get(stock).getGiaMax() == 0) {
-						counter--;
-					}
-				}
-				else {
-					stop = 1;
-				}
-			}
-		}
-	
-			return counter;
-	}
-	
-	public String createMinMaxClause() {
 
-		ReadFile.loadData();
+	public String createOptimumClause() {
 		
-		String clause = null;
-		double diff = InputData.getToday(date).get(stock).getGiaDongCua() - InputData.getToday(InputData.getYesterday(date)).get(stock).getGiaDongCua();
-		
-		double min = InputData.getToday(date).get(stock).getGiaMin()*1000;
+		String clause = "";
 		double max = InputData.getToday(date).get(stock).getGiaMax()*1000;
-		
-		if (diff > 0) {
-			int cnt = this.minmaxDaysCounter("max");
-			if (cnt > 0) {
-				clause = " đã có thời điểm tăng giá trần trong " + cnt + " ngày trở lại đây, đạt mức " + max + " đồng/cp,";
+		double min = InputData.getToday(date).get(stock).getGiaMin()*1000;
+		int maxCounter = optimumCounter("max", date, stock);
+		int minCounter = optimumCounter("min", date, stock);
+
+		if (maxCounter > 0 && minCounter == 0) {			
+			if (maxCounter > 1) {
+				clause = "đã có thời điểm tăng trần trong " + maxCounter + " ngày trở lại đây, đạt mức " + max + " đồng/cp";
 			}
-			else if (cnt == 0) {
-				clause = " đã có thời điểm tăng giá trần ở mức " + max + " đồng/cp,";
+			else if (maxCounter == 1) {
+				clause = "đã có thời điểm tăng trần ở mức " + max + " đồng/cp";
 			}
 		}
-		else if (diff < 0) {
-			int cnt = this.minmaxDaysCounter("min");
-			if (cnt > 0) {
-				clause = " đã có thời điểm chạm giá trần trong " + cnt + " ngày trở lại đây, xuống mức " + min + " đồng/cp,";
+		else if (minCounter > 0 && maxCounter == 0) {
+			if (minCounter > 1) {
+				clause = "đã có thời điểm giảm trần trong " + minCounter + " ngày trở lại đây, xuống mức " + min + " đồng/cp";
 			}
-			else if (cnt == 0) {
-				clause = " đã có thời điểm chạm giá trần ở mức " + min + " đồng/cp,";
+			else if (minCounter == 0) {
+				clause = "đã có thời điểm giảm trần ở mức " + min + " đồng/cp";
 			}
+		}
+		else if (minCounter > 0 && maxCounter > 0) {
+			if (minCounter > 1 && maxCounter == 1) {
+				clause = "đã có thời điểm giảm trần sau " + minCounter + " ngày, xuống mức " + min + " đồng/cp và cũng đã có lúc tăng trần lên mức" + max + " đồng/cp";
+			}
+			else if (minCounter == 1 && maxCounter > 1) {
+				clause = "đã có thời điểm tăng trần sau " + maxCounter + " ngày, lên mức " + max + " đồng/cp và cũng đã có lúc giảm trần xuống mức" + min + " đồng/cp";
+			}
+			else if (minCounter > 1 && maxCounter > 1) {
+				clause = "đã có thời điểm tăng trần sau " + maxCounter + " ngày, lên mức " + max + " đồng/cp và cũng đã có lúc giảm trần sau " + minCounter + " ngày, xuống mức" + min + " đồng/cp";
+			}
+			else if (minCounter == 1 && maxCounter == 1) {
+				clause = "đã có thời điểm tăng trần lên mức " + max + " đồng/cp và cũng đã có lúc giảm trần xuống mức" + min + " đồng/cp";
+			}
+		}
+		else if (minCounter == 0 && maxCounter == 0) {
+			return clause;
 		}
 		return clause;
 	}
 	
-	public String createClause() {
+	public String createVolumeClause() {
 		
-		ReadFile.loadData();
-		
-		if (InputData.isWeekend(date)) {
-			return "Cuối tuần không có giao dịch";
-		}
-		
-		String status = null;
-		String adverb = null;
-		String subject = stock.name();
-		String minmax = this.createMinMaxClause();
-		double pivot = InputData.getToday(InputData.getYesterday(date)).get(stock).getGiaDongCua()*0.03*1000;
-		double closedValue = InputData.getToday(date).get(stock).getGiaDongCua()*1000;
-		double diff = InputData.getToday(date).get(stock).getGiaDongCua() - InputData.getToday(InputData.getYesterday(date)).get(stock).getGiaDongCua();
 		long volume = InputData.getToday(date).get(stock).getKL();
-		int incCounter = InputData.increaseCounterOneStock(stock, date);
-		int decCounter = InputData.decreaseCounterOneStock(stock, date);
 		
-		if (incCounter > 0) {
+		return "khối lượng giao dịch đạt ở mức " + volume + " đơn vị."; 
+	}
+	
+	public void setAdverb() {
+		
+		double diff = InputData.getToday(date).get(stock).getThayDoi();
+		int increaseCounter = InputData.increaseCounterOneStock(stock, date);
+		int decreaseCounter = InputData.decreaseCounterOneStock(stock, date);
+		
+		if (increaseCounter > 0) {
 			if (diff > 0) {
-				adverb = InputData.getRandom(AdverbStatus.getIncThenInc());
-				if (diff > pivot) {
-					status = InputData.getRandom(Verb.getFastIncrease());
+				if (increaseCounter > 1) {
+					this.adverb = InputData.getRandom(AdverbStatus.getIncThenInc()) + "sau " + increaseCounter + " phiên tăng giá liên tiếp";
 				}
-				else if (diff < pivot) {
-					status = InputData.getRandom(Verb.getSlowIncrease());
+				else {
+					this.adverb = InputData.getRandom(AdverbStatus.getIncThenInc()) + "của phiên giao dịch ngày hôm qua";
 				}
 			}
 			else if (diff < 0) {
-				adverb = InputData.getRandom(AdverbStatus.getIncThenDec());
-				if (diff < -pivot) {
-					status = InputData.getRandom(Verb.getFastDecrease());
+				if (increaseCounter > 1) {
+					this.adverb = InputData.getRandom(AdverbStatus.getIncThenDec()) + "sau " + increaseCounter + " phiên tăng giá liên tiếp";
 				}
-				else if (diff > -pivot) {
-					status = InputData.getRandom(Verb.getSlowDecrease());
+				else {
+					this.adverb = InputData.getRandom(AdverbStatus.getIncThenDec()) + "sau phiên giao dịch ngày hôm qua";
 				}
-			}
-			else {
-				return subject + " đứng giá tại mốc " + closedValue + " đồng/cổ phiếu," + minmax + " khối lượng giao dịch đạt ở mức " + volume + " đơn vị.";
-			}
-			if (incCounter == 1) {
-				return adverb + "so với phiên giao dịch ngày hôm qua, " + subject + status + "lên mức " + 
-					   closedValue + " đồng/cổ phiếu," + minmax + " khối lượng giao dịch đạt ở mức " + volume + " đơn vị.";
-			}
-			else {
-				return adverb + "sau " + incCounter + " phiên tăng giá, " + subject + status + "lên mức " + 
-						   closedValue + " đồng/cổ phiếu," + minmax + " khối lượng giao dịch đạt ở mức " + volume + " đơn vị.";
 			}
 		} 
-		else if (decCounter > 0) {
+		else if (decreaseCounter > 0) {
 			if (diff > 0) {
-				adverb = InputData.getRandom(AdverbStatus.getDecThenInc());
-				if (diff > pivot) {
-					status = InputData.getRandom(Verb.getFastDecrease());
+				if (increaseCounter > 1) {
+					this.adverb = InputData.getRandom(AdverbStatus.getDecThenInc()) + "sau " + increaseCounter + " phiên giảm giá liên tiếp";
 				}
-				else if (diff < pivot) {
-					status = InputData.getRandom(Verb.getSlowDecrease());
+				else {
+					this.adverb = InputData.getRandom(AdverbStatus.getDecThenInc()) + "của phiên giao dịch ngày hôm qua";
 				}
 			}
 			else if (diff < 0) {
-				adverb = InputData.getRandom(AdverbStatus.getDecThenDec());
-				if (diff < -pivot) {
-					status = InputData.getRandom(Verb.getFastDecrease());
+				if (increaseCounter > 1) {
+					this.adverb = InputData.getRandom(AdverbStatus.getDecThenDec()) + "sau " + increaseCounter + " phiên giảm giá liên tiếp";
 				}
-				else if (diff > -pivot) {
-					status = InputData.getRandom(Verb.getSlowDecrease());
+				else {
+					this.adverb = InputData.getRandom(AdverbStatus.getDecThenDec()) + "sau phiên giao dịch ngày hôm qua";
 				}
 			}
-			else {
-				return subject + " đứng giá tại mốc " + closedValue + " đồng/cổ phiếu," + minmax + " khối lượng giao dịch đạt ở mức " + volume + " đơn vị.";
-			}
-		}
-		else {
-			return subject + " đứng giá tại mốc " + closedValue + " đồng/cổ phiếu," + minmax + " khối lượng giao dịch đạt ở mức " + volume + " đơn vị.";
-		}
-		if (decCounter == 1) {
-			return adverb + "so với phiên giao dịch ngày hôm qua, " + subject + status + "xuống mức " + 
-				   closedValue + " đồng/cổ phiếu," + minmax + " khối lượng giao dịch đạt ở mức " + volume + " đơn vị.";
-		}
-		else {
-			return adverb + "sau " + decCounter + " phiên giảm giá, " + subject + status + "xuống mức " + 
-					   closedValue + " đồng/cổ phiếu," + minmax + " khối lượng giao dịch đạt ở mức " + volume + " đơn vị.";
 		}
 	}
 	
-	public void createSentence() {
-		System.out.println(createClause());
+	public void setVerb() {
+		
+		double diff = InputData.getToday(date).get(stock).getThayDoi();
+		double closedValue = InputData.getToday(date).get(stock).getGiaDongCua()*1000;
+		double openValue = InputData.getToday(date).get(stock).getGiaMoCua()*1000;
+		
+		if (diff > 0) {
+			if (diff > 0.4*openValue) {
+				this.setVerb(InputData.getRandom(Verb.getFastIncrease()) + " lên mức " + closedValue + " đồng/cổ phiếu");
+			}
+			else {
+				this.setVerb(InputData.getRandom(Verb.getSlowIncrease()) + " lên mức " + closedValue + " đồng/cổ phiếu");
+			}
+		}
+		else if (diff < 0) {
+			if (Math.abs(diff) > 0.4*openValue) {
+				this.setVerb(InputData.getRandom(Verb.getFastDecrease()) + " xuống mức " + closedValue + " đồng/cổ phiếu");
+			}
+			else {
+				this.setVerb(InputData.getRandom(Verb.getSlowDecrease()) + " xuống mức " + closedValue + " đồng/cổ phiếu");
+			}
+		}
+		else {
+			this.setVerb("đứng giá ở mức " + closedValue + " đồng/cổ phiếu");
+		}
+	}
+	
+	public void setComplement() {
+		
+		String optimumClause = this.createOptimumClause();
+		String volumeClause = this.createVolumeClause();
+		
+		if (optimumClause == "") {
+			this.setComplement(volumeClause);
+		} 
+		else {
+		this.setComplement(optimumClause + "; " + volumeClause);
+		}
+	}
+
+	@Override
+	public ArrayList<String> getTag() {
+		return listTag;
+	}
+
+	@Override
+	public String get() {
+		
+		if(InputData.isWeekend(date)) {
+			OverAllWeekStockCode sentence = new OverAllWeekStockCode(date, stock);
+			return sentence.get();
+		}
+		else {
+			this.setAdverb();
+			this.setVerb();
+			this.setComplement();
+			return adverb + ", " + subject + " " + verb + ", " + complement;
+		}
+	}
+
+	@Override
+	public void setTag() {		
+		listTag.add("overall");
 	}
 }

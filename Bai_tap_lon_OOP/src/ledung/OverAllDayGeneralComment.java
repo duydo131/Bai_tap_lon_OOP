@@ -1,5 +1,6 @@
 package ledung;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import Input.InputData;
@@ -7,69 +8,51 @@ import Input.ReadFile;
 
 public class OverAllDayGeneralComment extends OverAllDay {
 	
+	private String timeAdverb;
+	
 	public OverAllDayGeneralComment(Date date) {
 		super(date);
 	}
 	
-	OverAllDayStockClass VN30 = new OverAllDayStockClass(date,"VN30");
-	OverAllDayStockClass HNX30 = new OverAllDayStockClass(date,"HNX30");
+	OverAllDayVN30 VN30 = new OverAllDayVN30(date);
+	OverAllDayHNX30 HNX30 = new OverAllDayHNX30(date);
 
-	
-	public String setTimeAdverb() {
-		String timeAdverb = "";
-		int VN30cnt = VN30.increaseCounter("VN30");
-		int HNX30cnt = HNX30.increaseCounter("HNX30");
-		if ((VN30cnt >= 20) && (HNX30cnt >= 20) ||
-				(VN30cnt <= 10) && (HNX30cnt <= 10 ) ||
-				(VN30cnt <= 20 && VN30cnt >= 10) && (HNX30cnt <= 20 && HNX30cnt >= 10)){
-					timeAdverb = InputData.getRandom(AdverbTime.getProgressiveTimeAdverb());
-					return timeAdverb;
-				}
-		else if ((VN30cnt >= 20) && (HNX30cnt <= 10) ||
-				(VN30cnt <= 10) && (HNX30cnt >= 20 ) ||
-				(VN30cnt <= 20 && VN30cnt >= 10) && (HNX30cnt >= 20 || HNX30cnt <= 10)){
-					timeAdverb = InputData.getRandom(AdverbTime.getOpposingTimeAdverb());
-					return timeAdverb;
-		}
-		return null;
-	}
-	
-	public String setLinkWord() {
-		String linkWord = "";
-		int VN30cnt = VN30.increaseCounter("VN30");
-		int HNX30cnt = HNX30.increaseCounter("HNX30");
-		if ((VN30cnt >= 20) && (HNX30cnt >= 20) ||
-				(VN30cnt <= 10) && (HNX30cnt <= 10 ) ||
-				(VN30cnt <= 20 && VN30cnt >= 10) && (HNX30cnt < 20 && HNX30cnt >= 10)){
-				linkWord = InputData.getRandom(LinkWord.getProgressiveLinkWord());
-					return linkWord;
-				}
-		else if ((VN30cnt >= 20) && (HNX30cnt <= 10) ||
-				(VN30cnt <= 10) && (HNX30cnt >= 20 ) ||
-				(VN30cnt <= 20 && VN30cnt >= 10) && (HNX30cnt >= 20 || HNX30cnt < 10)){
-				linkWord = InputData.getRandom(LinkWord.getOpposingLinkWord());
-					return linkWord;
-		}
-		return null;
-	}
-	
-	public String createClause() {
+	public void setTimeAdverb() {
 		
-		ReadFile.loadData();
-				
-		String timeAdverb = this.setTimeAdverb();
-		
-		if (InputData.isWeekend(date)) {
-			return "Ngày cuối tuần không có giao dịch";
-		}
+		// 12 - 14 - 16 - 18
 
-		return VN30.setClause("VN30") + timeAdverb + HNX30.setClause("HNX30");
+		int VN30Counter = VN30.increaseStockCounter("VN30");
+		int HNX30Counter = HNX30.increaseStockCounter("HNX30");
 		
+		if ((VN30Counter >= 16) && (HNX30Counter >= 16) ||
+			(VN30Counter <= 14) && (HNX30Counter <= 14) ||
+			(VN30Counter <= 16 && VN30Counter >= 14) && (HNX30Counter <= 16 && HNX30Counter >= 14)) {
+			this.timeAdverb  = InputData.getRandom(AdverbTime.getProgressiveTimeAdverb());
+		}
+		else if ((VN30Counter >= 18) && (HNX30Counter <= 12) ||
+				(VN30Counter <= 12) && (HNX30Counter >= 18) ||
+				(VN30Counter <= 16 && VN30Counter >= 14) && (HNX30Counter >= 16 || HNX30Counter <= 14) ||
+				((VN30Counter >= 16 || VN30Counter <= 14) && (HNX30Counter >= 14 && HNX30Counter <= 16))) {
+			this.timeAdverb = InputData.getRandom(AdverbTime.getOpposingTimeAdverb());
+		}
 	}
-	
-	public void createSentence() {
+
+	@Override
+	public ArrayList<String> getTag() {
+		return listTag;
+	}
+
+	@Override
+	public String get() {
 		
-		System.out.println(this.createClause());
-		
+		this.setTimeAdverb();
+
+		return VN30.get() + timeAdverb + HNX30.get();
+	}
+
+	@Override
+	public void setTag() {
+		listTag.add("overall");
+		listTag.add("general comment");
 	}
 }

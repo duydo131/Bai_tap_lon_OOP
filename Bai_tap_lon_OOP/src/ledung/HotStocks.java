@@ -6,16 +6,13 @@ import java.util.Date;
 import Input.*;
 
 public abstract class HotStocks extends Sentence {
+	
 	protected static SimpleDateFormat formats = new SimpleDateFormat("dd/MM/yyyy");
 	
-	int numberStock;
-	STOCK stock[];
-	String name;
-	
-	public HotStocks(int number, String name) {
-		this.numberStock = number;
-		this.stock = new STOCK[number];
-		this.name = name;
+	protected Date date;
+		
+	public HotStocks(Date date) {
+		this.date = date;
 	}
 	
 	@Override
@@ -25,6 +22,7 @@ public abstract class HotStocks extends Sentence {
 	}
 	
 	protected static STOCK[] selectionSorting(STOCK[] stock, Date date1, Date date2) {
+		
 		int max;
 		STOCK temp;
 		
@@ -45,8 +43,7 @@ public abstract class HotStocks extends Sentence {
 	
 	public static long totalVolume(STOCK stock, Date date1, Date date2) throws IndexOutOfBoundsException {
 		
-		long total = 0;;
-		
+		long total = 0;
 		int days = InputData.getDays(date1, date2);
 		
 		try {
@@ -55,6 +52,7 @@ public abstract class HotStocks extends Sentence {
 			}
 		} 
 		catch (IndexOutOfBoundsException e) {
+			
 		}
 		
 		return total;

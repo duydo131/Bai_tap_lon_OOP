@@ -26,13 +26,6 @@ import duy.OneStock2Month;
 import duy.OneStock2Week;
 import duy.WeekHNX30;
 import duy.WeekVN30;
-import ledung.HotStocksDay;
-import ledung.TomorrowPredictionStockClass;
-import vandung.Sentences.ComparisionHNX30;
-import vandung.Sentences.ComparisionRandomHNX30;
-import vandung.Sentences.ComparisionRandomVN30;
-import vandung.Sentences.ComparisionStockHot;
-import vandung.Sentences.ComparisionVN30;
 
 public class Demo {
 	private Date date;
@@ -197,26 +190,26 @@ public class Demo {
 			newInstance = new OneStock2Week(stock, date);
 			break;
 
-		case "ComparisionStockHot":
-			newInstance = new ComparisionStockHot(date);
-			break;
+//		case "ComparisionStockHot":
+//			newInstance = new ComparisionStockHot(date);
+//			break;
 			
 //		case "ComparisionVN30":
 //			newInstance = new ComparisionVN30(date);
 //			break;
 			
-		case "ComparisionRandomVN30":
-			newInstance = new ComparisionRandomVN30(date);
-			break;
+//		case "ComparisionRandomVN30":
+//			newInstance = new ComparisionRandomVN30(date);
+//			break;
 			
 //		case "ComparisionHNX30":
 //			newInstance = new ComparisionHNX30(date);
 //			break;
 			
-		case "ComparisionRandomHNX30":
-			newInstance = new ComparisionRandomHNX30(date);
-			break;
-		
+//		case "ComparisionRandomHNX30":
+//			newInstance = new ComparisionRandomHNX30(date);
+//			break;
+//		
 //		case "DayTitle":
 //			newInstance = new DayTitle(date);
 //			break;
