@@ -17,10 +17,9 @@ public class Status {
 	public final static String addition1="";
 	public final static String addition2="%";
 
-	public Status(Date date1, STOCK stock, int time) {
-		this.timePeriod=time;
+	public Status(Date date1, STOCK stock) {
 		this.date1=date1;
-		this.date2=Tool.getDate(date1,0-timePeriod);
+		this.date2=Tool.getDate(date1, -1);
 		this.stock=stock;
 		this.giaDongCua=InputData.getToday(date1).get(stock).getGiaDongCua();
 		this.giaDongCuaNgayTruoc=InputData.getToday(date2).get(stock).getGiaDongCua();
@@ -94,14 +93,7 @@ public class Status {
 			else return "Hãy thay đổi mã cổ phiếu về VN-INDEX hoặc HASTC.";
 		}
 	}			 
-	//Chu kỳ
-	public String statusCycle() {
-		String cycle = "nhập lại ngày";
-		if(timePeriod==1) return cycle =  " ngày ";
-		if(timePeriod==7) return cycle =  " tuần ";
-		if(timePeriod==28) return cycle =  " tháng ";
-		return cycle;
-	}
+
 	//Trạng thái biến động giá trong ngày
 	public String statusDaylyPrice() {
 		String daylyPrice = " đã có biến động nhẹ ";
@@ -142,39 +134,38 @@ public class Status {
 		return daylyPrice;
 	}
 	
-	public String MarketOrStock() {
-		String status = null;
-		if(stock!=STOCK.VNINDEX && stock!=STOCK.HASTC) return "Cổ phiếu ";
-		if(stock==STOCK.VNINDEX || stock==STOCK.HASTC) return "Thị trường ";
-		return status;
-	}
 	public String statusInvestor() {
 		String status = " đang lưỡng lự. ";
-		if(stockPriceChangingPercentage() > timePeriod && stockVolumeChangingPercentage() > 3*timePeriod
-				&& stockVolumeChangingPercentage() < 6*timePeriod) 
+		if(stockPriceChangingPercentage() > 1 && stockVolumeChangingPercentage() > 5) 
 			return status = " lạc quan, đẩy giá cổ phiếu tăng lên.";
 		
-		if(stockPriceChangingPercentage() < -timePeriod && stockVolumeChangingPercentage() < -3*timePeriod
-				&& stockVolumeChangingPercentage() > -6*timePeriod) 
-			return status = " bi quan, kéo giá cổ phiếu đi xuống.";
+		if(stockPriceChangingPercentage() > 1 && stockVolumeChangingPercentage() < -5) 
+			return status = " vẫn lạc quan, mặc dù giao dịch cổ phiếu kém sôi động so với ngày trước.";
+		
+		if(stockPriceChangingPercentage() < -1 && stockVolumeChangingPercentage() < -5)
+				return status = " bi quan, kéo giá cổ phiếu đi xuống.";
+		
+		if(stockPriceChangingPercentage() < -1 && stockVolumeChangingPercentage() > 5)
+			return status = " vẫn bi quan, mặc dù giao dịch cổ phiếu sôi động hơn so với ngày trước.";
+		
 		if(KL<20000) return " không mặn mà với " + stock ;
 		return status;	
 	}
 	
 	public String statusMarket() {
 		String status = " vẫn ổn định so với ";
-		if(stockVolumeChangingPercentage() > 3*timePeriod) return status = " sôi động hơn so với ";
-		if(stockVolumeChangingPercentage() < -3*timePeriod) return status = " kém sôi động hơn so với ";
+		if(stockVolumeChangingPercentage() > 3) return status = " sôi động hơn so với ";
+		if(stockVolumeChangingPercentage() < -3) return status = " kém sôi động hơn so với ";
 		return status;	
 	}
 	
 	public String forecast() {
 		String status = null;
 		if(stockPriceChangingPercentage()<0) {
-			if(stockPriceChangingPercentage()>-2*timePeriod) {
+			if(stockPriceChangingPercentage()>-2) {
 				return status = " ở mức ổn định. ";
 			}
-			else if(stockPriceChangingPercentage()>-4*timePeriod && stockPriceChangingPercentage()<=-2*timePeriod) { 
+			else if(stockPriceChangingPercentage()>-4 && stockPriceChangingPercentage()<=-2) { 
 				return status = " tiếp tục giảm.";
 			}
 			else {
@@ -182,10 +173,10 @@ public class Status {
 			}
 		}
 		else if(stockPriceChangingPercentage()>0) {
-			if(stockPriceChangingPercentage()<2*timePeriod) {
+			if(stockPriceChangingPercentage()<2) {
 				return status = " ở mức ổn định. ";
 			}
-			else if(stockPriceChangingPercentage()<4*timePeriod && stockPriceChangingPercentage()>=2*timePeriod) { 
+			else if(stockPriceChangingPercentage()<4 && stockPriceChangingPercentage()>=2) { 
 				return status = " tiếp tục đà tăng. ";
 			}
 			else {
@@ -194,6 +185,33 @@ public class Status {
 		}
 		return status;
 		
+	}
+	
+	public String Liquidity() {
+		if(KL>=2000000) {
+			return " cực kỳ cao ";
+		}
+		else if(KL<2000000 && KL>=1000000) {
+			return " rất cao ";
+		}
+		else if(KL<1000000 && KL>=500000) {
+			return " cao ";
+		}
+		else if(KL<500000 && KL>=100000) {
+			return " tương đối cao ";
+		}
+		else if(KL<100000 && KL>=80000) {
+			return " tương đối thấp ";
+		}
+		else if(KL<80000 && KL>=20000) {
+			return " thấp ";
+		}
+		else if(KL<20000 && KL>=10000) {
+			return " rất thấp ";
+		} 
+		else {
+			return " cực kỳ thấp ";
+		}
 	}
 		
 	public String comment() {
