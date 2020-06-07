@@ -13,6 +13,14 @@ public class Forecast extends comment {
 		listTag.add("dự báo");
 		listTag.add("những ngày tới");	
 	}
+	
+	public String get() {
+		if(status.weekendCheck()) {
+			return "Các nhà đầu tư đang chờ tuần giao dịch mới.";
+		}else
+			return "Trong những ngày tới, dự báo " + status.stock + " sẽ" + status.forecast();
+	}
+	
 	public void comment() {
 		if(status.weekendCheck()) {
 			System.out.println("Các nhà đầu tư đang chờ tuần giao dịch mới.");
