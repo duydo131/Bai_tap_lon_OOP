@@ -9,13 +9,6 @@ import java.util.Date;
 import Input.ReadFile;
 import Input.STOCK;
 import Input.Tool;
-import duy.Cau1VN30;
-import duy.DayHNX30;
-import duy.OneStock1;
-import duy.OneStock2Month;
-import duy.OneStock2Week;
-import duy.OneStockRoot;
-import duy.WeekHNX30;
 import gui.Demo;
 import gui.Tag;
 
