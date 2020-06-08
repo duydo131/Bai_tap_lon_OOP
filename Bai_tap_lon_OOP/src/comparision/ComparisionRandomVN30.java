@@ -24,7 +24,8 @@ public class ComparisionRandomVN30 extends ComparisionRandom {
 	@Override
 	public void setTag() {
 		super.setTag();
-		this.listTag.add("VNX30");
+		this.listTag.add("VNINDEX");
+		this.listTag.add("HOSE");
 		this.listTag.add("Hồ Chí Minh");
 	}
 

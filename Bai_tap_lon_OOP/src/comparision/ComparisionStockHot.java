@@ -31,8 +31,9 @@ public class ComparisionStockHot extends Comparision {
 
 	@Override
 	public void setTag() {
-		this.listTag.add("Comparision");
-		this.listTag.add("StockHot");
+		this.listTag.add("general");
+		this.listTag.add("comparision");
+		this.listTag.add("stockHot");
 		this.listTag.add("HNX30");
 		this.listTag.add("VN30");
 	}

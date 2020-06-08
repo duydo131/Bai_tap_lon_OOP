@@ -14,6 +14,15 @@ public abstract class DayTitleStockClass extends Title{
 		super(date);
 	}
 	
+	@Override
+	public void setTag() {
+		super.setTag();
+	}
+	
+	protected void setTag(String tag) {
+		listTag.add(tag);
+	}
+	
 	public void setVerb(String className) {
 		
 		OverAllDayStockClass data;

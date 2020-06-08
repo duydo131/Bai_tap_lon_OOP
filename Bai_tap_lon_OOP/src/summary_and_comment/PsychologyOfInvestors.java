@@ -11,6 +11,7 @@ public class PsychologyOfInvestors extends comment {
 	}
 	
 	public void setTag() {
+		super.setTag();
 		listTag.add("nhà đầu tư");
 		listTag.add("lạc quan");
 		listTag.add("bị quan");

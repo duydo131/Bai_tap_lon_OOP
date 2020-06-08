@@ -15,4 +15,9 @@ public abstract class Title extends Sentence{
 		this.date = date;
 		this.adverb = "Thị trường chứng khoán ngày " + formats.format(date) + ": ";
 	}
+	
+	@Override
+	public void setTag() {
+		listTag.add("title");
+	}
 }

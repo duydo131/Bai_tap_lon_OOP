@@ -49,6 +49,6 @@ public abstract class HotStocksWeek extends HotStocks{
 
 		String clause = HotStocks.arrayToString(stock, volume, 3);
 		
-		return "Top 3 cổ phiếu HOT ngày " + formats.format(date1) + " đến ngày " + formats.format(date2) + " là: " + clause;
+		return "Top 3 cổ phiếu HOT của " + className + " ngày " + formats.format(date1) + " đến ngày " + formats.format(date2) + " là: " + clause;
 	}
 }

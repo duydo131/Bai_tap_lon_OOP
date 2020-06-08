@@ -44,9 +44,7 @@ public class OverAllWeekGeneralComment extends OverAllWeek {
 
 	@Override
 	public String get() {
-		
 		this.setTimeAdverb();
-
 		return VN30.get() + timeAdverb + HNX30.get();
 	}
 
@@ -54,5 +52,6 @@ public class OverAllWeekGeneralComment extends OverAllWeek {
 	public void setTag() {
 		listTag.add("overall");
 		listTag.add("general comment");
+		listTag.add("gereral");
 	}
 }

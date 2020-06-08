@@ -20,7 +20,8 @@ public class ComparisionRandomHNX30 extends ComparisionRandom{
 	@Override
 	public void setTag() {
 		super.setTag();
-		this.listTag.add("HNX30");
+		this.listTag.add("HASTC");
+		this.listTag.add("HNXINDEX");
 		this.listTag.add("Hà Nội");
 	}
 	

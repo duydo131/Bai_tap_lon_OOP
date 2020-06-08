@@ -11,6 +11,7 @@ public class commentStock extends comment {
 	}
 	
 	public void setTag() {
+		super.setTag();
 		listTag.add("Cổ phiếu");
 			
 	}

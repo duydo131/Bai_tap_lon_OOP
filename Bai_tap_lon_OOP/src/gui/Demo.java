@@ -21,25 +21,53 @@ import changing_sentence.Cau4HNX30;
 import changing_sentence.Cau4VN30;
 import changing_sentence.DayHNX30;
 import changing_sentence.DayVN30;
+import changing_sentence.OverAllDayHNX30;
+import changing_sentence.OverAllDayVN30;
 import changing_sentence.WeekHNX30;
 import changing_sentence.WeekVN30;
+import comparision.ComparisionHNX30;
+import comparision.ComparisionRandomHNX30;
+import comparision.ComparisionRandomVN30;
+import comparision.ComparisionStockHot;
+import comparision.ComparisionVN30;
+import comparision.HotStocksDayHNX30;
+import comparision.HotStocksDayVN30;
+import stock_code_analiztion.DetailPricePercentageChanging;
 import stock_code_analiztion.OneStock1;
 import stock_code_analiztion.OneStock2Month;
 import stock_code_analiztion.OneStock2Week;
+import stock_code_analiztion.OverAllDayStockCode;
+import stock_code_analiztion.PriceChangingDailySentence;
+import stock_code_analiztion.PriceChangingPercentageDailySentence;
+import stock_code_analiztion.VolumeChangingDailySentence;
+import stock_code_analiztion.VolumePercentageDailyChangingSentence;
+import summary_and_comment.DayTitleHNX30;
+import summary_and_comment.DayTitleVN30;
+import summary_and_comment.Forecast;
+import summary_and_comment.Liquidity;
+import summary_and_comment.PsychologyOfInvestors;
+import summary_and_comment.TomorrowPredictionHNX30;
+import summary_and_comment.TomorrowPredictionVN30;
+import summary_and_comment.commentMarket;
+import summary_and_comment.commentStock;
 
 public class Demo {
 	private Date date;
 	private STOCK stock;
 	private static ArrayList<Tag> list = new ArrayList<>();
+	private static ArrayList<String> listString = new ArrayList<>();
 	
 	static {
 		SimpleDateFormat formats = new SimpleDateFormat("dd/MM/yyyy");
 		Date staticDate = null;
+		Date staticDateWeekend = null;
 		try {
 			staticDate = formats.parse("28/02/2020");
+			staticDateWeekend = formats.parse("22/02/2020");
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
+		
 		STOCK staticStock = STOCK.BID;
 		
 		list.add(new Cau1HNX30(staticDate));
@@ -60,16 +88,45 @@ public class Demo {
 		list.add(new OneStock2Month(staticStock, staticDate));
 		list.add(new OneStock2Week(staticStock, staticDate));
 		
-		//list.add(new ComparisionStockHot(staticDate));
-		//list.add(new ComparisionVN30(staticDate));
-		//list.add(new ComparisionRandomVN30(staticDate));
-		//list.add(new ComparisionHNX30(staticDate));
-		//list.add(new ComparisionRandomHNX30(staticDate));
+		// vandung
+		list.add(new ComparisionStockHot(staticDate));
+		list.add(new ComparisionVN30(staticDate));
+		list.add(new ComparisionRandomVN30(staticDate));
+		list.add(new ComparisionHNX30(staticDate));
+		list.add(new ComparisionRandomHNX30(staticDate));
 		
-		//list.add(new DayTitle(staticDate));
-		//list.add(new TomorrowPredictionStockClass(staticDate));
-		//list.add(new HotStocksDay(staticDate, ""));
+		// duc
+		list.add(new PriceChangingDailySentence(staticDate, staticStock));
+		list.add(new PriceChangingPercentageDailySentence(staticDate, staticStock));
+		list.add(new VolumeChangingDailySentence(staticDate, staticStock));
+		list.add(new VolumePercentageDailyChangingSentence(staticDate, staticStock));
+		list.add(new DetailPricePercentageChanging(staticDate, staticStock));
 		
+		// ledung
+		list.add(new OverAllDayVN30(staticDateWeekend));
+		list.add(new OverAllDayVN30(staticDate));
+		list.add(new OverAllDayHNX30(staticDateWeekend));
+		list.add(new OverAllDayHNX30(staticDate));
+		list.add(new OverAllDayStockCode(staticDate, staticStock));
+		list.add(new HotStocksDayVN30(staticDateWeekend));
+		list.add(new HotStocksDayVN30(staticDate));
+		list.add(new HotStocksDayHNX30(staticDateWeekend));
+		list.add(new HotStocksDayHNX30(staticDate));
+		list.add(new DayTitleVN30(staticDateWeekend));
+		list.add(new DayTitleVN30(staticDate));
+		list.add(new DayTitleHNX30(staticDateWeekend));
+		list.add(new DayTitleHNX30(staticDate));
+		list.add(new TomorrowPredictionHNX30(staticDate));
+		list.add(new TomorrowPredictionVN30(staticDate));
+		
+		// quang
+		list.add(new PsychologyOfInvestors(staticDate, staticStock));
+		list.add(new Forecast(staticDate, staticStock));
+		list.add(new commentMarket(staticDate, staticStock));
+		list.add(new Liquidity(staticDate, staticStock));
+		list.add(new commentStock(staticDate, staticStock));
+		
+		list.forEach(tag -> listString.add(tag.get()));
 	}
 	
 	public Demo(Date date) {
@@ -85,12 +142,13 @@ public class Demo {
 		StringBuffer string = new StringBuffer();
 		ArrayList<String> listTag = new ArrayList<>();
 		listTag.addAll(Arrays.asList(list));
-		ArrayList<Tag> listTagFilter = getListTag(listTag);
-		for (Tag tag : listTagFilter) {
-			string.append(getInstance(tag).get());
-			string.append("\n");
+		ArrayList<String> array = new ArrayList<>();
+		
+		for (Tag tag : getListTag(listTag)) {
+			array.add(tag.get());
 		}
 		
+		array.stream().distinct().forEach(str -> string.append(str + "\n"));
 		return string.toString();
 	}
 	
@@ -190,30 +248,101 @@ public class Demo {
 			newInstance = new OneStock2Week(stock, date);
 			break;
 
-//		case "ComparisionStockHot":
-//			newInstance = new ComparisionStockHot(date);
-//			break;
+		case "ComparisionStockHot":
+			newInstance = new ComparisionStockHot(date);
+			break;
 			
-//		case "ComparisionVN30":
-//			newInstance = new ComparisionVN30(date);
-//			break;
+		case "ComparisionVN30":
+			newInstance = new ComparisionVN30(date);
+			break;
 			
-//		case "ComparisionRandomVN30":
-//			newInstance = new ComparisionRandomVN30(date);
-//			break;
+		case "ComparisionRandomVN30":
+			newInstance = new ComparisionRandomVN30(date);
+			break;
 			
-//		case "ComparisionHNX30":
-//			newInstance = new ComparisionHNX30(date);
-//			break;
+		case "ComparisionHNX30":
+			newInstance = new ComparisionHNX30(date);
+			break;
 			
-//		case "ComparisionRandomHNX30":
-//			newInstance = new ComparisionRandomHNX30(date);
-//			break;
-//		
-//		case "DayTitle":
-//			newInstance = new DayTitle(date);
-//			break;
+		case "ComparisionRandomHNX30":
+			newInstance = new ComparisionRandomHNX30(date);
+			break;
 			
+		case "PriceChangingDailySentence":
+			newInstance = new PriceChangingDailySentence(date, stock);
+			break;
+			
+		case "PriceChangingPercentageDailySentence":
+			newInstance = new PriceChangingPercentageDailySentence(date, stock);
+			break;
+			
+		case "VolumeChangingDailySentence":
+			newInstance = new VolumeChangingDailySentence(date, stock);
+			break;
+			
+		case "VolumePercentageDailyChangingSentence":
+			newInstance = new VolumePercentageDailyChangingSentence(date, stock);
+			break;
+			
+		case "DetailPricePercentageChanging":
+			newInstance = new DetailPricePercentageChanging(date, stock);
+			break;
+			
+		case "OverAllDayVN30":
+			newInstance = new OverAllDayVN30(date);
+			break;
+			
+		case "OverAllDayHNX30":
+			newInstance = new OverAllDayHNX30(date);
+			break;
+			
+		case "OverAllDayStockCode":
+			newInstance = new OverAllDayStockCode(date, stock);
+			break;
+			
+		case "HotStocksDayHNX30":
+			newInstance = new HotStocksDayHNX30(date);
+			break;
+			
+		case "HotStocksDayVN30":
+			newInstance = new HotStocksDayVN30(date);
+			break;
+			
+		case "DayTitleVN30":
+			newInstance = new DayTitleVN30(date);
+			break;
+			
+		case "DayTitleHNX30":
+			newInstance = new DayTitleHNX30(date);
+			break;
+			
+		case "TomorrowPredictionVN30":
+			newInstance = new TomorrowPredictionVN30(date);
+			break;
+			
+		case "TomorrowPredictionHNX30":
+			newInstance = new TomorrowPredictionHNX30(date);
+			break;
+			
+		case "PsychologyOfInvestors":
+			newInstance = new PsychologyOfInvestors(date, stock);
+			break;
+			
+		case "Forecast":
+			newInstance = new Forecast(date, stock);
+			break;
+			
+		case "commentMarket":
+			newInstance = new commentMarket(date, stock);
+			break;
+			
+		case "Liquidity":
+			newInstance = new Liquidity(date, stock);
+			break;
+			
+		case "commentStock":
+			newInstance = new commentStock(date, stock);
+			break;
 			
 		default:
 			newInstance = null;

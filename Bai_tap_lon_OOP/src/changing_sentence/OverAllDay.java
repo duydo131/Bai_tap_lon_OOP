@@ -11,4 +11,9 @@ public abstract class OverAllDay extends Sentence {
 	public OverAllDay(Date date) {
 		this.date = date;
 	}
+	
+	@Override
+	public void setTag() {
+		listTag.add("changing");
+	}
 }

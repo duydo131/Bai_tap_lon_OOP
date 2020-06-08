@@ -12,6 +12,15 @@ public abstract class HotStocksDay extends HotStocks {
 		super(date);
 		this.date = date;
 	}
+	
+	@Override
+	public void setTag() {
+		super.setTag();
+	}
+	
+	protected void setTag(String tag) {
+		listTag.add(tag);
+	}
 
 	public String getSentence(String className) {
 		ReadFile.loadData();
@@ -38,6 +47,6 @@ public abstract class HotStocksDay extends HotStocks {
 			}
 		}
 		String clause = HotStocks.arrayToString(stock, volume, 3);
-		return "Top 3 cổ phiếu HOT ngày " + formats.format(day) + " là: " + clause;
+		return "Top 3 cổ phiếu HOT của " + className + " ngày " + formats.format(day) + " là: " + clause;
 	}
 }

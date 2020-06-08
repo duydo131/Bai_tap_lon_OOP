@@ -14,11 +14,15 @@ public abstract class TomorrowPredictionStockClass extends TomorrowPrediction{
 	
 	public TomorrowPredictionStockClass(Date date) {
 		super();
-		setTag();
 		this.subject = " phiên giao dịch ngày mai";
 		this.verb = " sẽ tiếp tục là một ngày giao dịch chứng kiến sự ";
 		this.linkWord = "Nếu diễn biến của ngày giao dịch hôm nay còn tiếp diễn thì";
 		this.date = date;
+	}
+	
+	@Override
+	public void setTag() {
+		listTag.add("prediction");
 	}
 	
 	public int increaseCounter(String className) {

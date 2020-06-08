@@ -12,6 +12,7 @@ public class overallComment extends comment{
 	}
 	
 	public void setTag() {
+		super.setTag();
 		listTag.add("nhà đầu tư");
 			
 	}

@@ -22,7 +22,7 @@ public class WeekVN30 extends Week{
 	@Override
 	public void setTag() {
 		this.listTag.add("HOSE");
-		this.listTag.add("VN-INDEX");
+		this.listTag.add("VNINDEX");
 		this.listTag.add("Hồ Chí Minh");
 	}
 }

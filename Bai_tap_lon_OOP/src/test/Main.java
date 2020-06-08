@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.LinkedList;
 
 import Input.ReadFile;
 import Input.STOCK;
@@ -24,9 +25,17 @@ public class Main {
 		Date date1 = Tool.getDate(date, 2);
 		STOCK stock = STOCK.BID;
 		
-		Demo demo = new Demo(date, stock);
-		System.out.println(demo.getSentence("HASTC", "chung", "so sánh"));
+		LinkedList<String> li = new LinkedList<>(); 
+		li.add("abc");
+		li.add("a");
+		li.add("ab");
+		li.add("abc");
+		li.add("ab");
+		li.add("abc");
 		
+		StringBuffer string = new StringBuffer();
+		li.stream().distinct().forEach(str -> string.append(str + "\n"));
+		System.out.println(string.toString());
 	}
 }
 

@@ -148,7 +148,7 @@ public class Controller implements Initializable {
 		if (testDay(date)) {
 
 			DataLoad dataLoad = new DataLoad(date, search, stockCode);
-			textArea.appendText(dataLoad.get1());
+			textArea.appendText(dataLoad.get());
 
 			if (dataLoad.getChart()) {
 				dataLoad.setChart(false);

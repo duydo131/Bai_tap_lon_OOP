@@ -10,6 +10,7 @@ public class Forecast extends comment {
 	}
 	
 	public void setTag() {
+		super.setTag();
 		listTag.add("dự báo");
 		listTag.add("những ngày tới");	
 	}

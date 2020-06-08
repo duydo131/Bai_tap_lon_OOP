@@ -26,7 +26,8 @@ public class ComparisionVN30 extends ComparisionEXCHANGES implements Tag {
 	@Override
 	public void setTag() {
 		super.setTag();
-		this.listTag.add("VN30");
+		this.listTag.add("HOSE");
+		this.listTag.add("VNINDEX");
 		this.listTag.add("Hà Nội");
 	}
 

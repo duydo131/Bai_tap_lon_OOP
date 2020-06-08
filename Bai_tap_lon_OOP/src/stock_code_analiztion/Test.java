@@ -26,5 +26,11 @@ public class Test {
 		System.out.println(o3.get());
 		System.out.println(o3.getTag());
 		
+		// ledung
+		OverAllDayStockCode p15 = new OverAllDayStockCode(date, STOCK.ACB);
+		System.out.println(p15.get());
+		System.out.println(p15.getTag());
+		System.out.println();
+		
 	}
 }

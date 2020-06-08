@@ -8,6 +8,7 @@ public class TomorrowPredictionVN30 extends TomorrowPredictionStockClass{
 	public TomorrowPredictionVN30(Date date) {
 		super(date);
 		this.subject = "VN30";
+		setTag();
 	}
 
 	@Override
@@ -23,7 +24,9 @@ public class TomorrowPredictionVN30 extends TomorrowPredictionStockClass{
 
 	@Override
 	public void setTag() {
-		listTag.add("prediction");
-		listTag.add("VN30");
+		super.setTag();
+		listTag.add("VNINDEX");
+		listTag.add("HOSE");
+		listTag.add("Hồ Chí Minh");
 	}
 }

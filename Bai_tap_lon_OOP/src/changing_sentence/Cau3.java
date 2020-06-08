@@ -33,7 +33,8 @@ public abstract class Cau3 extends San{
 	@Override
 	public void setTag() {
 		this.listTag.add("giao dịch trần");
-		this.listTag.add("chung");
+		this.listTag.add("day");
+		listTag.add("changing");
 	}
 	
 	@Override

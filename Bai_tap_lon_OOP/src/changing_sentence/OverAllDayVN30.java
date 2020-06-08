@@ -23,19 +23,23 @@ public class OverAllDayVN30 extends OverAllDayStockClass{
 		
 		if (InputData.isWeekend(date)) {
 			OverAllWeekVN30 sentence = new OverAllWeekVN30(date);
+			setTag("week");
 			return sentence.get();
 		}
 		else {
 			this.setComplement(this.subject);
 			this.setVerb(this.verb);
+			setTag("day");
 			return "Nhóm cổ phiếu " + subject + " " + verb + complement;
 		}
 	}
 
 	@Override
 	public void setTag() {
+		super.setTag();
 		listTag.add("overall");
 		listTag.add("VN30");
+		listTag.add("VNINDEX");
+		listTag.add("HOSE");
 	}
-
 }

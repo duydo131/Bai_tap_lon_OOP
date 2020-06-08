@@ -23,19 +23,23 @@ public class OverAllDayHNX30 extends OverAllDayStockClass{
 		
 		if (InputData.isWeekend(date)) {
 			OverAllWeekHNX30 sentence = new OverAllWeekHNX30(date);
+			setTag("week");
 			return sentence.get();
 		}
 		else {
 			this.setComplement(this.subject);
 			this.setVerb(this.verb);
+			setTag("day");
 			return "Nhóm cổ phiếu " + subject + " " + verb + complement;
 		}
 	}
 
 	@Override
 	public void setTag() {
+		listTag.add("changing");
 		listTag.add("overall");
 		listTag.add("HNX30");
+		listTag.add("HASTC");
 	}
 
 }

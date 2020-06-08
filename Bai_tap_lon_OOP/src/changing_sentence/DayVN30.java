@@ -22,7 +22,7 @@ public class DayVN30 extends Day{
 	public void setTag() {
 		super.setTag();
 		this.listTag.add("HOSE");
-		this.listTag.add("VN-INDEX");
+		this.listTag.add("VNINDEX");
 		this.listTag.add("Hồ Chí Minh");
 	}
 }

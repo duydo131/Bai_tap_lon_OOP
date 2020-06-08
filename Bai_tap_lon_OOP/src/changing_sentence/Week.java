@@ -19,6 +19,7 @@ public abstract class Week extends NhanXet {
 	@Override
 	public void setTag() {
 		this.listTag.add("tuần");
+		this.listTag.add("week");
 	}
 	
 	private long sum(Date date) {

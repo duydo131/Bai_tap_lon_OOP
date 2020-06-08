@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import Input.ReadFile;
 
-public class Test {
+public class TestVanDung {
 	public static void main(String[] args) throws ParseException {
 		ReadFile.loadData();
 

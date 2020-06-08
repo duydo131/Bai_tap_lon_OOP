@@ -22,7 +22,7 @@ public class DayHNX30 extends Day {
 	public void setTag() {
 		super.setTag();
 		this.listTag.add("HASTC");
-		this.listTag.add("HNX-INDEX");
+		this.listTag.add("HNXINDEX");
 		this.listTag.add("Hà Nội");
 	}
 }

@@ -41,8 +41,9 @@ public abstract class Cau2 extends San{
 	
 	@Override
 	public void setTag() {
-		this.listTag.add("chung");
+		this.listTag.add("day");
 		this.listTag.add("giao dịch trên 1 triệu cổ phiếu");
+		listTag.add("changing");
 	}
 
 	@Override

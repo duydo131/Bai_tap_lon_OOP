@@ -1,4 +1,4 @@
-package changing_sentence;
+package stock_code_analiztion;
 
 import java.util.Date;
 
@@ -13,6 +13,7 @@ public class DetailPricePercentageChanging extends changingSentence {
 	
 	
 	public void setTag() {
+		super.setTag();
 		listTag.add("tăng");
 		listTag.add("giảm");
 		listTag.add("giá");

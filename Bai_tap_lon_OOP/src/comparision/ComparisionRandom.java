@@ -26,7 +26,7 @@ public abstract class ComparisionRandom extends Comparision implements Tag {
 
 	@Override
 	public void setTag() {
-		this.listTag.add("Comparision");
+		this.listTag.add("comparision");
 	}
 	@Override
 	public ArrayList<String> getTag() {

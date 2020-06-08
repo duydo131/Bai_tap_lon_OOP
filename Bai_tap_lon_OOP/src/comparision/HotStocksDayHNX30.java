@@ -19,19 +19,23 @@ public class HotStocksDayHNX30 extends HotStocksDay{
 
 	@Override
 	public String get() {
-		
 		if (InputData.isWeekend(date)) {
 			HotStocksWeekHNX30 sentence = new HotStocksWeekHNX30(date);
+			setTag("weekend");
 			return sentence.get();
 		}
 		else {
+			setTag("day");
 			return super.getSentence(this.subject);
 		}
 	}
 	
 	@Override
 	public void setTag() {
-		listTag.add("hot stocks");
+		super.setTag();
+		listTag.add("HNXINDEX");
+		this.listTag.add("HASTC");
+		this.listTag.add("Hà Nội");
 	}
 	
 }

@@ -38,7 +38,8 @@ public abstract class Cau4 extends San{
 		this.listTag.add("khối lượng giao dịch");
 		this.listTag.add("thanh khoản");
 		this.listTag.add("giá trị");
-		this.listTag.add("chung");
+		this.listTag.add("day");
+		listTag.add("changing");
 	}
 	
 	@Override

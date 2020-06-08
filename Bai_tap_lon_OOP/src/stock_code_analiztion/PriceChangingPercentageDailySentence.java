@@ -1,4 +1,4 @@
-package changing_sentence;
+package stock_code_analiztion;
 
 import java.util.Date;
 
@@ -12,6 +12,7 @@ public class PriceChangingPercentageDailySentence extends changingSentence {
 		type = "giá";
 	}
 	public void setTag() {
+		super.setTag();
 		listTag.add("tăng");
 		listTag.add("giảm");
 		listTag.add("giá");

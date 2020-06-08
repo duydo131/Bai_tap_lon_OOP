@@ -34,8 +34,8 @@ public abstract class ComparisionEXCHANGES extends Comparision {
 
 	@Override
 	public void setTag() {
-		this.listTag.add("Comparision");
-		this.listTag.add("StockHot");
+		this.listTag.add("comparision");
+		this.listTag.add("stockHot");
 	}
 
 	private String Connect() {

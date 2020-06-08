@@ -27,7 +27,7 @@ public class Cau4HNX30 extends Cau4{
 
 	@Override
 	public void setTag() {
-		this.listTag.add("HNX-INDEX");
+		this.listTag.add("HNXINDEX");
 		this.listTag.add("HASTC");
 		this.listTag.add("Hà Nội");
 	}

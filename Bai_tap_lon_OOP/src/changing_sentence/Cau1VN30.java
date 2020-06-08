@@ -28,7 +28,7 @@ public class Cau1VN30 extends Cau1{
 	public void setTag() {
 		super.setTag();
 		this.listTag.add("HOSE");
-		this.listTag.add("VN-INDEX");
+		this.listTag.add("VNINDEX");
 		this.listTag.add("Hồ Chí Minh");
 	}
 }

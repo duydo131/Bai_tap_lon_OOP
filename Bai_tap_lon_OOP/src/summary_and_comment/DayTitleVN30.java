@@ -23,19 +23,23 @@ public class DayTitleVN30 extends DayTitleStockClass{
 		
 		if (InputData.isWeekend(date)) {
 			WeekTitleVN30 sentence = new WeekTitleVN30(date);
+			setTag("weekend");
 			return sentence.get();
 		}
 		else {
 			this.setVerb(subject);
 			this.setComplement(subject);
+			setTag("day");
 			return adverb + subject + " " + verb + ", " + complement;
 		}
 	}
 
 	@Override
 	public void setTag() {
-		listTag.add("title");
-		listTag.add("VN30");		
+		super.setTag();
+		listTag.add("VNINDEX");
+		listTag.add("HOSE");
+		listTag.add("Hồ Chí Minh");		
 	}
 	
 }

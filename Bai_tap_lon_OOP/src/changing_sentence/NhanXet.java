@@ -34,5 +34,6 @@ public abstract class NhanXet implements Tag{
 	@Override
 	public void setTag() {
 		this.listTag.add("nhận xét");
+		listTag.add("changing");
 	}
 }

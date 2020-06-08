@@ -11,6 +11,15 @@ public abstract class OverAllDayStockClass extends OverAllDay {
 		this.subject = className;
 	}
 	
+	@Override
+	public void setTag() {
+		super.setTag();
+	}
+	
+	protected void setTag(String tag) {
+		listTag.add(tag);
+	}
+	
 	public int increaseStockCounter(String className) {
 		
 		int counter = 0;

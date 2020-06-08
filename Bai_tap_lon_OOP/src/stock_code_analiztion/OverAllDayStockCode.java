@@ -1,9 +1,13 @@
-package changing_sentence;
+package stock_code_analiztion;
 
 import java.util.ArrayList;
 import java.util.Date;
 
 import Input.*;
+import changing_sentence.AdverbStatus;
+import changing_sentence.OverAllDay;
+import changing_sentence.OverAllWeekStockCode;
+import changing_sentence.Verb;
 
 public class OverAllDayStockCode extends OverAllDay{
 	
@@ -174,6 +178,8 @@ public class OverAllDayStockCode extends OverAllDay{
 
 	@Override
 	public void setTag() {		
-		listTag.add("overall");
+		listTag.add("overall");		
+		listTag.add("day");		
+		listTag.add("changing");
 	}
 }

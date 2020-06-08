@@ -23,16 +23,21 @@ public class HotStocksDayVN30 extends HotStocksDay{
 		
 		if (InputData.isWeekend(date)) {
 			HotStocksWeekVN30 sentence = new HotStocksWeekVN30(date);
+			setTag("weekend");
 			return sentence.get();
 		}
 		else {
+			setTag("day");
 			return super.getSentence(this.subject);
 		}
 	}
 	
 	@Override
 	public void setTag() {
-		listTag.add("hot stocks");
+		super.setTag();
+		listTag.add("VNINDEX");
+		this.listTag.add("HOSE");
+		this.listTag.add("Thành phố Hồ Chí Minh");
 	}
 	
 }

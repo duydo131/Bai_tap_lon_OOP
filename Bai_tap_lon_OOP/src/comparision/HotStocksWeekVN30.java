@@ -21,7 +21,10 @@ public class HotStocksWeekVN30 extends HotStocksWeek{
 	}
 	
 	public void setTag() {
-		
+		super.setTag();
+		this.listTag.add("VNINDEX");
+		this.listTag.add("HOSE");
+		this.listTag.add("Thành phố Hồ Chí Minh");
 	}
 	
 }

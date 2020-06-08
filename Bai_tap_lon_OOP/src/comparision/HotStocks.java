@@ -17,8 +17,7 @@ public abstract class HotStocks extends Sentence {
 	
 	@Override
 	public void setTag() {
-		listTag.add("hot stock");
-		
+		listTag.add("stockHot");
 	}
 	
 	protected static STOCK[] selectionSorting(STOCK[] stock, Date date1, Date date2) {

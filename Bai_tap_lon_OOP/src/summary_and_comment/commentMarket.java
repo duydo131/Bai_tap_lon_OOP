@@ -12,6 +12,7 @@ public class commentMarket extends comment {
 	}
 	
 	public void setTag() {
+		super.setTag();
 		listTag.add("Thị trường");
 		listTag.add("đồng loạt");	
 	}

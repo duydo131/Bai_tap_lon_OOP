@@ -19,30 +19,34 @@ public class TestLeDung {
 		OverAllDayVN30 p3 = new OverAllDayVN30(weekend);
 		System.out.println(p3.get());
 		System.out.println(p3.getTag());
+		System.out.println();
 		
 		OverAllDayVN30 p4 = new OverAllDayVN30(date);
 		System.out.println(p4.get());
 		System.out.println(p4.getTag());
+		System.out.println();
 		
 		OverAllDayHNX30 p5 = new OverAllDayHNX30(weekend);
 		System.out.println(p5.get());
 		System.out.println(p5.getTag());
+		System.out.println();
 		
 		OverAllDayHNX30 p6 = new OverAllDayHNX30(date);
 		System.out.println(p6.get());
 		System.out.println(p6.getTag());
+		System.out.println();
 		
-		OverAllDayGeneralComment p7 = new OverAllDayGeneralComment(weekend);
-		System.out.println(p7.get());
-		System.out.println(p7.getTag());
+//		OverAllDayGeneralComment p7 = new OverAllDayGeneralComment(weekend);
+//		System.out.println(p7.get());
+//		System.out.println(p7.getTag());
+//		System.out.println();
+//		
+//		OverAllDayGeneralComment p8 = new OverAllDayGeneralComment(date);
+//		System.out.println(p8.get());
+//		System.out.println(p8.getTag());
+//		System.out.println();
 		
-		OverAllDayGeneralComment p8 = new OverAllDayGeneralComment(date);
-		System.out.println(p8.get());
-		System.out.println(p8.getTag());
-		
-		OverAllDayStockCode p15 = new OverAllDayStockCode(date, STOCK.ACB);
-		System.out.println(p15.get());
-		System.out.println(p15.getTag());
+
 		
 	}
 }

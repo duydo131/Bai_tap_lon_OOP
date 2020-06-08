@@ -22,7 +22,7 @@ public class WeekHNX30 extends Week{
 	@Override
 	public void setTag() {
 		this.listTag.add("HASTC");
-		this.listTag.add("HNX-INDEX");
+		this.listTag.add("HNXINDEX");
 		this.listTag.add("Hà Nội");
 	}
 }

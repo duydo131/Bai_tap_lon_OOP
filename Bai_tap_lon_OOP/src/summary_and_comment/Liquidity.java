@@ -10,8 +10,8 @@ public class Liquidity extends comment {
 	}
 
 	public void setTag() {
+		super.setTag();
 		listTag.add("thanh khoản");
-		
 	}
 	
 	public String get() {
