@@ -24,20 +24,20 @@ public class TestDuy {
 		
 		//STOCK staticStock = STOCK.BID;
 		
-		list.add(new Cau1HNX30(staticDate));
-		list.add(new Cau1VN30(staticDate));
-		list.add(new Cau2HNX30(staticDate));
-		list.add(new Cau2VN30(staticDate));
-		list.add(new Cau3GiamHNX30(staticDate));
-		list.add(new Cau3TangHNX30(staticDate));
-		list.add(new Cau3GiamVN30(staticDate));
-		list.add(new Cau3TangVN30(staticDate));
-		list.add(new Cau4VN30(staticDate));
-		list.add(new Cau4HNX30(staticDate));
-		list.add(new DayVN30(staticDate));
-		list.add(new DayHNX30(staticDate));
-		list.add(new WeekVN30(staticDate));
-		list.add(new WeekHNX30(staticDate));
+		list.add(new Cau1ChangingHNX30(staticDate));
+		list.add(new Cau1ChangingVN30(staticDate));
+		list.add(new Cau2ChangingHNX30(staticDate));
+		list.add(new Cau2ChangingVN30(staticDate));
+		list.add(new Cau3ChangingDecreaseHNX30(staticDate));
+		list.add(new Cau3ChangingIncreaseHNX30(staticDate));
+		list.add(new Cau3ChaingingDecreaseVN30(staticDate));
+		list.add(new Cau3ChangingIncreaseVN30(staticDate));
+		list.add(new Cau4ChangingVN30(staticDate));
+		list.add(new Cau4ChangingHNX30(staticDate));
+		list.add(new DayChangingVN30(staticDate));
+		list.add(new DayChangingHNX30(staticDate));
+		list.add(new WeekChangingVN30(staticDate));
+		list.add(new WeekChangingHNX30(staticDate));
 		
 		list.forEach(t -> System.out.println(t.getTag()));
 	}

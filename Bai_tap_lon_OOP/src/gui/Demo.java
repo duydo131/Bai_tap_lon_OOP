@@ -10,22 +10,22 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import Input.STOCK;
-import changing_sentence.Cau1HNX30;
-import changing_sentence.Cau1VN30;
-import changing_sentence.Cau2HNX30;
-import changing_sentence.Cau2VN30;
-import changing_sentence.Cau3GiamHNX30;
-import changing_sentence.Cau3GiamVN30;
-import changing_sentence.Cau3TangHNX30;
-import changing_sentence.Cau3TangVN30;
-import changing_sentence.Cau4HNX30;
-import changing_sentence.Cau4VN30;
-import changing_sentence.DayHNX30;
-import changing_sentence.DayVN30;
+import changing_sentence.Cau1ChangingHNX30;
+import changing_sentence.Cau1ChangingVN30;
+import changing_sentence.Cau2ChangingHNX30;
+import changing_sentence.Cau2ChangingVN30;
+import changing_sentence.Cau3ChangingDecreaseHNX30;
+import changing_sentence.Cau3ChaingingDecreaseVN30;
+import changing_sentence.Cau3ChangingIncreaseHNX30;
+import changing_sentence.Cau3ChangingIncreaseVN30;
+import changing_sentence.Cau4ChangingHNX30;
+import changing_sentence.Cau4ChangingVN30;
+import changing_sentence.DayChangingHNX30;
+import changing_sentence.DayChangingVN30;
 import changing_sentence.OverAllDayHNX30;
 import changing_sentence.OverAllDayVN30;
-import changing_sentence.WeekHNX30;
-import changing_sentence.WeekVN30;
+import changing_sentence.WeekChangingHNX30;
+import changing_sentence.WeekChangingVN30;
 import comparision.ComparisionHNX30;
 import comparision.ComparisionRandomHNX30;
 import comparision.ComparisionRandomVN30;
@@ -33,15 +33,15 @@ import comparision.ComparisionStockHot;
 import comparision.ComparisionVN30;
 import comparision.HotStocksDayHNX30;
 import comparision.HotStocksDayVN30;
-import stock_code_analiztion.DetailPricePercentageChanging;
-import stock_code_analiztion.OneStock1;
-import stock_code_analiztion.OneStock2Month;
-import stock_code_analiztion.OneStock2Week;
-import stock_code_analiztion.OverAllDayStockCode;
-import stock_code_analiztion.PriceChangingDailySentence;
-import stock_code_analiztion.PriceChangingPercentageDailySentence;
-import stock_code_analiztion.VolumeChangingDailySentence;
-import stock_code_analiztion.VolumePercentageDailyChangingSentence;
+import stock_code_analization.AnalizationOneStock1;
+import stock_code_analization.AnalizationOneStock2Month;
+import stock_code_analization.AnalizationOneStock2Week;
+import stock_code_analization.DetailPricePercentageChanging;
+import stock_code_analization.OverAllDayStockCode;
+import stock_code_analization.PriceChangingDailySentence;
+import stock_code_analization.PriceChangingPercentageDailySentence;
+import stock_code_analization.VolumeChangingDailySentence;
+import stock_code_analization.VolumePercentageDailyChangingSentence;
 import summary_and_comment.DayTitleHNX30;
 import summary_and_comment.DayTitleVN30;
 import summary_and_comment.Forecast;
@@ -71,23 +71,23 @@ public class Demo {
 		
 		STOCK staticStock = STOCK.BID;
 		
-		list.add(new Cau1HNX30(staticDate));
-		list.add(new Cau1VN30(staticDate));
-		list.add(new Cau2HNX30(staticDate));
-		list.add(new Cau2VN30(staticDate));
-		list.add(new Cau3GiamHNX30(staticDate));
-		list.add(new Cau3TangHNX30(staticDate));
-		list.add(new Cau3GiamVN30(staticDate));
-		list.add(new Cau3TangVN30(staticDate));
-		list.add(new Cau4VN30(staticDate));
-		list.add(new Cau4HNX30(staticDate));
-		list.add(new DayVN30(staticDate));
-		list.add(new DayHNX30(staticDate));
-		list.add(new WeekVN30(staticDate));
-		list.add(new WeekHNX30(staticDate));
-		list.add(new OneStock1(staticStock, staticDate));
-		list.add(new OneStock2Month(staticStock, staticDate));
-		list.add(new OneStock2Week(staticStock, staticDate));
+		list.add(new Cau1ChangingHNX30(staticDate));
+		list.add(new Cau1ChangingVN30(staticDate));
+		list.add(new Cau2ChangingHNX30(staticDate));
+		list.add(new Cau2ChangingVN30(staticDate));
+		list.add(new Cau3ChangingDecreaseHNX30(staticDate));
+		list.add(new Cau3ChangingIncreaseHNX30(staticDate));
+		list.add(new Cau3ChaingingDecreaseVN30(staticDate));
+		list.add(new Cau3ChangingIncreaseVN30(staticDate));
+		list.add(new Cau4ChangingVN30(staticDate));
+		list.add(new Cau4ChangingHNX30(staticDate));
+		list.add(new DayChangingVN30(staticDate));
+		list.add(new DayChangingHNX30(staticDate));
+		list.add(new WeekChangingVN30(staticDate));
+		list.add(new WeekChangingHNX30(staticDate));
+		list.add(new AnalizationOneStock1(staticStock, staticDate));
+		list.add(new AnalizationOneStock2Month(staticStock, staticDate));
+		list.add(new AnalizationOneStock2Week(staticStock, staticDate));
 		
 		// vandung
 		list.add(new ComparisionStockHot(staticDate));
@@ -184,72 +184,72 @@ public class Demo {
 		Tag newInstance;
 		switch (instance.getClass().getSimpleName()) {
 		
-		case "Cau1HNX30":
-			newInstance = new Cau1HNX30(date);
+		case "Cau1ChangingHNX30":
+			newInstance = new Cau1ChangingHNX30(date);
 			break;
 			
-		case "Cau1VN30":
-			newInstance = new Cau1VN30(date);
+		case "Cau1ChangingVN30":
+			newInstance = new Cau1ChangingVN30(date);
 			break;
 			
-		case "Cau2HNX30":
-			newInstance = new Cau2HNX30(date);
+		case "Cau2ChangingHNX30":
+			newInstance = new Cau2ChangingHNX30(date);
 			break;
 			
-		case "Cau2VN30":
-			newInstance = new Cau2VN30(date);
+		case "Cau2ChangingVN30":
+			newInstance = new Cau2ChangingVN30(date);
 			break;
 			
-		case "Cau3GiamHNX30":
-			newInstance = new Cau3GiamHNX30(date);
+		case "Cau3ChangingDecreaseHNX30":
+			newInstance = new Cau3ChangingDecreaseHNX30(date);
 			break;
 			
-		case "Cau3TangHNX30":
-			newInstance = new Cau3TangHNX30(date);
+		case "Cau3ChangingIncreaseHNX30":
+			newInstance = new Cau3ChangingIncreaseHNX30(date);
 			break;
 			
-		case "Cau3GiamVN30":
-			newInstance = new Cau3GiamVN30(date);
+		case "Cau3ChaingingDecreaseVN30":
+			newInstance = new Cau3ChaingingDecreaseVN30(date);
 			break;
 			
-		case "Cau3TangVN30":
-			newInstance = new Cau3TangHNX30(date);
+		case "Cau3ChangingIncreaseVN30":
+			newInstance = new Cau3ChangingIncreaseVN30(date);
 			break;
 			
-		case "Cau4VN30":
-			newInstance = new Cau4VN30(date);
+		case "Cau4ChangingVN30":
+			newInstance = new Cau4ChangingVN30(date);
 			break;
 			
-		case "Cau4HNX30":
-			newInstance = new Cau4HNX30(date);
+		case "Cau4ChangingHNX30":
+			newInstance = new Cau4ChangingHNX30(date);
 			break;
 			
-		case "DayVN30":
-			newInstance = new DayVN30(date);
+		case "DayChangingVN30":
+			newInstance = new DayChangingVN30(date);
 			break;
 			
-		case "DayHNX30":
-			newInstance = new DayHNX30(date);
+		case "DayChangingHNX30":
+			newInstance = new DayChangingHNX30(date);
 			break;
 			
-		case "WeekVN30":
-			newInstance = new WeekVN30(date);
+		case "WeekChangingVN30":
+			newInstance = new WeekChangingVN30(date);
 			break;
 			
-		case "WeekHNX30":
-			newInstance = new WeekHNX30(date);
+		case "WeekChangingHNX30":
+			newInstance = new WeekChangingHNX30(date);
 			break;
 			
-		case "OneStock1":
-			newInstance = new OneStock1(stock, date);
+		case "AnalizationOneStock1":
+			newInstance = new AnalizationOneStock1(stock, date);
 			break;
 			
-		case "OneStock2Month":
-			newInstance = new OneStock2Month(stock, date);
+		case "AnalizationOneStock2Month":
+			newInstance = new AnalizationOneStock2Month(stock, date);
 			break;
 			
-		case "OneStock2Week":
-			newInstance = new OneStock2Week(stock, date);
+		case "AnalizationOneStock2Week":
+			newInstance = new AnalizationOneStock2Week(stock, date);
 			break;
 
 		case "ComparisionStockHot":
