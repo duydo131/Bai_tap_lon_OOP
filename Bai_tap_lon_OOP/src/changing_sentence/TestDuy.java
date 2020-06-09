@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import Input.ReadFile;
-import Input.STOCK;
 import gui.Tag;
 
 public class TestDuy {

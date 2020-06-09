@@ -15,7 +15,7 @@ public class test {
 		SimpleDateFormat formats = new SimpleDateFormat("dd/MM/yyyy");
 		Date date = formats.parse("20/02/2020");
 		STOCK stock = STOCK.BID;
-		
+		System.out.println(stock);
 		ArrayList<Tag> list = new ArrayList<>();
 		ArrayList<String> list1 = new ArrayList<>();
 		

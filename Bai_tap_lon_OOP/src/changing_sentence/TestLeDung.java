@@ -5,7 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import Input.ReadFile;
-import Input.STOCK;
 
 public class TestLeDung {
 	public static void main(String[] args) throws ParseException {

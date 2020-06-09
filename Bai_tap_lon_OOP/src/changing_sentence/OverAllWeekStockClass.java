@@ -59,8 +59,8 @@ public abstract class OverAllWeekStockClass extends OverAllWeek{
 	public int decreaseCodeCounter(String className) {
 		
 		Set<STOCK> stocks = null;
-		Date firstDay = this.firstWorkingDayOfWeek(date1);
-		Date lastDay = this.lastWorkingDayOfWeek(date2);
+		Date firstDay = Sentence.firstWorkingDayOfWeek(date1);
+		Date lastDay = Sentence.lastWorkingDayOfWeek(date2);
 		int counter = 0;
 		
 		if (className == "VN30") {

@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -138,8 +139,11 @@ public class Demo {
 		this.stock = stock;
 	}
 	
-	public String getSentence(String ...list) {
-		StringBuffer string = new StringBuffer();
+	public static ArrayList<String> getListString(){
+		return listString;
+	}
+	
+	public List<String> getSentence(String ...list) {
 		ArrayList<String> listTag = new ArrayList<>();
 		listTag.addAll(Arrays.asList(list));
 		ArrayList<String> array = new ArrayList<>();
@@ -148,8 +152,8 @@ public class Demo {
 			array.add(tag.get());
 		}
 		
-		array.stream().distinct().forEach(str -> string.append(str + "\n"));
-		return string.toString();
+		return array.stream().distinct().collect(Collectors.toList());
+		
 	}
 	
 	private ArrayList<Tag> getListTag(ArrayList<String> listTag){

@@ -65,7 +65,7 @@
             </ComboBox>
          </children>
       </HBox>
-      <Label layoutX="456.0" layoutY="84.0" prefHeight="25.0" prefWidth="227.0" text="(Từ ngày 01/10.2019 đến 28/02/2020)" AnchorPane.rightAnchor="50.0">
+      <Label layoutX="456.0" layoutY="84.0" prefHeight="25.0" prefWidth="227.0" text="(Từ ngày 01/10/2019 đến 28/02/2020)" AnchorPane.rightAnchor="50.0">
          <font>
             <Font size="13.0" />
          </font>

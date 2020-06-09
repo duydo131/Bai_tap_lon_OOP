@@ -21,7 +21,7 @@ public class Data {
 		isEmty = false;
 	}
 	
-	public static boolean getEmty() {
+	public static boolean isEmty() {
 		return isEmty;
 	}
 	

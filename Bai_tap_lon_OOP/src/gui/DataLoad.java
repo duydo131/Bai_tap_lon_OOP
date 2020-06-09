@@ -1,5 +1,6 @@
 package gui;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
@@ -12,18 +13,15 @@ import Input.STOCK;
 
 public class DataLoad {
 
-	private Date date;
-	private STOCK stock;
-	private String tag;
-	private String stockCode;
-	private String exchange;
+	private Date date = null;
+	private STOCK stock = null;
+	private String text = null;
+	private String exchange = null;
 	private boolean Chart;
 
 	public DataLoad(Date date, String text, String stockCode) {
 		this.date = date;
-		this.tag = text;
-		this.stockCode = stockCode;
-		setStock(text, stockCode);
+		setInfo(text, stockCode);
 	}
 
 	public void setChart(boolean chart) {
@@ -34,19 +32,26 @@ public class DataLoad {
 		return Chart;
 	}
 	
-	private void setStock(String text, String st) {
+	private void setInfo(String text, String st) {
 		if(testName(text)) {
 			this.stock = STOCK.valueOf(text);
+		}else if(text.equals("VNINDEX")) {
+			this.exchange = "VNINDEX";
+		}else if(text.equals("HNXINDEX")) {
+			this.exchange = "HNXINDEX";
 		}else if (!(st.equals("") || st.equals("VNINDEX") || st.equals("HASTC"))){
 			this.stock = STOCK.valueOf(st);
-		}else if (st.equals("")){
-			this.exchange = null;
+			if(!(text.equals(""))) {
+				this.text = text;
+			}
 		}else if (st.equals("VNINDEX")){
-			this.exchange = st;
+			this.exchange = "VNINDEX";
 		}else if (st.equals("HASTC")){
 			this.exchange = st;
-		}else {
-			this.stock = null;
+		}else if (st.equals("")){
+			if(!(text.equals(""))) {
+				this.text = text;
+			}
 		}
 	}
 	
@@ -57,45 +62,78 @@ public class DataLoad {
 	public String get() {
 		Demo demo = new Demo(date, stock);
 		StringBuffer string = new StringBuffer();
-		LinkedList<String> listSentence = new LinkedList<>();
+		ArrayList<String> listSentence = new ArrayList<>();
 		int i = getDay();
-		if (this.stock != null) {
-			listSentence.add(demo.getSentence("title","oneStock"));
-			if (i == 1 || i == 7) {
-				listSentence.add(demo.getSentence("oneStock", "week"));
-			} else {
-				listSentence.add(demo.getSentence("oneStock", "day"));
-			}
-			if (Tool.testMonth(date)) {
-				listSentence.add(demo.getSentence("oneStock", "month"));
-			}
-			listSentence.add(demo.getSentence("comment", "oneStock"));
+		if (this.stock != null && this.text == null) {
+			listSentence.addAll(getOneStock(demo, i, this.text));
+			setChart(true);
+		}else if (this.stock != null && this.text != null) {
+			listSentence.addAll(getOneStock(demo, i, this.text));
 			setChart(true);
 		}else {
-			listSentence.add(demo.getSentence("title"));
-			
-			if (i == 1 || i == 7) {
-				// ngày phải là cuối tuần
-				listSentence.add(demo.getSentence("week", this.exchange));
-			}if (InputData.testDay(date)) {
-				listSentence.add(demo.getSentence("changing", this.exchange));
-				
-				listSentence.add(demo.getSentence("hot stock", this.exchange));
-
-				listSentence.add(demo.getSentence("comparision", this.exchange));
-
-				listSentence.add(demo.getSentence("comment", this.exchange));
-
-				listSentence.add(demo.getSentence("prediction", this.exchange));
-				
-			} else {
+			if(this.exchange != null) {
+				listSentence.addAll(getExchange(demo, i));
+			}else if(this.text != null) {
+				listSentence.addAll(Demo.getListString().stream()
+												.filter(str -> str.contains(text))
+												.collect(Collectors.toCollection(ArrayList::new)));
+			}
+			else if(this.stock == null && this.text == null) {
+				listSentence.addAll(Demo.getListString());
+			}
+			else {
 				listSentence.add("Hôm nay nghỉ lễ không giao dịch.");
 			}
 		}
 		
-		listSentence.stream().distinct().collect(Collectors.toList()).forEach(str -> string.append(str + "\n"));
-		return string.toString();
+		listSentence.stream().distinct().forEach(str -> string.append(str + "\n"));
+		String textArea = string.toString();
+		return textArea.equals("") ? "Không có dữ liệu" : textArea;
 	}
+	
+	private ArrayList<String> getOneStock(Demo demo, int i, String text) {
+		ArrayList<String> listSentence = new ArrayList<>();
+		listSentence.addAll(demo.getSentence("title","oneStock"));
+		if (i == 1 || i == 7) {
+			listSentence.addAll(demo.getSentence("oneStock", "week"));
+		} else {
+			listSentence.addAll(demo.getSentence("oneStock", "day"));
+		}
+		if (Tool.testMonth(date)) {
+			listSentence.addAll(demo.getSentence("oneStock", "month"));
+		}
+		listSentence.addAll(demo.getSentence("comment", "oneStock"));
+		
+		if(text != null) {
+			return listSentence.stream().filter(str -> str.contains(text)).collect(Collectors.toCollection(ArrayList::new));
+		}
+		return listSentence;
+	}
+	
+	private LinkedList<String> getExchange(Demo demo, int i) {
+		LinkedList<String> listSentence = new LinkedList<>();
+		
+		listSentence.addAll(demo.getSentence("title", this.exchange));
+		
+		if (i == 1 || i == 7) {
+			// ngày phải là cuối tuần
+			listSentence.addAll(demo.getSentence("week", this.exchange));
+		}else if (InputData.testDay(date)) {
+			listSentence.addAll(demo.getSentence("changing", "day", this.exchange));
+			
+			listSentence.addAll(demo.getSentence("hot stock", "day", this.exchange));
+
+			listSentence.addAll(demo.getSentence("comparision", "day", this.exchange));
+
+			listSentence.addAll(demo.getSentence("comment", "day", this.exchange));
+
+			listSentence.addAll(demo.getSentence("prediction", "day", this.exchange));
+			
+		}
+		
+		return listSentence;
+	}
+	
 
 	private int getDay() {
 		Calendar calendar = Calendar.getInstance();

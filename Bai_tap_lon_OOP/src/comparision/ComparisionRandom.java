@@ -46,7 +46,7 @@ public abstract class ComparisionRandom extends Comparision implements Tag {
 
 	private int number() {
 		Random number = new Random();
-		int numberRandom = number.nextInt(25) + 2;
+		int numberRandom = number.nextInt(24) + 2;
 		return numberRandom;
 	}
 

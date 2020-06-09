@@ -3,17 +3,14 @@ package Input;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class ReadFile {
 	public static void loadData() {
-		if(Data.getEmty()) {
-			File folderVn30 = new File("./file/dataVn30");
-			File folderHnx30 = new File("./file/datahnx30");
-			
-			File[] filename = null;
-
+		if(Data.isEmty()) {
 			STOCK stock;
 			SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 			Date date;
@@ -22,18 +19,22 @@ public class ReadFile {
 			double giaMin;
 			double giaDongCua;
 			long KL;
-
-			int temp = 2;
 			
-			for(int i = 0; i < temp; i++) {
-				if(i == 0) {
-					filename = folderVn30.listFiles();
-				}else {
-					filename = folderHnx30.listFiles();
-				}
-				
-				for (File file : filename) {
-					try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+			File folderVn30 = new File("./file/dataVn30");
+			File folderHnx30 = new File("./file/datahnx30");
+			File[] filename = null;
+			int temp = 2;
+			BufferedReader reader = null;
+			try {
+				for(int i = 0; i < temp; i++) {
+					if(i == 0) {
+						filename = folderVn30.listFiles();
+					}else {
+						filename = folderHnx30.listFiles();
+					}
+					
+					for (File file : filename) {
+						reader = new BufferedReader(new FileReader(file));
 						String line ;
 						while ((line = reader.readLine()) != null ) {
 							String arr[] = line.split(",");
@@ -44,7 +45,7 @@ public class ReadFile {
 							}else if(name.equals("^HASTC")) {
 								name = "HASTC";
 							}
-							stock =STOCK.valueOf(name);
+							stock = STOCK.valueOf(name);
 
 							String ngay = (String) arr[1];
 							String create = ngay.substring(6, 8) + "/" + ngay.substring(4, 6) + "/" + ngay.substring(0, 4);
@@ -65,12 +66,26 @@ public class ReadFile {
 							Data.add(stock, new DataOneDay(date, giaMoCua, giaMax, giaMin, giaDongCua, KL), exchanges);
 							
 						}
-
-					} catch (Exception e) {
+						
+						reader.close();
+					}
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (ParseException e) {
+				e.printStackTrace();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				if(reader != null) {
+					try {
+						reader.close();
+					} catch (IOException e) {
 						e.printStackTrace();
 					}
 				}
 			}
+		
 			Data.loaded();
 		}
 	}
