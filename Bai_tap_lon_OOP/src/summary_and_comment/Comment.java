@@ -9,9 +9,6 @@ import stock_code_analization.Status;
 
 public abstract class Comment implements Tag{
 	public Status status;
-	public String type;
-	public String typeStatus;
-
 	public ArrayList<String> listTag;
 	
 	public Comment(Date date, STOCK stock) {
