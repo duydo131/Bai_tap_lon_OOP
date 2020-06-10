@@ -1,4 +1,4 @@
-package Input;
+package input;
 
 public enum MONTH {
 	JANUARY(1), FEBRUARY(2), OCTOBER(10), NOVEMBER(11), DECEMBER(12);

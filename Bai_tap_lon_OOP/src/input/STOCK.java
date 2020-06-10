@@ -1,4 +1,4 @@
-package Input;
+package input;
 
 public enum STOCK {
 	
@@ -70,18 +70,18 @@ public enum STOCK {
 	;
 	
 	private String name;
-	private long outstandingShares; 	//  x1000 cổ phiếu
+	private long outStandingShares; 	//  x1000 cổ phiếu
 	
 	
-	STOCK(String name, long outstandingShares) {
+	STOCK(String name, long outStandingShares) {
 		this.name = name;
-		this.outstandingShares = outstandingShares;
+		this.outStandingShares = outStandingShares;
 	}
 	
 	public String getNameCompany() {
 		return name;
 	}
-	public long getOutstandingShares() {
-		return outstandingShares;
+	public long getOutStandingShares() {
+		return outStandingShares;
 	}
 }

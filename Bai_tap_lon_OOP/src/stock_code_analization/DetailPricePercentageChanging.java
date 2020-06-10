@@ -2,18 +2,19 @@ package stock_code_analization;
 
 import java.util.Date;
 
-import Input.STOCK;
+import input.STOCK;
 
-public class DetailPricePercentageChanging extends changingSentence {
+public class DetailPricePercentageChanging extends ChangingSentence {
 	public DetailPricePercentageChanging(Date date, STOCK stock) {
-		super(date,stock);
-		type="giá";
-		typeStatus=status.stockPricePercentageStatus();
-	}
+		  super(date,stock);
+		  type="giá";
+		  typeStatus=status.stockPricePercentageStatus();
+	  }
 	
 	
 	public void setTag() {
-		super.setTag();
+		listTag.add("oneStock");
+		listTag.add("day");
 		listTag.add("tăng");
 		listTag.add("giảm");
 		listTag.add("giá");

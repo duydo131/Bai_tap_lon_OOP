@@ -1,11 +1,12 @@
 package comparision;
 
-import Input.InputData;
-import Input.STOCK;
-import Input.DataOneDay;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
+
+import input.DataOneDay;
+import input.InputData;
+import input.STOCK;
 
 public class ComparisionStockHot extends Comparision {
 	private double giaDongCuaStockVN30;

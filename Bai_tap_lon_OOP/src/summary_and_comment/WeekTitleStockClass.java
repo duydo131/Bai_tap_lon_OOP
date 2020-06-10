@@ -2,8 +2,8 @@ package summary_and_comment;
 
 import java.util.Date;
 
-import Input.*;
 import changing_sentence.Verb;
+import input.*;
 
 public abstract class WeekTitleStockClass extends Title{
 	

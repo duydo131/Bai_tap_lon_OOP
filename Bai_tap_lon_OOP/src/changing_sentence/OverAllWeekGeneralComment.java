@@ -3,7 +3,7 @@ package changing_sentence;
 import java.util.ArrayList;
 import java.util.Date;
 
-import Input.*;
+import input.*;
 
 public class OverAllWeekGeneralComment extends OverAllWeek {
 	

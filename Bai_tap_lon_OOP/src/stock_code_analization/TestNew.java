@@ -3,28 +3,41 @@ package stock_code_analization;
 import java.util.ArrayList;
 import java.util.Date;
 
-import Input.STOCK;
 import gui.Tag;
-import quang.Status;
+import input.STOCK;
 
-public class changingSentence implements Tag {
+public class TestNew implements Tag {
 	public Status status;
 	public String type;
 	public String typeStatus;
-
 	public ArrayList<String> listTag;
-	public changingSentence(Date date, STOCK stock) {
+	
+	
+	public TestNew(Date date, STOCK stock) {
 		status= new Status(date,stock);
 		listTag = new ArrayList<String>();
+		typeStatus= status.stockPriceStatus();
+		type="giá";
 	}
+	
 	
 	public ArrayList<String> getTag(){
 		setTag();
 		return listTag;
 	}
-
+	public void setTag() {
+		listTag.add("tăng");
+		listTag.add("giảm");
+		listTag.add("giá");
+	}
 	public String get() {
-		return "Trong ngày qua, giá cổ phiếu "+status.stock+" đã "+status.stockPriceStatus();
+		if(!status.weekendCheck()) {
+			if(status.stock!=STOCK.VNINDEX&&status.stock!=STOCK.HASTC) {
+				return "Trong ngày qua, "+type+" cổ phiếu "+status.stock+" đã "+typeStatus;
+			}
+			else  return status.stockPriceStatus();
+		  }
+		  else return status.stockPriceStatus();
 	}
 	public void createSentence() {
 	  if(!status.weekendCheck()) {
@@ -35,10 +48,5 @@ public class changingSentence implements Tag {
 	  }
 	  else System.out.println(status.stockPriceStatus());
 	}
-
-	@Override
-	public void setTag() {
-		listTag.add("oneStock");
-		listTag.add("day");
-	}
 }
+

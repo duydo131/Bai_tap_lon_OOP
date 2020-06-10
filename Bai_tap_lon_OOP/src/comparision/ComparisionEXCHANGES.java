@@ -1,11 +1,12 @@
 package comparision;
 
-import Input.STOCK;
-import Input.DataOneDay;
-import Input.InputData;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
+
+import input.DataOneDay;
+import input.InputData;
+import input.STOCK;
 
 public abstract class ComparisionEXCHANGES extends Comparision {
 

@@ -7,11 +7,11 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import Input.DataOneDay;
-import Input.Tool;
-import Input.STOCK;
+import input.DataOneDay;
+import input.STOCK;
+import input.Tool;
 
-public abstract class Cau4Changing extends San{
+public abstract class Cau4Changing extends Exchanges{
 	protected static final int SIZE = 3;
 	protected Map<Boolean, LinkedList<Map.Entry<STOCK, DataOneDay>>> list = new LinkedHashMap<>();
 	protected Date date;
@@ -23,9 +23,9 @@ public abstract class Cau4Changing extends San{
 	public String get() {
 		String str = "Trong nhóm " + name
 					+ " có 1 só cổ phiếu đáng cú ý như :\n"
-					+ "- nhóm tăng : \n"
+					+ "- Nhóm tăng : \n"
 					+ create(list.get(true), true)
-					+ "- nhóm giảm : \n"
+					+ "- Nhóm giảm : \n"
 					+ create(list.get(false), false);
 		return str;
 	}

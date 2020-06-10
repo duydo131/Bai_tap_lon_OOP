@@ -2,7 +2,7 @@ package changing_sentence;
 
 import java.util.Date;
 
-import Input.InputData;
+import input.InputData;
 
 public abstract class Cau3ChangingHNX30 extends Cau3Changing {
 	

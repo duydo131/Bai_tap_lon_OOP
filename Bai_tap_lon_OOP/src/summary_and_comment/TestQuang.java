@@ -5,9 +5,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import Input.ReadFile;
-import Input.STOCK;
 import gui.Tag;
+import input.ReadFile;
+import input.STOCK;
 
 public class TestQuang {
 	public static void main(String[] args) throws ParseException {
@@ -24,11 +24,11 @@ public class TestQuang {
 		System.out.println(test5.get());
 		System.out.println(test5.getTag());
 		
-		commentStock test6 = new commentStock(date1, STOCK.VHM);
+		CommentStock test6 = new CommentStock(date1, STOCK.VHM);
 		System.out.println(test6.get());
 		System.out.println(test6.getTag());
 		
-		commentMarket test7 = new commentMarket(date1, STOCK.VNINDEX);
+		CommentMarket test7 = new CommentMarket(date1, STOCK.VNINDEX);
 		System.out.println(test7.get());
 		System.out.println(test7.getTag());
 		
@@ -44,9 +44,9 @@ public class TestQuang {
 		STOCK stock = STOCK.BID;
 		li.add(new PsychologyOfInvestors(date1, stock));
 		li.add(new Forecast(date1, stock));
-		li.add(new commentMarket(date1, stock));
+		li.add(new CommentMarket(date1, stock));
 		li.add(new Liquidity(date1, stock));
-		li.add(new commentStock(date1, stock));
+		li.add(new CommentStock(date1, stock));
 		
 		li.forEach(t -> System.out.println(t.getTag()));
 	}

@@ -3,11 +3,11 @@ package changing_sentence;
 import java.util.ArrayList;
 import java.util.Date;
 
-import Input.Tool;
 import gui.Tag;
-import Input.STOCK;
+import input.STOCK;
+import input.Tool;
 
-public abstract class NhanXet implements Tag{
+public abstract class Comment implements Tag{
 	protected String name;
 	protected long allVolume;
 	protected long change;

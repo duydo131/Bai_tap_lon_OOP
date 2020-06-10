@@ -1,6 +1,6 @@
 package changing_sentence;
 
-import Input.InputData;
+import input.InputData;
 
 public class Verb {
 	

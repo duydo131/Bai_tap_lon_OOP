@@ -2,25 +2,24 @@ package stock_code_analization;
 
 import java.util.Date;
 
-import Input.STOCK;
+import input.STOCK;
 
-public class VolumeChangingDailySentence extends changingSentence {
-
+public class VolumeChangingDailySentence extends ChangingSentence {
 	public VolumeChangingDailySentence(Date date, STOCK stock) {
-		super(date, stock);
+		super(date,stock);
+		type="khối lượng";
 		typeStatus=status.stockVolumeStatus();
-		type = "khối lượng";
 	}
 	
+	
 	public void setTag() {
-		super.setTag();
+		listTag.add("oneStock");
+		listTag.add("day");
 		listTag.add("tăng");
 		listTag.add("giảm");
 		listTag.add("khối lượng");
 	}
 	
-	public String get() {
-		return "Trong ngày qua, khối lượng cổ phiếu "+status.stock+" đã "+status.stockVolumeStatus();
-	}
-
+	
+	
 }

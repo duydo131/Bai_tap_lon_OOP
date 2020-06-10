@@ -3,6 +3,7 @@ package gui;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.ResourceBundle;
@@ -11,8 +12,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import Input.InputData;
-import Input.STOCK;
+import input.InputData;
+import input.STOCK;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.CategoryAxis;
@@ -145,18 +146,19 @@ public class Controller implements Initializable {
 			e.printStackTrace();
 		}
 		
-		if (testDay(date)) {
-
-			DataLoad dataLoad = new DataLoad(date, search, stockCode);
-			textArea.appendText(dataLoad.get());
-
-			if (dataLoad.getChart()) {
-				dataLoad.setChart(false);
-				STOCK stock = dataLoad.getStock();
-				lineChart3.getData().add(CreateLineChart.create(xAxis3, yAxis3,
-						InputData.getDatashare().get(stock).getData(), stock, date));
-				codeStock.setText(stock.name());
-				lineChart3.setVisible(true);
+		if (testDay(stringDate)) {
+			try {
+				DataLoad dataLoad = new DataLoad(date, search, stockCode);
+				textArea.appendText(dataLoad.get());if (dataLoad.getChart()) {
+					dataLoad.setChart(false);
+					STOCK stock = dataLoad.getStock();
+					lineChart3.getData().add(CreateLineChart.create(xAxis3, yAxis3,
+							InputData.getDatashare().get(stock).getData(), stock, date));
+					codeStock.setText(stock.name());
+					lineChart3.setVisible(true);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 			lineChart1.getData().add(CreateLineChart.create(xAxis1, yAxis1,
 					InputData.getDataVN30().get(STOCK.VNINDEX).getData(), STOCK.VNINDEX, date));
@@ -164,7 +166,7 @@ public class Controller implements Initializable {
 			lineChart2.getData().add(CreateLineChart.create(xAxis2, yAxis2,
 					InputData.getDataHNX30().get(STOCK.HASTC).getData(), STOCK.HASTC, date));
 		} else {
-			textArea.appendText("Không có dữ liệu ngày " + formats.format(date));
+			textArea.appendText("Ngày " + stringDate + " không hợp lệ");
 		}
 	}
 
@@ -172,15 +174,34 @@ public class Controller implements Initializable {
 		if (str == "") {
 			return " ";
 		}
-		String regex = "\\s+";
-		Pattern pattern = Pattern.compile(regex);
+		String regex1 = "\\s+";
+		String regex2 = "[-]+";
+		
+		Pattern pattern = Pattern.compile(regex1);
 		Matcher macher = pattern.matcher(str);
 		String s = macher.replaceAll(" ");
-		return s.trim();
+		
+		Pattern pattern1 = Pattern.compile(regex2);
+		Matcher macher1 = pattern1.matcher(s);
+		return macher1.replaceAll("").trim();
 	}
 
-	private boolean testDay(Date date) {
+	private boolean testDay(String stringDate) {
 		SimpleDateFormat formats = new SimpleDateFormat("dd/MM/yyyy");
+		Date date = null;
+		try {
+			date = formats.parse(stringDate);
+		} catch (ParseException e1) {
+			e1.printStackTrace();
+		}
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		int day1 = calendar.get(Calendar.DAY_OF_MONTH);
+		int day2 = Integer.parseInt(stringDate.substring(0, 2));
+		if(day1 != day2) {
+			return false;
+		}
+		
 		Date dateBefore = null;
 		Date dateAfter = null;
 		try {

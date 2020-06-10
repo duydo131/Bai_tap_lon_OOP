@@ -3,7 +3,7 @@ package changing_sentence;
 import java.util.Date;
 import java.util.Set;
 
-import Input.*;
+import input.*;
 
 public abstract class OverAllWeekStockClass extends OverAllWeek{
 	

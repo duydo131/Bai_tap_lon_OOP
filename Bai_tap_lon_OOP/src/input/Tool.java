@@ -1,4 +1,4 @@
-package Input;
+package input;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -6,7 +6,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
@@ -54,14 +53,6 @@ public class Tool {
 			}
 		}
 		return test;
-	}
-	
-	public static long sum(List<Long> list) {
-		long temp = 0L;
-		for (Long d : list) {
-			temp += d;
-		}
-		return temp;
 	}
 	
 	public static Map<STOCK, DataOneDay> sort(Map<STOCK, DataOneDay> data){

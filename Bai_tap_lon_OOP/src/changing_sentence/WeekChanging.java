@@ -2,11 +2,11 @@ package changing_sentence;
 
 import java.util.Date;
 
-import Input.DataOneDay;
-import Input.Tool;
-import Input.InputData;
+import input.DataOneDay;
+import input.InputData;
+import input.Tool;
 
-public abstract class WeekChanging extends NhanXet {
+public abstract class WeekChanging extends Comment {
 
 	@Override
 	public void setInfo() {

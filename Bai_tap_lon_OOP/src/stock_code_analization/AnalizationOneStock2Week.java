@@ -1,24 +1,25 @@
 package stock_code_analization;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
-import Input.Tool;
-import Input.InputData;
-import Input.STOCK;
+import input.InputData;
+import input.STOCK;
+import input.Tool;
 
 public class AnalizationOneStock2Week extends AnalizationOneStock2{
 
 	public AnalizationOneStock2Week(STOCK stock, Date date) {
 		super(stock, date);
 		this.name = "tuần";
-		this.dataOneDay.add(InputData.priceMaxOneWeek(stock, date));
-		this.dataOneDay.add(InputData.priceMinOneWeek(stock, date));
-		this.dataOneDay.add(InputData.volumeMaxOneWeek(stock, date));
-		this.dataOneDay.add(InputData.volumeMinOneWeek(stock, date));
+		this.dataOneStock.add(InputData.priceMaxOneWeek(stock, date));
+		this.dataOneStock.add(InputData.priceMinOneWeek(stock, date));
+		this.dataOneStock.add(InputData.volumeMaxOneWeek(stock, date));
+		this.dataOneStock.add(InputData.volumeMinOneWeek(stock, date));
 		this.sumVolume = InputData.volumeSumOneWeek(stock, date);
 		this.numberOfDays = InputData.getDataOneWeekOneStock(stock, date).size();
-		Date dateBefore = Tool.getDate(date, -7);
+		Date dateBefore = getWeekBefore(date);
 		this.averageVolumeBefore = (long)InputData.volumeSumOneWeek(stock, dateBefore)
 											/InputData.getDataOneWeekOneStock(stock, dateBefore).size();
 		
@@ -37,4 +38,9 @@ public class AnalizationOneStock2Week extends AnalizationOneStock2{
 		this.listTag.add("week");
 	}
 
+	private Date getWeekBefore(Date date) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		return Tool.getDate(date, - calendar.get(Calendar.DAY_OF_WEEK));
+	}
 }

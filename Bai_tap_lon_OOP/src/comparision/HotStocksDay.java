@@ -2,7 +2,7 @@ package comparision;
 
 import java.util.Date;
 
-import Input.*;
+import input.*;
 
 public abstract class HotStocksDay extends HotStocks {
 	

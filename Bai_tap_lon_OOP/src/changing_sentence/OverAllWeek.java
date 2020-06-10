@@ -3,8 +3,8 @@ package changing_sentence;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import Input.InputData;
-import Input.Tool;
+import input.InputData;
+import input.Tool;
 
 public abstract class OverAllWeek extends Sentence{
 	

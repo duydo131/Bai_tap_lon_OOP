@@ -3,13 +3,12 @@ package gui;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.LinkedList;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import Input.Tool;
-import Input.InputData;
-import Input.STOCK;
+import input.InputData;
+import input.STOCK;
+import input.Tool;
 
 public class DataLoad {
 
@@ -60,26 +59,26 @@ public class DataLoad {
 	}
 	
 	public String get() {
-		Demo demo = new Demo(date, stock);
+		GetSentence sentence = new GetSentence(date, stock);
 		StringBuffer string = new StringBuffer();
 		ArrayList<String> listSentence = new ArrayList<>();
 		int i = getDay();
 		if (this.stock != null && this.text == null) {
-			listSentence.addAll(getOneStock(demo, i, this.text));
+			listSentence.addAll(getOneStock(sentence, i, this.text));
 			setChart(true);
 		}else if (this.stock != null && this.text != null) {
-			listSentence.addAll(getOneStock(demo, i, this.text));
+			listSentence.addAll(getOneStock(sentence, i, this.text));
 			setChart(true);
 		}else {
 			if(this.exchange != null) {
-				listSentence.addAll(getExchange(demo, i));
+				listSentence.addAll(getExchange(sentence, i , this.exchange));
 			}else if(this.text != null) {
-				listSentence.addAll(Demo.getListString().stream()
+				listSentence.addAll(GetSentence.getListString().stream()
 												.filter(str -> str.contains(text))
 												.collect(Collectors.toCollection(ArrayList::new)));
 			}
 			else if(this.stock == null && this.text == null) {
-				listSentence.addAll(Demo.getListString());
+				listSentence.addAll(sentence.getSentence(""));
 			}
 			else {
 				listSentence.add("Hôm nay nghỉ lễ không giao dịch.");
@@ -88,21 +87,21 @@ public class DataLoad {
 		
 		listSentence.stream().distinct().forEach(str -> string.append(str + "\n"));
 		String textArea = string.toString();
-		return textArea.equals("") ? "Không có dữ liệu" : textArea;
+		return textArea.equals("") ? "Không có dữ liệu phù hợp" : textArea;
 	}
 	
-	private ArrayList<String> getOneStock(Demo demo, int i, String text) {
+	private ArrayList<String> getOneStock(GetSentence sentence, int i, String text) {
 		ArrayList<String> listSentence = new ArrayList<>();
-		listSentence.addAll(demo.getSentence("title","oneStock"));
+		listSentence.addAll(sentence.getSentence("title","oneStock"));
 		if (i == 1 || i == 7) {
-			listSentence.addAll(demo.getSentence("oneStock", "week"));
+			listSentence.addAll(sentence.getSentence("oneStock", "week"));
 		} else {
-			listSentence.addAll(demo.getSentence("oneStock", "day"));
+			listSentence.addAll(sentence.getSentence("oneStock", "day"));
 		}
 		if (Tool.testMonth(date)) {
-			listSentence.addAll(demo.getSentence("oneStock", "month"));
+			listSentence.addAll(sentence.getSentence("oneStock", "month"));
 		}
-		listSentence.addAll(demo.getSentence("comment", "oneStock"));
+		listSentence.addAll(sentence.getSentence("comment", "oneStock"));
 		
 		if(text != null) {
 			return listSentence.stream().filter(str -> str.contains(text)).collect(Collectors.toCollection(ArrayList::new));
@@ -110,24 +109,24 @@ public class DataLoad {
 		return listSentence;
 	}
 	
-	private LinkedList<String> getExchange(Demo demo, int i) {
-		LinkedList<String> listSentence = new LinkedList<>();
+	private ArrayList<String> getExchange(GetSentence sentence, int i, String exchange) {
+		ArrayList<String> listSentence = new ArrayList<>();
 		
-		listSentence.addAll(demo.getSentence("title", this.exchange));
+		listSentence.addAll(sentence.getSentence("title", exchange));
 		
 		if (i == 1 || i == 7) {
 			// ngày phải là cuối tuần
-			listSentence.addAll(demo.getSentence("week", this.exchange));
+			listSentence.addAll(sentence.getSentence("week", exchange));
 		}else if (InputData.testDay(date)) {
-			listSentence.addAll(demo.getSentence("changing", "day", this.exchange));
+			listSentence.addAll(sentence.getSentence("changing", "day", exchange));
 			
-			listSentence.addAll(demo.getSentence("hot stock", "day", this.exchange));
+			listSentence.addAll(sentence.getSentence("hot stock", "day", exchange));
 
-			listSentence.addAll(demo.getSentence("comparision", "day", this.exchange));
+			listSentence.addAll(sentence.getSentence("comparision", "day", exchange));
 
-			listSentence.addAll(demo.getSentence("comment", "day", this.exchange));
+			listSentence.addAll(sentence.getSentence("comment", "day", exchange));
 
-			listSentence.addAll(demo.getSentence("prediction", "day", this.exchange));
+			listSentence.addAll(sentence.getSentence("prediction", "day", exchange));
 			
 		}
 		

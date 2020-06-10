@@ -1,6 +1,6 @@
 package changing_sentence;
 
-import Input.STOCK;
+import input.STOCK;
 
 public class StockVolume{
 	private STOCK stock;

@@ -2,9 +2,9 @@ package summary_and_comment;
 
 import java.util.Date;
 
-import Input.STOCK;
+import input.STOCK;
 
-public class Liquidity extends comment {
+public class Liquidity extends Comment {
 	public Liquidity(Date date, STOCK stock) {
 		super(date, stock);
 	}

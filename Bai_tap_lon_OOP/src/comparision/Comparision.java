@@ -3,8 +3,8 @@ package comparision;
 import java.util.ArrayList;
 import java.util.Date;
 
-import Input.STOCK;
 import gui.Tag;
+import input.STOCK;
 
 public abstract class Comparision implements Tag{
 	public Comparision() {

@@ -4,8 +4,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import Input.ReadFile;
-import Input.STOCK;
+import input.ReadFile;
+import input.STOCK;
 
 public class TestDuc {
 	public static void main(String[] args) throws ParseException {
@@ -13,8 +13,9 @@ public class TestDuc {
 		
 		SimpleDateFormat formats = new SimpleDateFormat("dd/MM/yyy");
 		Date date1 = formats.parse("04/02/2020");
+		STOCK stock = STOCK.BID;
 		
-		PriceChangingDailySentence test = new PriceChangingDailySentence(date1, STOCK.ACB);
+		ChangingSentence test = new ChangingSentence(date1, STOCK.ACB);
 		System.out.println(test.get());
 		System.out.println(test.getTag());
 		System.out.println();
@@ -41,5 +42,9 @@ public class TestDuc {
 		DetailPricePercentageChanging t2 = new DetailPricePercentageChanging(date1, STOCK.ACB);
 		System.out.println(t2.get());
 		System.out.println(t2.getTag());
+		
+		TestNew t = new TestNew(date1, stock);
+		System.out.println(t.get());
+		System.out.println(t.getTag());
 	}
 }

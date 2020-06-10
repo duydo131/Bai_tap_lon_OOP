@@ -2,9 +2,9 @@ package stock_code_analization;
 
 import java.util.Date;
 
-import Input.STOCK;
+import input.STOCK;
 
-public class ExchangeChangingSentence extends changingSentence{
+public class ExchangeChangingSentence extends ChangingSentence{
 	public ExchangeChangingSentence(Date date, STOCK stock) {
 		super(date,stock);
 		type="";

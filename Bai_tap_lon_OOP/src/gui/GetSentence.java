@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import Input.STOCK;
 import changing_sentence.Cau1ChangingHNX30;
 import changing_sentence.Cau1ChangingVN30;
 import changing_sentence.Cau2ChangingHNX30;
@@ -33,26 +32,28 @@ import comparision.ComparisionStockHot;
 import comparision.ComparisionVN30;
 import comparision.HotStocksDayHNX30;
 import comparision.HotStocksDayVN30;
+import input.STOCK;
 import stock_code_analization.AnalizationOneStock1;
 import stock_code_analization.AnalizationOneStock2Month;
 import stock_code_analization.AnalizationOneStock2Week;
+import stock_code_analization.ChangingSentence;
 import stock_code_analization.DetailPricePercentageChanging;
 import stock_code_analization.OverAllDayStockCode;
-import stock_code_analization.PriceChangingDailySentence;
 import stock_code_analization.PriceChangingPercentageDailySentence;
 import stock_code_analization.VolumeChangingDailySentence;
 import stock_code_analization.VolumePercentageDailyChangingSentence;
 import summary_and_comment.DayTitleHNX30;
+import summary_and_comment.DayTitleStockCode;
 import summary_and_comment.DayTitleVN30;
 import summary_and_comment.Forecast;
 import summary_and_comment.Liquidity;
 import summary_and_comment.PsychologyOfInvestors;
 import summary_and_comment.TomorrowPredictionHNX30;
 import summary_and_comment.TomorrowPredictionVN30;
-import summary_and_comment.commentMarket;
-import summary_and_comment.commentStock;
+import summary_and_comment.CommentMarket;
+import summary_and_comment.CommentStock;
 
-public class Demo {
+public class GetSentence {
 	private Date date;
 	private STOCK stock;
 	private static ArrayList<Tag> list = new ArrayList<>();
@@ -97,7 +98,7 @@ public class Demo {
 		list.add(new ComparisionRandomHNX30(staticDate));
 		
 		// duc
-		list.add(new PriceChangingDailySentence(staticDate, staticStock));
+		list.add(new ChangingSentence(staticDate, staticStock));
 		list.add(new PriceChangingPercentageDailySentence(staticDate, staticStock));
 		list.add(new VolumeChangingDailySentence(staticDate, staticStock));
 		list.add(new VolumePercentageDailyChangingSentence(staticDate, staticStock));
@@ -117,24 +118,25 @@ public class Demo {
 		list.add(new DayTitleVN30(staticDate));
 		list.add(new DayTitleHNX30(staticDateWeekend));
 		list.add(new DayTitleHNX30(staticDate));
+		list.add(new DayTitleStockCode(staticDate, staticStock));
 		list.add(new TomorrowPredictionHNX30(staticDate));
 		list.add(new TomorrowPredictionVN30(staticDate));
 		
 		// quang
 		list.add(new PsychologyOfInvestors(staticDate, staticStock));
 		list.add(new Forecast(staticDate, staticStock));
-		list.add(new commentMarket(staticDate, staticStock));
+		list.add(new CommentMarket(staticDate, staticStock));
 		list.add(new Liquidity(staticDate, staticStock));
-		list.add(new commentStock(staticDate, staticStock));
+		list.add(new CommentStock(staticDate, staticStock));
 		
 		list.forEach(tag -> listString.add(tag.get()));
 	}
 	
-	public Demo(Date date) {
+	public GetSentence(Date date) {
 		this.date = date;
 	}
 	
-	public Demo(Date date, STOCK stock) {
+	public GetSentence(Date date, STOCK stock) {
 		this(date);
 		this.stock = stock;
 	}
@@ -148,15 +150,19 @@ public class Demo {
 		listTag.addAll(Arrays.asList(list));
 		ArrayList<String> array = new ArrayList<>();
 		
-		for (Tag tag : getListTag(listTag)) {
-			array.add(tag.get());
+		ArrayList<Tag> tagList = getListTag(listTag);
+		for (Tag tag : tagList) {
+			array.add(getInstance(tag).get());
 		}
 		
 		return array.stream().distinct().collect(Collectors.toList());
-		
 	}
 	
 	private ArrayList<Tag> getListTag(ArrayList<String> listTag){
+		if(listTag.size() == 1 && listTag.get(0).equals("")) {
+			this.stock = STOCK.BID;
+			return list;
+		}
 		Predicate<Tag> predicate = new Predicate<Tag>() {
 			
 			@Override
@@ -272,8 +278,8 @@ public class Demo {
 			newInstance = new ComparisionRandomHNX30(date);
 			break;
 			
-		case "PriceChangingDailySentence":
-			newInstance = new PriceChangingDailySentence(date, stock);
+		case "ChangingSentence":
+			newInstance = new ChangingSentence(date, stock);
 			break;
 			
 		case "PriceChangingPercentageDailySentence":
@@ -320,6 +326,10 @@ public class Demo {
 			newInstance = new DayTitleHNX30(date);
 			break;
 			
+		case "DayTitleStockCode":
+			newInstance = new DayTitleStockCode(date, stock);
+			break;
+			
 		case "TomorrowPredictionVN30":
 			newInstance = new TomorrowPredictionVN30(date);
 			break;
@@ -336,16 +346,16 @@ public class Demo {
 			newInstance = new Forecast(date, stock);
 			break;
 			
-		case "commentMarket":
-			newInstance = new commentMarket(date, stock);
+		case "CommentMarket":
+			newInstance = new CommentMarket(date, stock);
 			break;
 			
 		case "Liquidity":
 			newInstance = new Liquidity(date, stock);
 			break;
 			
-		case "commentStock":
-			newInstance = new commentStock(date, stock);
+		case "CommentStock":
+			newInstance = new CommentStock(date, stock);
 			break;
 			
 		default:

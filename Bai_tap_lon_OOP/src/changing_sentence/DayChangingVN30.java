@@ -3,7 +3,7 @@ package changing_sentence;
 import java.util.ArrayList;
 import java.util.Date;
 
-import Input.STOCK;
+import input.STOCK;
 
 public class DayChangingVN30 extends DayChanging{
 	public DayChangingVN30(Date date) {

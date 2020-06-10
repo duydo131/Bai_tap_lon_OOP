@@ -3,9 +3,9 @@ package stock_code_analization;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import Input.DataOneDay;
-import Input.Tool;
-import Input.STOCK;
+import input.DataOneDay;
+import input.STOCK;
+import input.Tool;
 
 public abstract class AnalizationOneStock2 extends AnalizationOneStockRoot{
 	protected SimpleDateFormat formats = new SimpleDateFormat("dd/MM/yyyy");
@@ -25,10 +25,10 @@ public abstract class AnalizationOneStock2 extends AnalizationOneStockRoot{
 	
 	@Override
 	public String get() {
-		DataOneDay dayPriceMax = this.dataOneDay.get(0);
-		DataOneDay dayPriceMin = this.dataOneDay.get(1);
-		DataOneDay dayVolumeeMax = this.dataOneDay.get(2);
-		DataOneDay dayVolumeMin = this.dataOneDay.get(3);
+		DataOneDay dayPriceMax = this.dataOneStock.get(0);
+		DataOneDay dayPriceMin = this.dataOneStock.get(1);
+		DataOneDay dayVolumeeMax = this.dataOneStock.get(2);
+		DataOneDay dayVolumeMin = this.dataOneStock.get(3);
 		long averageVolume = (long)this.sumVolume/this.numberOfDays;
 		String str = this.name + " vừa qua, xét về giá trị, cổ phiếu " + stock.name()
 				+ " có giá chốt phiên lớn nhất ngày " + formats.format(dayPriceMax.getDate()) 

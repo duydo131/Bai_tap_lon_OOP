@@ -3,7 +3,7 @@ package changing_sentence;
 import java.util.ArrayList;
 import java.util.Date;
 
-import Input.STOCK;
+import input.STOCK;
 
 public class WeekChangingHNX30 extends WeekChanging{
 	public WeekChangingHNX30(Date date) {

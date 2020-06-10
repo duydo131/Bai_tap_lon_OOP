@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-import Input.*;
 import gui.Tag;
+import input.*;
 
 public abstract class Sentence implements Tag {
 	

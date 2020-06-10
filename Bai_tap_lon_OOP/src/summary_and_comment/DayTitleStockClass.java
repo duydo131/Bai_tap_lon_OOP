@@ -2,11 +2,11 @@ package summary_and_comment;
 
 import java.util.Date;
 
-import Input.*;
 import changing_sentence.OverAllDayHNX30;
 import changing_sentence.OverAllDayStockClass;
 import changing_sentence.OverAllDayVN30;
 import changing_sentence.Verb;
+import input.*;
 
 public abstract class DayTitleStockClass extends Title{
 		

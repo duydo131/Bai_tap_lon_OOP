@@ -1,4 +1,4 @@
-package Input;
+package input;
 
 
 import java.text.SimpleDateFormat;

@@ -2,7 +2,8 @@ package comparision;
 
 import java.util.ArrayList;
 import java.util.Date;
-import Input.STOCK;
+
+import input.STOCK;
 
 public class ComparisionRandomVN30 extends ComparisionRandom {
 	public ComparisionRandomVN30(Date date) {
@@ -11,7 +12,7 @@ public class ComparisionRandomVN30 extends ComparisionRandom {
 
 	protected STOCK dataStock(int number) {
 		STOCK Stock;
-		Stock = Input.InputData.getStockByNumericalVN30(date, number);
+		Stock = input.InputData.getStockByNumericalVN30(date, number);
 		return Stock;
 	}
 

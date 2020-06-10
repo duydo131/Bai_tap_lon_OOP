@@ -5,8 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import Input.ReadFile;
 import gui.Tag;
+import input.ReadFile;
 
 public class TestDuy {
 	public static void main(String[] args) {

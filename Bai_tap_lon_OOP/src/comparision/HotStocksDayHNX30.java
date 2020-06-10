@@ -2,7 +2,7 @@ package comparision;
 import java.util.ArrayList;
 import java.util.Date;
 
-import Input.InputData;
+import input.InputData;
 
 public class HotStocksDayHNX30 extends HotStocksDay{
 

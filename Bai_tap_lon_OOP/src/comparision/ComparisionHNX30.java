@@ -1,9 +1,9 @@
 package comparision;
 
-import Input.STOCK;
-
 import java.util.ArrayList;
 import java.util.Date;
+
+import input.STOCK;
 
 public class ComparisionHNX30 extends ComparisionEXCHANGES{
 	public ComparisionHNX30(Date date) {
@@ -13,7 +13,7 @@ public class ComparisionHNX30 extends ComparisionEXCHANGES{
 	@Override
 	protected STOCK DataStock(int numberrical) {
 		STOCK Stock;
-		Stock = Input.InputData.getStockByNumericalHNX30(date, numberrical);
+		Stock = input.InputData.getStockByNumericalHNX30(date, numberrical);
 		return Stock;
 	}
 

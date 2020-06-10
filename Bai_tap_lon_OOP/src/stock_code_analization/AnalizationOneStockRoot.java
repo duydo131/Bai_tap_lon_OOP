@@ -3,13 +3,13 @@ package stock_code_analization;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-import Input.DataOneDay;
-import Input.STOCK;
 import gui.Tag;
+import input.DataOneDay;
+import input.STOCK;
 
 public abstract class AnalizationOneStockRoot implements Tag{
 	protected STOCK stock;
-	protected LinkedList<DataOneDay> dataOneDay = new LinkedList<>();
+	protected LinkedList<DataOneDay> dataOneStock = new LinkedList<>();
 	
 	protected ArrayList<String> listTag = new ArrayList<>();
 	

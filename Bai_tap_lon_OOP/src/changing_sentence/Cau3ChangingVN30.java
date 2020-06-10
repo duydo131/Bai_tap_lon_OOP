@@ -2,7 +2,7 @@ package changing_sentence;
 
 import java.util.Date;
 
-import Input.InputData;
+import input.InputData;
 
 public abstract class Cau3ChangingVN30 extends Cau3Changing {
 	protected static final double BIEN_DO_DAO_DONG = 0.07d;

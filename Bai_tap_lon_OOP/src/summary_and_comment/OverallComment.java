@@ -2,11 +2,11 @@ package summary_and_comment;
 
 import java.util.Date;
 
-import Input.STOCK;
+import input.STOCK;
 
-public class overallComment extends comment{
+public class OverallComment extends Comment{
 
-	public overallComment(Date date, STOCK stock) {
+	public OverallComment(Date date, STOCK stock) {
 		super(date, stock);
 		// TODO Auto-generated constructor stub
 	}

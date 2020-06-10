@@ -2,9 +2,9 @@ package summary_and_comment;
 
 import java.util.Date;
 
-import Input.STOCK;
+import input.STOCK;
 
-public class PsychologyOfInvestors extends comment {
+public class PsychologyOfInvestors extends Comment {
 
 	public PsychologyOfInvestors(Date date, STOCK stock) {
 		super(date,stock);

@@ -1,4 +1,4 @@
-package Input;
+package input;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -230,7 +230,8 @@ public class InputData {
 	
 	
 	// 	getInfo Some Day
-	private static Map<STOCK, ArrayList<DataOneDay>> getMap(Date dateBefore, Date dateAfter, Map<STOCK, DataOneStock> map ) {
+	private static Map<STOCK, ArrayList<DataOneDay>> 
+						getMap(Date dateBefore, Date dateAfter, Map<STOCK, DataOneStock> map ) {
 		long dayBefore = dateBefore.getTime();
 		long dayAfter = dateAfter.getTime();
 		Map<STOCK, ArrayList<DataOneDay>> data = new LinkedHashMap<>();
@@ -383,7 +384,7 @@ public class InputData {
 		return i;
 	}
 	
-	//	increase  increaseCounterOneStock
+	//	increase  
 	public static int increaseCounterOneStock(STOCK stock, Date date) {
 		return Counter(stock, date, true, datashare);
 	}

@@ -3,7 +3,7 @@ package comparision;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import Input.*;
+import input.*;
 
 public abstract class HotStocks extends Sentence {
 	

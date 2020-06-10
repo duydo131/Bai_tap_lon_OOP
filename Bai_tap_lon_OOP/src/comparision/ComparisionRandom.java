@@ -1,15 +1,14 @@
 package comparision;
 
-import Input.DataOneDay;
-import Input.InputData;
-import Input.STOCK;
-import gui.Tag;
+import input.DataOneDay;
+import input.InputData;
+import input.STOCK;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
 
-public abstract class ComparisionRandom extends Comparision implements Tag {
+public abstract class ComparisionRandom extends Comparision {
 	public ComparisionRandom() {
 	}
 

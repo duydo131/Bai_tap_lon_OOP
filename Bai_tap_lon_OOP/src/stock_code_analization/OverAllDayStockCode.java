@@ -3,11 +3,11 @@ package stock_code_analization;
 import java.util.ArrayList;
 import java.util.Date;
 
-import Input.*;
 import changing_sentence.AdverbStatus;
 import changing_sentence.OverAllDay;
 import changing_sentence.OverAllWeekStockCode;
 import changing_sentence.Verb;
+import input.*;
 
 public class OverAllDayStockCode extends OverAllDay{
 	

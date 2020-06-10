@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import gui.Tag;
-import Input.ReadFile;
-import Input.STOCK;
+import input.ReadFile;
+import input.STOCK;
 
 public class test {
 	public static void main(String[] args) throws ParseException {

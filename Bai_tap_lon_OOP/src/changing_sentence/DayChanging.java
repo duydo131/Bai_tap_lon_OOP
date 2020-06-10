@@ -2,10 +2,10 @@ package changing_sentence;
 
 import java.util.Date;
 
-import Input.Tool;
-import Input.InputData;
+import input.InputData;
+import input.Tool;
 
-public abstract class DayChanging extends NhanXet {
+public abstract class DayChanging extends Comment {
 	
 	@Override
 	protected void setInfo() {

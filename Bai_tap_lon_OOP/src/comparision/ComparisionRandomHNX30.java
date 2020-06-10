@@ -3,7 +3,7 @@ package comparision;
 import java.util.ArrayList;
 import java.util.Date;
 
-import Input.STOCK;
+import input.STOCK;
 
 public class ComparisionRandomHNX30 extends ComparisionRandom{
 	public ComparisionRandomHNX30(Date date) {
@@ -13,7 +13,7 @@ public class ComparisionRandomHNX30 extends ComparisionRandom{
 	@Override
 	protected STOCK dataStock(int number) {
 		STOCK Stock;
-		Stock = Input.InputData.getStockByNumericalHNX30(date, number);
+		Stock = input.InputData.getStockByNumericalHNX30(date, number);
 		return Stock;
 	}
                                                                                                                                                                                           

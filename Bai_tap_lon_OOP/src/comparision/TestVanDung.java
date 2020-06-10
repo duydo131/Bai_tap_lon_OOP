@@ -3,7 +3,8 @@ package comparision;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import Input.ReadFile;
+
+import input.ReadFile;
 
 public class TestVanDung {
 	public static void main(String[] args) throws ParseException {

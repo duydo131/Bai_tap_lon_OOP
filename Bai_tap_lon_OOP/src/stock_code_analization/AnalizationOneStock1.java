@@ -3,16 +3,16 @@ package stock_code_analization;
 import java.util.ArrayList;
 import java.util.Date;
 
-import Input.Tool;
-import Input.InputData;
-import Input.STOCK;
+import input.InputData;
+import input.STOCK;
+import input.Tool;
 
 public class AnalizationOneStock1 extends AnalizationOneStockRoot{
 	private String status;
 	
 	public AnalizationOneStock1(STOCK stock, Date date) {
 		this.stock = stock;
-		this.dataOneDay.add(InputData.getToday(date).get(stock));
+		this.dataOneStock.add(InputData.getToday(date).get(stock));
 		status = setStatus();
 		super.setTag();
 		this.setTag();
@@ -34,19 +34,19 @@ public class AnalizationOneStock1 extends AnalizationOneStockRoot{
 	public String get() {
 		String str =  "Trong phiên giao dịch cổ phiếu " + stock.name()
 					+ status
-					+ Math.abs(Math.round(dataOneDay.get(0).getThayDoi()*10000)/10) 
-					+ " đồng thành " + Tool.formatMoney(dataOneDay.get(0).getGiaDongCua())
+					+ Math.abs(Math.round(dataOneStock.get(0).getThayDoi()*10000)/10) 
+					+ " đồng thành " + Tool.formatMoney(dataOneStock.get(0).getGiaDongCua())
 					+ " đồng" 
-					+ " (" + (double)(Math.round((dataOneDay.get(0).getThayDoi()/dataOneDay.get(0).getGiaMoCua()*10000)))/100 + "%)"
-					+ " với tổng khối lượng giao dịch đạt gần " + Tool.formatLong(dataOneDay.get(0).getKL())
-					+ " cổ phiếu và thanh khoản đạt " + (long)(dataOneDay.get(0).getThanhKhoan()/10000)*1.0/100
+					+ " (" + (double)(Math.round((dataOneStock.get(0).getThayDoi()/dataOneStock.get(0).getGiaMoCua()*10000)))/100 + "%)"
+					+ " với tổng khối lượng giao dịch đạt gần " + Tool.formatLong(dataOneStock.get(0).getKL())
+					+ " cổ phiếu và thanh khoản đạt " + (long)(dataOneStock.get(0).getThanhKhoan()/10000)*1.0/100
 					+ " tỷ đồng.";
 		return str;
 	}
 	
 	private String setStatus() {
 		String s = "";
-		double thayDoi = this.dataOneDay.get(0).getThayDoi()/this.dataOneDay.get(0).getGiaMoCua();
+		double thayDoi = this.dataOneStock.get(0).getThayDoi()/this.dataOneStock.get(0).getGiaMoCua();
 		if(thayDoi >= 0.07d) {
 			s = " tăng trần ";
 		}else if(thayDoi < 0.07d && thayDoi >= 0.04d ) {

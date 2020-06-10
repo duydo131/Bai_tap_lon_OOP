@@ -2,10 +2,10 @@ package comparision;
 
 import java.util.ArrayList;
 import java.util.Date;
-import Input.STOCK;
-import gui.Tag;
 
-public class ComparisionVN30 extends ComparisionEXCHANGES implements Tag {
+import input.STOCK;
+
+public class ComparisionVN30 extends ComparisionEXCHANGES  {
 	public ComparisionVN30(Date date) {
 		this.date = date;
 	}
@@ -13,7 +13,7 @@ public class ComparisionVN30 extends ComparisionEXCHANGES implements Tag {
 	@Override
 	protected STOCK DataStock(int numberrical) {
 		STOCK Stock;
-		Stock = Input.InputData.getStockByNumericalVN30(date, numberrical);
+		Stock = input.InputData.getStockByNumericalVN30(date, numberrical);
 		return Stock;
 	}
 

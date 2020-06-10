@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
 
-import Input.DataOneDay;
-import Input.STOCK;
 import gui.Tag;
+import input.DataOneDay;
+import input.STOCK;
 
-public abstract class San implements Tag{
+public abstract class Exchanges implements Tag{
 	protected String name;
 	protected ArrayList<String> listTag = new ArrayList<>();
 	

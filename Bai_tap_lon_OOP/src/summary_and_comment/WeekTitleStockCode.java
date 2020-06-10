@@ -3,9 +3,9 @@ package summary_and_comment;
 import java.util.ArrayList;
 import java.util.Date;
 
-import Input.*;
 import changing_sentence.Sentence;
 import changing_sentence.Verb;
+import input.*;
 
 public class WeekTitleStockCode extends Title{
 	

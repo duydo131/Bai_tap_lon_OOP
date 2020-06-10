@@ -3,7 +3,7 @@ package comparision;
 import java.util.Date;
 import java.util.Set;
 
-import Input.*;
+import input.*;
 
 public abstract class HotStocksWeek extends HotStocks{
 	

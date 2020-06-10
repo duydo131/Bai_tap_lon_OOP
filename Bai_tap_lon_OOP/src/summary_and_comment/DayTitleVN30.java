@@ -3,7 +3,7 @@ package summary_and_comment;
 import java.util.ArrayList;
 import java.util.Date;
 
-import Input.*;
+import input.*;
 
 public class DayTitleVN30 extends DayTitleStockClass{
 	
@@ -23,7 +23,7 @@ public class DayTitleVN30 extends DayTitleStockClass{
 		
 		if (InputData.isWeekend(date)) {
 			WeekTitleVN30 sentence = new WeekTitleVN30(date);
-			setTag("weekend");
+			setTag("week");
 			return sentence.get();
 		}
 		else {

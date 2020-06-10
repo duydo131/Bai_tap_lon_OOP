@@ -4,8 +4,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import Input.ReadFile;
-import Input.STOCK;
+import input.ReadFile;
+import input.STOCK;
 
 public class Test {
 	public static void main(String[] args) throws ParseException {
@@ -34,3 +34,5 @@ public class Test {
 		
 	}
 }
+
+

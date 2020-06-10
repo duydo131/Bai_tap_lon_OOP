@@ -2,11 +2,11 @@ package summary_and_comment;
 
 import java.util.Date;
 
-import Input.STOCK;
+import input.STOCK;
 
-public class commentStock extends comment {
+public class CommentStock extends Comment {
 
-	public commentStock(Date date, STOCK stock) {
+	public CommentStock(Date date, STOCK stock) {
 		super(date, stock);
 	}
 	

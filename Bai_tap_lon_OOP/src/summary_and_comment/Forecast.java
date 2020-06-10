@@ -2,9 +2,9 @@ package summary_and_comment;
 
 import java.util.Date;
 
-import Input.STOCK;
+import input.STOCK;
 
-public class Forecast extends comment {
+public class Forecast extends Comment {
 	public Forecast(Date date, STOCK stock) {
 		super(date,stock);
 	}

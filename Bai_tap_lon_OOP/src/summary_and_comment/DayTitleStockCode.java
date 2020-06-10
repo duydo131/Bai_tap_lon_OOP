@@ -2,8 +2,9 @@ package summary_and_comment;
 
 import java.util.ArrayList;
 import java.util.Date;
-import Input.*;
+
 import changing_sentence.Verb;
+import input.*;
 
 public class DayTitleStockCode extends Title {
 	
@@ -13,6 +14,7 @@ public class DayTitleStockCode extends Title {
 		super(date);
 		this.subject = stock.name();
 		this.stock = stock;
+		setTag();
 	}
 	
 	public void setVerb() {
@@ -100,6 +102,7 @@ public class DayTitleStockCode extends Title {
 
 	@Override
 	public void setTag() {
-		listTag.add("title");
+		super.setTag();
+		listTag.add("oneStock");
 	}
 }

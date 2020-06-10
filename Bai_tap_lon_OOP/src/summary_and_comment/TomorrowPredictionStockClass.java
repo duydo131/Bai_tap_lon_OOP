@@ -3,9 +3,9 @@ package summary_and_comment;
 import java.util.Date;
 import java.util.Set;
 
-import Input.InputData;
-import Input.STOCK;
 import changing_sentence.Verb;
+import input.InputData;
+import input.STOCK;
 
 public abstract class TomorrowPredictionStockClass extends TomorrowPrediction{
 	

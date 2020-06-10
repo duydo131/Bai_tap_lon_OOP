@@ -5,8 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import Input.ReadFile;
-import Input.STOCK;
 import changing_sentence.Cau1ChangingHNX30;
 import changing_sentence.Cau1ChangingVN30;
 import changing_sentence.Cau2ChangingHNX30;
@@ -30,24 +28,27 @@ import comparision.ComparisionStockHot;
 import comparision.ComparisionVN30;
 import comparision.HotStocksDayHNX30;
 import comparision.HotStocksDayVN30;
+import input.ReadFile;
+import input.STOCK;
 import stock_code_analization.AnalizationOneStock1;
 import stock_code_analization.AnalizationOneStock2Month;
 import stock_code_analization.AnalizationOneStock2Week;
+import stock_code_analization.ChangingSentence;
 import stock_code_analization.DetailPricePercentageChanging;
 import stock_code_analization.OverAllDayStockCode;
-import stock_code_analization.PriceChangingDailySentence;
 import stock_code_analization.PriceChangingPercentageDailySentence;
 import stock_code_analization.VolumeChangingDailySentence;
 import stock_code_analization.VolumePercentageDailyChangingSentence;
 import summary_and_comment.DayTitleHNX30;
+import summary_and_comment.DayTitleStockCode;
 import summary_and_comment.DayTitleVN30;
 import summary_and_comment.Forecast;
 import summary_and_comment.Liquidity;
 import summary_and_comment.PsychologyOfInvestors;
 import summary_and_comment.TomorrowPredictionHNX30;
 import summary_and_comment.TomorrowPredictionVN30;
-import summary_and_comment.commentMarket;
-import summary_and_comment.commentStock;
+import summary_and_comment.CommentMarket;
+import summary_and_comment.CommentStock;
 
 public class test {
 	
@@ -87,7 +88,7 @@ public class test {
 		list.add(new ComparisionRandomHNX30(staticDate));
 		
 		// duc
-		list.add(new PriceChangingDailySentence(staticDate, staticStock));
+		list.add(new ChangingSentence(staticDate, staticStock));
 		list.add(new PriceChangingPercentageDailySentence(staticDate, staticStock));
 		list.add(new VolumeChangingDailySentence(staticDate, staticStock));
 		list.add(new VolumePercentageDailyChangingSentence(staticDate, staticStock));
@@ -107,15 +108,16 @@ public class test {
 		list.add(new DayTitleVN30(staticDate));
 		list.add(new DayTitleHNX30(staticDateWeekend));
 		list.add(new DayTitleHNX30(staticDate));
+		list.add(new DayTitleStockCode(staticDate, staticStock));
 		list.add(new TomorrowPredictionHNX30(staticDate));
 		list.add(new TomorrowPredictionVN30(staticDate));
 		
 		// quang
 		list.add(new PsychologyOfInvestors(staticDate, staticStock));
 		list.add(new Forecast(staticDate, staticStock));
-		list.add(new commentMarket(staticDate, staticStock));
+		list.add(new CommentMarket(staticDate, staticStock));
 		list.add(new Liquidity(staticDate, staticStock));
-		list.add(new commentStock(staticDate, staticStock));
+		list.add(new CommentStock(staticDate, staticStock));
 		
 		list.forEach(tag -> tag.get());
 		list.forEach(t->System.out.println(t.getClass().getSimpleName() + " : " + t.getTag()));

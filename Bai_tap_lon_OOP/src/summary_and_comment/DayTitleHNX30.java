@@ -3,7 +3,7 @@ package summary_and_comment;
 import java.util.ArrayList;
 import java.util.Date;
 
-import Input.*;
+import input.*;
 
 public class DayTitleHNX30 extends DayTitleStockClass{
 	

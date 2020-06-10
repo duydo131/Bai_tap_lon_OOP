@@ -7,10 +7,10 @@ import java.util.Map.Entry;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import Input.DataOneDay;
-import Input.STOCK;
+import input.DataOneDay;
+import input.STOCK;
 
-public abstract class Cau3Changing extends San{
+public abstract class Cau3Changing extends Exchanges{
 	protected LinkedList<STOCK> list = new LinkedList<>();
 	protected String status; 
 	

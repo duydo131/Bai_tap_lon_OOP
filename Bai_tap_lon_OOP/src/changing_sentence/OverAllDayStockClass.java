@@ -2,7 +2,7 @@ package changing_sentence;
 
 import java.util.Date;
 
-import Input.*;
+import input.*;
 
 public abstract class OverAllDayStockClass extends OverAllDay {
 		

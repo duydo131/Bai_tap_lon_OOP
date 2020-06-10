@@ -9,8 +9,8 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import Input.DataOneDay;
-import Input.STOCK;
+import input.DataOneDay;
+import input.STOCK;
 import javafx.collections.FXCollections;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
