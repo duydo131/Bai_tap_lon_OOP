@@ -9,9 +9,6 @@ import quang.Status;
 
 public abstract class comment implements Tag{
 	public Status status;
-	public String type;
-	public String typeStatus;
-
 	public ArrayList<String> listTag;
 	
 	public comment(Date date, STOCK stock) {
